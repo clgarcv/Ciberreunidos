@@ -17,13 +17,16 @@ public class piedrapapeltijera extends AppCompatActivity {
         Button bt_5= (Button) findViewById(R.id.cinco);
         Button bt_7= (Button) findViewById(R.id.siete);
 
-       /* bt_3.setOnClickListener(new View.OnClickListener() {
+       /*
+       bt_3.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                Intent i = new Intent(piedrapapeltijera.this, piedrapapeltijera.class); //cambiar clase
+                Intent i = new Intent(piedrapapeltijera.this, juego_piedrapapeltijera.class); //cambiar clase
                 i.putExtra("ronda",3);
                 startActivity(i);
             }
         });
+
+
         bt_5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
