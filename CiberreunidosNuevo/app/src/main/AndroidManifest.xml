@@ -16,7 +16,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".piedrapapeltijera" />
-        <activity android:name=".pant_ajustes"></activity>
+        <activity android:name=".pant_ajustes" />
+        <activity android:name=".pant_ahorcado" />
+        <activity android:name=".pant_enraya"></activity>
     </application>
 
 </manifest>
