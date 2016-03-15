@@ -33,10 +33,20 @@ public class pant_ppal extends AppCompatActivity {
         //onClick para boton ajustes
         btn_ajustes.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                Intent i2 = new Intent(pant_ppal.this, pant_ajustes.class);
-                startActivity(i2);
+                Intent i = new Intent(pant_ppal.this, pant_ajustes.class);
+                startActivity(i);
             }
         });
+
+        //onClick para boton ahorcado
+        btn_ahorcado.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View view) {
+                Intent i = new Intent(pant_ppal.this, pant_ahorcado.class);
+                startActivity(i);
+            }
+        });
+
+
 
 
 
