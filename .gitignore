@@ -1,13 +1,3 @@
-*.iml
-.gradle
-/local.properties
-/.idea/workspace.xml
-/.idea/libraries
-.DS_Store
-/build
-/captures
-
-
 CiberreunidosNuevo/.idea/.name
 CiberreunidosNuevo/.idea/encodings.xml
 CiberreunidosNuevo/.idea/runConfigurations.xml
@@ -17,3 +7,4 @@ CiberreunidosNuevo/.idea/.name
 CiberreunidosNuevo/.idea/gradle.xml
 CiberreunidosNuevo/.idea/modules.xml
 CiberreunidosNuevo/.idea/misc.xml
+CiberreunidosNuevo/.idea/
