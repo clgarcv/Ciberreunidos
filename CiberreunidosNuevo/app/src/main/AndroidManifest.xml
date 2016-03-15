@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".piedrapapeltijera"></activity>
+        <activity android:name=".piedrapapeltijera" />
+        <activity android:name=".pant_ajustes"></activity>
     </application>
 
 </manifest>
