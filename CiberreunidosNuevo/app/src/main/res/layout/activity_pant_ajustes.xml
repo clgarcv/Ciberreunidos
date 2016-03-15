@@ -3,97 +3,120 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_orange_light"
+    android:orientation="vertical"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ciberreunidossa.ciberreunidos.pant_ppal"
-    android:background="@android:color/holo_orange_light"
-    android:orientation="vertical"
-    android:weightSum="6">
+    android:weightSum="4"
+    tools:context="ciberreunidossa.ciberreunidos.pant_ppal">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:weightSum="1">
+        android:layout_width="match_parent"
+        android:layout_height="159dp"
+        android:orientation="horizontal">
+
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:src="@drawable/logo" />
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:weightSum="1"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="Ajustes"
-            android:textColor="@android:color/black"
-            android:textSize="30dip"
             android:textAlignment="center"
-            android:typeface="monospace"
-            android:layout_weight="1"
-            />
+            android:textColor="@android:color/black"
+            android:textSize="40dip"
+            android:typeface="monospace" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="89dp"
+        android:orientation="horizontal"
         android:weightSum="2"
-        android:layout_weight="1">
+        android:layout_marginBottom="10dp">
 
-        <ImageView
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/altavoz_ajuste"
-            android:layout_weight="1"/>
-
-
-        <Switch
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Switch"
-            android:id="@+id/switch1"
             android:layout_weight="1"
-            android:checked="false" />
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/altavoz_ajuste" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:weightSum="1"
+            android:layout_weight="1">
+
+            <ToggleButton
+                android:id="@+id/btn_sonido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+        </LinearLayout>
 
 
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:weightSum="2"
-        android:layout_weight="1">
+        android:layout_height="69dp"
+        android:layout_marginBottom="25dp"
+        android:orientation="horizontal"
+        android:weightSum="2">
 
-
-
-        <ImageView
+        <LinearLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ajustes_notas"
-            android:layout_weight="1"/>
-
-        <Switch
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New Switch"
-            android:id="@+id/switch2"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:adjustViewBounds="true"
+                android:scaleType="fitCenter"
+                android:src="@drawable/ajustes_notas" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:weightSum="1">
+
+            <ToggleButton
+                android:id="@+id/btn_musica"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+        </LinearLayout>
 
 
     </LinearLayout>
