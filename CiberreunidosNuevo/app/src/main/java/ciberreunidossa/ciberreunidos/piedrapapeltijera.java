@@ -17,7 +17,7 @@ public class piedrapapeltijera extends AppCompatActivity {
         Button bt_5= (Button) findViewById(R.id.cinco);
         Button bt_7= (Button) findViewById(R.id.siete);
 
-       /*
+
        bt_3.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
                 Intent i = new Intent(piedrapapeltijera.this, juego_piedrapapeltijera.class); //cambiar clase
@@ -31,7 +31,7 @@ public class piedrapapeltijera extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(piedrapapeltijera.this, piedrapapeltijera.class); //cambiar clase
-                i.putExtra("ronda",3);
+                i.putExtra("ronda",5);
                 startActivity(i);
             }
         });
@@ -39,10 +39,10 @@ public class piedrapapeltijera extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(piedrapapeltijera.this, piedrapapeltijera.class); //cambiar clase
-                i.putExtra("ronda",3);
+                i.putExtra("ronda",7);
                 startActivity(i);
             }
-        });*/
+        });
 
     }
 
