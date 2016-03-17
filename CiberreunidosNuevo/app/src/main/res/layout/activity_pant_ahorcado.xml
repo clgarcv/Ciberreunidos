@@ -15,13 +15,63 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="fill_parent"
-        android:layout_height="163dp"
+        android:layout_height="wrap_content"
         android:weightSum="1">
         <ImageView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/logo_small"
+            android:src="@drawable/logo_ahorcado"
             android:layout_weight="1"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:weightSum="1">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                >
+
+                <ImageView
+                    android:layout_width="235dp"
+                    android:layout_height="172dp"
+                    android:id="@+id/imageView2"
+                    android:src="@drawable/ahorcado_monigote7"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_marginTop="25dp"
+                    android:layout_marginLeft="15dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="46dp"
+            android:weightSum="1">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/editText"
+                android:text="de prueba"
+                android:textSize="20dp"
+                android:gravity="center"
+                android:layout_weight="0.92" />
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
