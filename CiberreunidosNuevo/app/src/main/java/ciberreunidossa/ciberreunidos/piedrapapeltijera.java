@@ -40,11 +40,9 @@ public class piedrapapeltijera extends AppCompatActivity {
             public void onClick(View v) {
                 Intent i = new Intent(piedrapapeltijera.this,  juego_piedrapapeltijera.class);
                 i.putExtra("ronda","7");
-
                 startActivity(i);
             }
         });
-
     }
 
 

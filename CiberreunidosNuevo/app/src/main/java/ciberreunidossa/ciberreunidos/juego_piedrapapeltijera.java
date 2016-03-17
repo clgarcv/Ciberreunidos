@@ -1,5 +1,7 @@
 package ciberreunidossa.ciberreunidos;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,7 +11,7 @@ import android.widget.TextView;
 
 import logicappt.ppt;
 
-public class juego_piedrapapeltijera extends AppCompatActivity {
+public class juego_piedrapapeltijera extends AppCompatActivity{
     public  ppt ppt= new ppt();
     public int jugador1;
     public boolean ganaR=false;
@@ -18,19 +20,13 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_piedrapapeltijera);
         Bundle bundle = getIntent().getExtras();
-        String rondas= bundle.getString("ronda");
+        final String rondas= bundle.getString("ronda");
         ImageButton piedra= (ImageButton) findViewById(R.id.piedra);
         ImageButton tijera= (ImageButton) findViewById(R.id.tijera);
         ImageButton papel= (ImageButton) findViewById(R.id.papel);
-        TextView m1= (TextView) findViewById(R.id.punt_jug1);
-        TextView m2= (TextView) findViewById(R.id.punt_jug2);
-        TextView txt_ronda= (TextView) findViewById(R.id.textView);
+        final TextView m1= (TextView) findViewById(R.id.punt_jug1);
+        final TextView m2= (TextView) findViewById(R.id.punt_jug2);
         System.out.println(rondas);
-       /*while(m1.getText().toString() != rondas || m2.getText().toString() != rondas){
-            if(ganaR!= true){
-                cambiar_ronda(txt_ronda);
-            }
-        }*/
         //botones
             //boton piedra
         piedra.setOnClickListener(new View.OnClickListener() {
@@ -41,7 +37,11 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
                 int jugador1= 3;
                 int jugador2= jugador2(ppt.generaOpcion());
                 juego(jugador1,jugador2);
-
+                if(ganaR){
+                    TextView txt_ronda= (TextView) findViewById(R.id.textView);
+                    cambiar_ronda(txt_ronda);
+                }
+                terminarPartida(m1, m2, rondas);
             }
         });
             //boton tijera
@@ -53,6 +53,11 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
                 int jugador1= 2;
                 int jugador2= jugador2(ppt.generaOpcion());
                 juego(jugador1, jugador2);
+                if(ganaR){
+                    TextView txt_ronda= (TextView) findViewById(R.id.textView);
+                    cambiar_ronda(txt_ronda);
+                }
+                terminarPartida(m1, m2, rondas);
             }
         });
             //boton papel
@@ -64,9 +69,15 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
                 int jugador1= 1;
                 int jugador2= jugador2(ppt.generaOpcion());
                 juego(jugador1,jugador2);
+                if(ganaR){
+                    TextView txt_ronda= (TextView) findViewById(R.id.textView);
+                    cambiar_ronda(txt_ronda);
+                }
+                terminarPartida(m1,m2,rondas);
             }
         });
     }
+
     public void sumar_punto(TextView marcador){
         marcador.getText();
         char a= marcador.getText().charAt(0);
@@ -115,4 +126,20 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
         char b= Integer.toString(i).charAt(0);
         marcador.setText(new String(new char[]{'R','O','N','D','A',' ',b}));
     }
+
+    public void terminarPartida(TextView m1,TextView m2,String rondas){
+        m1.getText();
+        m2.getText();
+        if(m1.getText().toString().equals(rondas) || m2.getText().toString().equals(rondas) ){
+            if(m1.getText().toString().equals(rondas)){
+                Intent i = new Intent(juego_piedrapapeltijera.this,  gana_ppt.class);
+                startActivity(i);
+            }
+            else{
+                Intent i = new Intent(juego_piedrapapeltijera.this, pierde_ppt.class);
+                startActivity(i);
+            }
+        }
+    }
+
 }

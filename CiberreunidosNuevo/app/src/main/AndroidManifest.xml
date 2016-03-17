@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
-        <activity android:name=".pant_ppal"
+        <activity
+            android:name=".pant_ppal"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,17 +17,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".piedrapapeltijera"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".pant_ajustes"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".juego_piedrapapeltijera"
-            android:screenOrientation="portrait"></activity>
-        <activity android:name=".pant_ahorcado"
+        <activity
+            android:name=".piedrapapeltijera"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".pant_ajustes"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".juego_piedrapapeltijera"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".pant_ahorcado"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".pant_enraya"
-            android:screenOrientation="portrait"></activity>
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".pant_enraya"
+            android:screenOrientation="portrait" />
+        <activity android:name=".gana_ppt" />
+        <activity android:name=".pierde_ppt"></activity>
     </application>
 
 </manifest>
