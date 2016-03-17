@@ -23,7 +23,8 @@
         <activity android:name=".juego_piedrapapeltijera"
             android:screenOrientation="portrait"></activity>
         <activity android:name=".pant_ahorcado"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".pant_enraya"
             android:screenOrientation="portrait"></activity>
     </application>
