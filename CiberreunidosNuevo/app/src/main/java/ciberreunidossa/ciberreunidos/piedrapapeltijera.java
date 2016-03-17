@@ -30,16 +30,16 @@ public class piedrapapeltijera extends AppCompatActivity {
         bt_5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(piedrapapeltijera.this, juego_piedrapapeltijera.class);
-                i.putExtra("ronda",3);
+                Intent i = new Intent(piedrapapeltijera.this, piedrapapeltijera.class); //cambiar clase
+                i.putExtra("ronda",5);
                 startActivity(i);
             }
         });
         bt_7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(piedrapapeltijera.this, juego_piedrapapeltijera.class);
-                i.putExtra("ronda",3);
+                Intent i = new Intent(piedrapapeltijera.this, piedrapapeltijera.class); //cambiar clase
+                i.putExtra("ronda",7);
                 startActivity(i);
             }
         });
