@@ -33,8 +33,7 @@
         <activity
             android:name=".pant_enraya"
             android:screenOrientation="portrait" />
-        <activity android:name=".gana_ppt" />
-        <activity android:name=".pierde_ppt"></activity>
+        <activity android:name=".pierdegana"></activity>
     </application>
 
 </manifest>
