@@ -113,13 +113,19 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
 
     //Metodo que actualiza los marcadores y el numero de ronda
     public void actualizar_marcadores() {
-        TextView marcador2 = (TextView) findViewById(R.id.punt_jug2);
-        TextView marcador1 = (TextView) findViewById(R.id.punt_jug1);
-        marcador1.setText(Integer.toString(vj));
-        marcador2.setText(Integer.toString(vm));
-        //Ralentizar  la aparicion de la nueva ronda
+
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
+            public void run() {
+                TextView marcador2 = (TextView) findViewById(R.id.punt_jug2);
+                TextView marcador1 = (TextView) findViewById(R.id.punt_jug1);
+                marcador1.setText(Integer.toString(vj));
+                marcador2.setText(Integer.toString(vm));
+            }
+        }, 500);
+        //Ralentizar  la aparicion de la nueva ronda
+        Handler handler1 = new Handler();
+        handler1.postDelayed(new Runnable() {
             public void run() {
                 TextView txt_ronda = (TextView) findViewById(R.id.textView);
                 txt_ronda.setText("RONDA " + Integer.toString(r));
