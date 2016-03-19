@@ -34,9 +34,8 @@ android:weightSum="3">
         android:id="@+id/resultado"
         android:layout_width="fill_parent"
         android:layout_height="199dp"
-        android:text="HAS PERDIDO"
         android:textColor="@android:color/black"
-        android:textSize="70dip"
+        android:textSize="65dip"
         android:textAlignment="center"
         android:typeface="monospace"
         />
@@ -52,8 +51,8 @@ android:weightSum="3">
     <Button
         android:id="@+id/menu"
         android:layout_width="168dp"
-        android:layout_height="wrap_content"
-        android:text="Otro juego"
+        android:layout_height="131dp"
+        android:text="Salir del juego"
         android:textSize="30dip"
         android:textAlignment="center"
         android:typeface="monospace"
@@ -66,8 +65,8 @@ android:weightSum="3">
     <Button
         android:id="@+id/jugar"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Jugar otra vez"
+        android:layout_height="134dp"
+        android:text="Jugar de nuevo"
         android:textSize="30dip"
         android:textAlignment="center"
         android:typeface="monospace"

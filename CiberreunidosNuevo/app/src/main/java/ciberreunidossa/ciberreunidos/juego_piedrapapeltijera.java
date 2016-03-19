@@ -1,166 +1,198 @@
 package ciberreunidossa.ciberreunidos;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import logicappt.ppt;
+import java.util.Random;
 
-public class juego_piedrapapeltijera extends AppCompatActivity{
-    public  ppt ppt= new ppt();
-    public boolean ganaR=false;
-    int j=0;
-    int r=1;
+public class juego_piedrapapeltijera extends AppCompatActivity {
+    //Ronda actual
+    int r = 1;
+    //Victorias jugador
+    int vj;
+    //Victorias maquina
+    int vm;
+    //Opciones maquina
+    private String[] opciones = {"piedra", "papel", "tijera"};
+
+    String maquina;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_juego_piedrapapeltijera);
-        Bundle bundle = getIntent().getExtras();
-        final String rondas= bundle.getString("ronda");
-        ImageButton piedra= (ImageButton) findViewById(R.id.piedra);
-        ImageButton tijera= (ImageButton) findViewById(R.id.tijera);
-        ImageButton papel= (ImageButton) findViewById(R.id.papel);
-        final TextView m1= (TextView) findViewById(R.id.punt_jug1);
-        final TextView m2= (TextView) findViewById(R.id.punt_jug2);
-        System.out.println(rondas);
-        //botones
-            //boton piedra
+        ImageButton piedra = (ImageButton) findViewById(R.id.piedra);
+        ImageButton tijera = (ImageButton) findViewById(R.id.tijera);
+        ImageButton papel = (ImageButton) findViewById(R.id.papel);
+        final TextView m1 = (TextView) findViewById(R.id.punt_jug1);
+        final TextView m2 = (TextView) findViewById(R.id.punt_jug2);
+        //boton piedra
         piedra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageButton im1= (ImageButton) findViewById(R.id.imageButton_1);
+                ImageButton im1 = (ImageButton) findViewById(R.id.imageButton_1);
                 im1.setBackgroundResource(R.drawable.piedra_btn);
-                int jugador1= 3;
-                int jugador2= jugador2(ppt.generaOpcion());
-                juego(jugador1,jugador2);
-                if(ganaR){
-                    TextView txt_ronda= (TextView) findViewById(R.id.textView);
-                    cambiar_ronda(txt_ronda);
-                }
-                terminarPartida(m1, m2, rondas);
+                juego("piedra");
             }
         });
-            //boton tijera
+        //boton tijera
         tijera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageButton im1= (ImageButton) findViewById(R.id.imageButton_1);
+                ImageButton im1 = (ImageButton) findViewById(R.id.imageButton_1);
                 im1.setBackgroundResource(R.drawable.tijera_btn);
-                int jugador1= 2;
-                int jugador2= jugador2(ppt.generaOpcion());
-                juego(jugador1, jugador2);
-                if(ganaR){
-                    TextView txt_ronda= (TextView) findViewById(R.id.textView);
-                    cambiar_ronda(txt_ronda);
-                }
-                terminarPartida(m1, m2, rondas);
+                juego("tijera");
+
             }
         });
-            //boton papel
+        //boton papel
         papel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ImageButton im1= (ImageButton) findViewById(R.id.imageButton_1);
+                ImageButton im1 = (ImageButton) findViewById(R.id.imageButton_1);
                 im1.setBackgroundResource(R.drawable.papel_btn);
-                int jugador1= 1;
-                int jugador2= jugador2(ppt.generaOpcion());
-                juego(jugador1,jugador2);
-                if(ganaR){
-                    TextView txt_ronda= (TextView) findViewById(R.id.textView);
-                    cambiar_ronda(txt_ronda);
-                }
-                terminarPartida(m1,m2,rondas);
+                juego("papel");
             }
         });
     }
-    //Esta funcion suma un punto en el marcador indicado.
-    //coge el texto del marcador, lo pasa a entero, le suma uno y pone el resulatdo en el marcador
-    public void sumar_punto(TextView marcador){
-        marcador.getText();
-        char a= marcador.getText().charAt(0);
-        int i= Character.digit(a, 10);
-        i++;
-        char b= Integer.toString(i).charAt(0);
-        marcador.setText(new String(new char[]{b}));
+
+    //Metodo que genera aleatoriamente la opcion de la maquina.
+    public String generaOpcion() {
+        Random r = new Random();
+        return opciones[r.nextInt(3)];
     }
-    //con esta funcion, ponemos una imagen en la mano del jugador 2, para ello le pasamos un string
-    //que sera sacado con una funcion aleatoria.
-    public int jugador2(String s){
+
+    //Muestra la imagen de la seleccion de la maquina
+    public void mostrarseleccion(String s) {
         int i;
-        ImageButton im2= (ImageButton) findViewById(R.id.imageButton_2);
-        if(s=="papel"){
+        ImageButton im2 = (ImageButton) findViewById(R.id.imageButton_2);
+        if (s == "papel") {
             im2.setBackgroundResource(R.drawable.papel_btn);
-            i=1;}
-        else if(s=="tijera"){
+        } else if (s == "tijera") {
             im2.setBackgroundResource(R.drawable.tijera_btn);
-            i=2;}
-        else{
+        } else {
             im2.setBackgroundResource(R.drawable.piedra_btn);
-            i=3;}
-        return i;
+        }
     }
-    // Esta función lo que hace es comparar las manos de los 2 jugadores y poner
-    // al marcador el punto del ganador de esa ronda.Tambien dice si se ha ganado
-    // una ronda o a habido un empate, en ese caso no gana nadie la ronda.
-    public void juego(int valorJug1,int valorJug2){
-        // papel - tijera o tijera - piedra o piedra - papel, gana el segundo
-        if(valorJug1 == 1 && valorJug2 == 2 || valorJug1 == 2 && valorJug2 == 3 || valorJug1 == 3 && valorJug2 == 1 ){
-            TextView marcador2= (TextView) findViewById(R.id.punt_jug2);
-            sumar_punto(marcador2);
-            ganaR=true;
-        }
-        //tijera - papel o piedra - tijera o papel - piedra, gana el primero
-        else if (valorJug1 == 2 && valorJug2 == 1 || valorJug1 == 3 && valorJug2 == 2 || valorJug1 == 1 && valorJug2 == 3) {
-            TextView marcador1= (TextView) findViewById(R.id.punt_jug1);
-            sumar_punto(marcador1);
-            ganaR=true;
-        }
-        else{ganaR=false;}
 
-    }
-    // Esta función cambia el numero de ronda en el texto
-    public void cambiar_ronda(TextView marcador){
-        marcador.getText();
-        char a= marcador.getText().charAt(6);
-        int i= Character.digit(a, 10);
-        i++;
-        r++;
-        // si hay mas de 9 rondas jugadas, poner RONDA 1x
-        // puesto que no va a haber mas de 13 rondas, puesto que cuando un jugador
-        // llega a 7(maximo de puntos que podemos jugar) termina la partida
-        if (r>9){
-            char b= Integer.toString(i).charAt(0);
-            char c= Integer.toString(j).charAt(0);
-            marcador.setText(new String(new char[]{'R','O','N','D','A',' ','1',c}));
-            j++;
-        }
-        else{
-            char b= Integer.toString(i).charAt(0);
-            marcador.setText(new String(new char[]{'R','O','N','D','A',' ',b}));
-        }
-
-    }
-    // Esta funcion comprueba los marcadores y si es igual al maximo de puntos
-    // entonces salta a las actividades de ganar o perder en funcion de quien
-    // de los 2 jugadores gana
-    public void terminarPartida(TextView m1,TextView m2,String rondas){
-        m1.getText();
-        m2.getText();
-        if(m1.getText().toString().equals(rondas) || m2.getText().toString().equals(rondas) ){
-            if(m1.getText().toString().equals(rondas)){
-                Intent i = new Intent(juego_piedrapapeltijera.this,  pierdegana.class);
-                i.putExtra("resultado","gana");
-                startActivity(i);
+    //metodo que recoge el comportamiento del juego, pasandole como parametro la opcion del jugador
+    public void juego(String jugador) {
+        maquina = generaOpcion();//Generamos la opcion de la maquina
+        //Ralentizar  la aparicion de la imagen de la maquina
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                mostrarseleccion(maquina);//La mostramos
             }
-            else{
+        }, 500);
+        //En el caso de que ambas opciones sean las mismas, se suma unicamente ronda
+        if (maquina.equals(jugador)) {
+            r++;//Incrementamos ronda
+            actualizar_marcadores();
+        } else {
+            //Casos en los que el jugador gana la ronda
+            if ((jugador.equals("piedra") && maquina.equals("tijera")) || (jugador.equals("tijera") && maquina.equals("papel")) || (jugador.equals("papel") && maquina.equals("piedra"))) {
+                vj++;//Sumamos la victoria al jugador
+                r++;//Incrementamos ronda
+                actualizar_marcadores();
+                finpartida();//Comprobamos si alguno ha ganado la partida
+                //Caso en el que el jugador pierde la ronda
+            } else {
+                vm++;//Sumamos la victoria a la maquina
+                r++;//Incrementamos ronda
+                actualizar_marcadores();
+                finpartida();//Comprobamos si alguno ha ganado la partida
+            }
+        }
+    }
+
+    //Metodo que actualiza los marcadores y el numero de ronda
+    public void actualizar_marcadores() {
+        TextView marcador2 = (TextView) findViewById(R.id.punt_jug2);
+        TextView marcador1 = (TextView) findViewById(R.id.punt_jug1);
+        marcador1.setText(Integer.toString(vj));
+        marcador2.setText(Integer.toString(vm));
+        //Ralentizar  la aparicion de la nueva ronda
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                TextView txt_ronda = (TextView) findViewById(R.id.textView);
+                txt_ronda.setText("RONDA " + Integer.toString(r));
+                ImageButton im2 = (ImageButton) findViewById(R.id.imageButton_2);
+                im2.setBackgroundResource(0);
+                ImageButton im1 = (ImageButton) findViewById(R.id.imageButton_1);
+                im1.setBackgroundResource(0);
+            }
+        }, 1500);
+
+    }
+
+    //Metodo que determina si la partida a finalizado
+    public void finpartida() {
+        Bundle bundle = getIntent().getExtras();
+        final String rondas = bundle.getString("ronda");
+        //Si las rondas son 3
+        if (Integer.parseInt(rondas) == 3) {
+            //El jugador o la maquina gana en el momento en que llegen a las 2 victorias
+            if (vj == 2) {
+                victoria();
+            } else if (vm == 2) {
+                pierde();
+            }
+            //Si las rondas son 5
+        } else if (Integer.parseInt(rondas) == 5) {
+            //El jugador o la maquina gana en el momento en que llegen a las 3 victorias
+            if (vj == 3) {
+                victoria();
+            } else if (vm == 3) {
+                pierde();
+            }
+            //Si las rondas son 7
+        } else {
+            //El jugador o la maquina gana en el momento en que llegen a las 4 victorias
+            if (vj == 4) {
+                victoria();
+            } else if (vm == 4) {
+                pierde();
+            }
+
+        }
+
+    }
+
+    //Transicion en el caso de que el jugador haya ganado
+    public void victoria() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
                 Intent i = new Intent(juego_piedrapapeltijera.this, pierdegana.class);
-                i.putExtra("resultado","pierde");
+                i.putExtra("resultado", "victoria");
+                i.putExtra("vj", Integer.toString(vj));
+                i.putExtra("vm", Integer.toString(vm));
                 startActivity(i);
             }
-        }
+        }, 1000);
+
     }
 
+    //Transicion en el caso de que el jugador haya perdido
+    public void pierde() {
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                Intent i = new Intent(juego_piedrapapeltijera.this, pierdegana.class);
+                i.putExtra("resultado", "derrota");
+                i.putExtra("vj", Integer.toString(vj));
+                i.putExtra("vm", Integer.toString(vm));
+                startActivity(i);
+            }
+
+        }, 1000);
+
+    }
 }

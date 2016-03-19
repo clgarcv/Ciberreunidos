@@ -17,9 +17,13 @@ public class pierdegana extends AppCompatActivity {
         Button menu= (Button) findViewById(R.id.menu);
         Bundle bundle = getIntent().getExtras();
         final String resultado= bundle.getString("resultado");
+        final String vj= bundle.getString("vj");
+        final String vm= bundle.getString("vm");
         TextView texto=(TextView) findViewById(R.id.resultado);
-        if( resultado.equals("gana")) {
-            texto.setText("HAS GANADO");
+        if( resultado.equals("victoria")) {
+            texto.setText("VICTORIA\n"+vj+"-"+vm);
+        }else{
+            texto.setText("DERROTA\n"+vj+"-"+vm);
         }
         jugar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,8 +36,12 @@ public class pierdegana extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(pierdegana.this,  pant_ppal.class);
+                //De esta manera conseguimos que el boton atras no nos lleve de nuevo a esta misma pagina
+                Intent i = getBaseContext().getPackageManager()
+                        .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(i);
+
             }
         });
     }
