@@ -114,25 +114,39 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
     //Metodo que actualiza los marcadores y el numero de ronda
     public void actualizar_marcadores() {
 
+        ImageButton piedra = (ImageButton) findViewById(R.id.piedra);
+        ImageButton tijera = (ImageButton) findViewById(R.id.tijera);
+        ImageButton papel = (ImageButton) findViewById(R.id.papel);
+        //Desactivamos los botones para que no puedan ser pulsados
+        piedra.setEnabled(false);
+        tijera.setEnabled(false);
+        papel.setEnabled(false);
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             public void run() {
+
                 TextView marcador2 = (TextView) findViewById(R.id.punt_jug2);
                 TextView marcador1 = (TextView) findViewById(R.id.punt_jug1);
                 marcador1.setText(Integer.toString(vj));
                 marcador2.setText(Integer.toString(vm));
             }
         }, 500);
-        //Ralentizar  la aparicion de la nueva ronda
+        //Ralentizar  la aparicion de la nueva ronda y la pulsacion de los botones
         Handler handler1 = new Handler();
         handler1.postDelayed(new Runnable() {
             public void run() {
+                ImageButton piedra = (ImageButton) findViewById(R.id.piedra);
+                ImageButton tijera = (ImageButton) findViewById(R.id.tijera);
+                ImageButton papel = (ImageButton) findViewById(R.id.papel);
                 TextView txt_ronda = (TextView) findViewById(R.id.textView);
                 txt_ronda.setText("RONDA " + Integer.toString(r));
                 ImageButton im2 = (ImageButton) findViewById(R.id.imageButton_2);
                 im2.setBackgroundResource(0);
                 ImageButton im1 = (ImageButton) findViewById(R.id.imageButton_1);
                 im1.setBackgroundResource(0);
+                piedra.setEnabled(true);
+                tijera.setEnabled(true);
+                papel.setEnabled(true);
             }
         }, 1500);
 
