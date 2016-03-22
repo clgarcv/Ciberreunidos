@@ -34,6 +34,13 @@ public class pierdegana extends AppCompatActivity {
             }
         });
 
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(pierdegana.this,pant_ppal.class);
+                startActivity(i);
+            }
+        });
     }
 
     //Cambio del comportamiento del boton atras para que nos lleve a la pagina de seleccionar ronda
