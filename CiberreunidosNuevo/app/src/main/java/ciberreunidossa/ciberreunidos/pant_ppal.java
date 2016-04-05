@@ -20,6 +20,8 @@ public class pant_ppal extends AppCompatActivity {
         ImageButton btn_enraya = (ImageButton) findViewById(R.id.btn_enraya);
         ImageButton btn_parchis = (ImageButton) findViewById(R.id.btn_parchis);
         ImageButton btn_ajustes = (ImageButton) findViewById(R.id.btn_ajustes);
+        ImageButton btn_ayuda = (ImageButton) findViewById(R.id.btn_ayuda);
+
 
         //definimos las funciones onClick para los botones
 
@@ -39,10 +41,11 @@ public class pant_ppal extends AppCompatActivity {
             }
         });
 
-        //onClick para boton ahorcado
-        btn_ahorcado.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
-                Intent i = new Intent(pant_ppal.this, pant_ahorcado.class);
+        //onClick para boton ayuda
+        btn_ayuda.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(pant_ppal.this, pant_ayuda.class);
                 startActivity(i);
             }
         });
