@@ -25,10 +25,18 @@ public class pant_ppal extends AppCompatActivity {
 
         //definimos las funciones onClick para los botones
 
-        //onClick para boton parchis
+        //onClick para boton piedra papel tijera
         btn_ppt.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
                 Intent i = new Intent(pant_ppal.this, piedrapapeltijera.class);
+                startActivity(i);
+            }
+        });
+
+        //onClick para boton ahorcado
+        btn_ahorcado.setOnClickListener(new View.OnClickListener() {
+            @Override public void onClick(View view) {
+                Intent i = new Intent(pant_ppal.this, pant_ahorcado.class);
                 startActivity(i);
             }
         });
