@@ -27,7 +27,7 @@ public class pant_ayuda extends AppCompatActivity {
         btn_ay_ppt.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
                 txt_titulo.setText("Piedra, papel o tijera");
-                txt_ayuda.setText("En primer lugar se selecionará el número de rondas que se desea jugar, pudiendo ser 3, 5 o 7 rondas. Al seleccionar la ronda comenzará el juego, dando como ganador al mejor del número de rondas selecionadas. Por ejemplo si seleciona 3 rondas, ganará el mejor de 3.");
+                txt_ayuda.setText("En primer lugar se selecionará el número de rondas que se desea jugar, pudiendo ser 3, 5 o 7 rondas. Al seleccionar la ronda comenzará el juego, dando como ganador al mejor del número de rondas selecionadas. Por ejemplo si seleciona 3 rondas, ganará el mejor de 3.\n");
             }
         });
 
@@ -35,7 +35,7 @@ public class pant_ayuda extends AppCompatActivity {
         btn_ay_ahorcado.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
                 txt_titulo.setText("Ahorcado");
-                txt_ayuda.setText("El objetivo será encontrar la palabra escondida antes de completar el ahorcado. Para ello se iran pulsando letras de una en una. Si la letra forma parte de la palabra se colocara en los huecos correctos, en caso contrario, que la letra no este en la palabra se añadira una parte al ahorcado. El juego termina cuando se complete la palabra o se complete el ahorcado.");
+                txt_ayuda.setText("El objetivo será encontrar la palabra escondida antes de completar el ahorcado. Para ello se iran pulsando letras de una en una. Si la letra forma parte de la palabra se colocara en los huecos correctos, en caso contrario, que la letra no este en la palabra se añadira una parte al ahorcado. El juego termina cuando se complete la palabra o se complete el ahorcado.\n");
             }
         });
 
@@ -44,7 +44,7 @@ public class pant_ayuda extends AppCompatActivity {
         btn_ay_enraya.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
                 txt_titulo.setText("3 en raya");
-                txt_ayuda.setText("El funcionamiento del juego consiste en conseguir poner 3 fichas iguales adyacentes, bien sea en horizontal, vertical o en diagonal. En primer lugar tendrá que selccionar con que ficha desea jugar, X o O.");
+                txt_ayuda.setText("El funcionamiento del juego consiste en conseguir poner 3 fichas iguales adyacentes, bien sea en horizontal, vertical o en diagonal. En primer lugar tendrá que selccionar con que ficha desea jugar, X o O. \n");
             }
         });
 
@@ -52,7 +52,7 @@ public class pant_ayuda extends AppCompatActivity {
         btn_ay_parchis.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
                 txt_titulo.setText("Parchís");
-                txt_ayuda.setText("Para sacar ficha de casa sera necesario obtener un 5 en el dado. Una vez tenemos fichas fuera de casa con cada tirada de dado podremos mover la ficha que deseemos tantas posiciones como numero hayamos obtenido en el dado. Este proceso se repetira hasta conseguir llevar a casa a todas las fichas.");
+                txt_ayuda.setText("Para sacar ficha de casa será necesario obtener un 5 en el dado. Una vez tenemos fichas fuera de casa con cada tirada de dado podremos mover la ficha que deseemos tantas posiciones como numero hayamos obtenido en el dado. Este proceso se repetira hasta conseguir llevar a casa a todas las fichas.\n");
             }
         });
 
