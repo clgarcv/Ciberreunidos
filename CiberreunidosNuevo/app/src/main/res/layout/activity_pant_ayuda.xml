@@ -43,7 +43,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="wrap_content"
         android:weightSum="4"
         android:layout_marginTop="5dp">
 
@@ -51,7 +51,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageButton"
+            android:id="@+id/btn_ayu_ppt"
             android:src="@drawable/ppt_bt"
             android:layout_weight="1"
             android:adjustViewBounds="true"
@@ -63,7 +63,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageButton2"
+            android:id="@+id/btn_ayu_ahorcado"
             android:src="@drawable/ahorcado_bt"
             android:layout_weight="1"
             android:adjustViewBounds="true"
@@ -75,7 +75,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageButton3"
+            android:id="@+id/btn_ayu_enraya"
             android:src="@drawable/enraya_bt"
             android:layout_weight="1"
             android:adjustViewBounds="true"
@@ -87,7 +87,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageButton4"
+            android:id="@+id/btn_ayu_parchis"
             android:src="@drawable/parchis_bt"
             android:layout_weight="1"
             android:adjustViewBounds="true"
@@ -95,6 +95,43 @@
             android:scaleType="fitCenter"
             android:layout_margin="8dp"
             />
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="4.07">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:id="@+id/txtTitulo"
+            android:textSize="35dp"
+            android:textAlignment="center"
+        />
+
+        <ScrollView
+            android:id="@+id/SCROLLER_ID"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:fillViewport="true">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/txtInfo"
+            android:text=""
+            android:textSize="20dp"
+            android:layout_margin="10dp"
+            android:paddingBottom="5dp"
+
+            />
+        </ScrollView>
+
+
     </LinearLayout>
 
 </LinearLayout>
