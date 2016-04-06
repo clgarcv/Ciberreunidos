@@ -73,9 +73,13 @@
                 android:gravity="center"
                 android:imeOptions="actionDone"
                 android:textSize="25dp" />
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/aux"
+                android:visibility="invisible"/>
 
         </LinearLayout>
-
 
 
     </LinearLayout>

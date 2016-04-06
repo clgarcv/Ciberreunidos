@@ -47,6 +47,9 @@ public class pant_ahorcado extends AppCompatActivity {
         setContentView(R.layout.activity_pant_ahorcado);
         final TextView palabra = (TextView) findViewById(R.id.palabra);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+
+        EditText aux = (EditText) findViewById(R.id.aux);
+        aux.requestFocus();
         //eligePalabra();
         //creaPalabra(palabra.getText().toString());
 
@@ -74,12 +77,19 @@ public class pant_ahorcado extends AppCompatActivity {
         EditText texto = (EditText) findViewById(R.id.palabra);
         texto.setText(resultado);
     }
-*/
+
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         //Keyboard teclado
         TextView texto = (TextView) findViewById(R.id.palabra);
+        EditText aux = (EditText) findViewById(R.id.aux);
+        String l = aux.getText().toString();
+        //texto.setText("");
+        texto.setText(l);
 
+
+
+        /*
         switch (keyCode) {
 
             case KeyEvent.KEYCODE_A:
@@ -140,7 +150,7 @@ public class pant_ahorcado extends AppCompatActivity {
 
 
     }
-
+*/
 
 }
 
