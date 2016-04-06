@@ -29,7 +29,7 @@
         <activity
             android:name=".pant_ahorcado"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="stateAlwaysVisible" />
         <activity
             android:name=".pant_enraya"
             android:screenOrientation="portrait" />

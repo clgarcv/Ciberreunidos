@@ -61,18 +61,22 @@
             android:layout_width="match_parent"
             android:layout_height="46dp"
             android:orientation="horizontal"
-            android:weightSum="1">
+            android:weightSum="1"
+            android:layout_marginTop="10dp">
 
-            <EditText
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.92"
                 android:id="@+id/palabra"
                 android:text="de prueba"
                 android:gravity="center"
-                android:textSize="20dp" />
+                android:imeOptions="actionDone"
+                android:textSize="25dp" />
 
         </LinearLayout>
+
+
 
     </LinearLayout>
 

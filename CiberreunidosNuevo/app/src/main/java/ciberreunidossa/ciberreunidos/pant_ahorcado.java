@@ -1,12 +1,15 @@
 package ciberreunidossa.ciberreunidos;
 
-import android.support.v7.app.AppCompatActivity;
+import android.inputmethodservice.KeyboardView;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
+import android.widget.TextView;
+
 import java.util.Random;
-import android.view.View;
 
 
 public class pant_ahorcado extends AppCompatActivity {
@@ -42,16 +45,23 @@ public class pant_ahorcado extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pant_ahorcado);
-        //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        final EditText editText = (EditText) findViewById(R.id.palabra);
-        editText.requestFocus();
+        final TextView palabra = (TextView) findViewById(R.id.palabra);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-        eligePalabra();
-        creaPalabra(palabra);
+        //eligePalabra();
+        //creaPalabra(palabra.getText().toString());
 
+        /*
+        //onClick para boton ayuda piedra papel tijera
+        palabra.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
+            }
+        });
+        */
 
     }
-
+/*
     public void eligePalabra() {
         Random r = new Random();
         palabra = palabrasn1[r.nextInt(palabrasn1.length)];
@@ -64,11 +74,11 @@ public class pant_ahorcado extends AppCompatActivity {
         EditText texto = (EditText) findViewById(R.id.palabra);
         texto.setText(resultado);
     }
-
+*/
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         //Keyboard teclado
-        EditText texto = (EditText) findViewById(R.id.palabra);
+        TextView texto = (TextView) findViewById(R.id.palabra);
 
         switch (keyCode) {
 
@@ -126,13 +136,13 @@ public class pant_ahorcado extends AppCompatActivity {
             default:
                 return super.onKeyUp(keyCode, event);
         }
-        return  true;
+        return true;
 
 
     }
 
 
-	}
+}
 
 
 /*
