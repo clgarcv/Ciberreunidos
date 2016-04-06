@@ -1,16 +1,13 @@
 package ciberreunidossa.ciberreunidos;
 
-import android.app.ActionBar;
-import android.inputmethodservice.Keyboard;
-import android.inputmethodservice.KeyboardView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.WindowManager;
 import android.widget.EditText;
-
 import java.util.Random;
+import android.view.View;
+
 
 public class pant_ahorcado extends AppCompatActivity {
 
@@ -46,7 +43,7 @@ public class pant_ahorcado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pant_ahorcado);
         //getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
-        final EditText editText = (EditText) findViewById(R.id.editText);
+        final EditText editText = (EditText) findViewById(R.id.palabra);
         editText.requestFocus();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         eligePalabra();
@@ -64,14 +61,14 @@ public class pant_ahorcado extends AppCompatActivity {
         for (int i = 0; i < s.length(); i++) {
             resultado = resultado + "_ ";
         }
-        EditText texto = (EditText) findViewById(R.id.editText);
+        EditText texto = (EditText) findViewById(R.id.palabra);
         texto.setText(resultado);
     }
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         //Keyboard teclado
-        EditText texto = (EditText) findViewById(R.id.editText);
+        EditText texto = (EditText) findViewById(R.id.palabra);
 
         switch (keyCode) {
 
@@ -135,7 +132,8 @@ public class pant_ahorcado extends AppCompatActivity {
     }
 
 
-}
+	}
+
 
 /*
 *
