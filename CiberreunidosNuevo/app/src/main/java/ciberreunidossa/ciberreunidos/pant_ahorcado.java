@@ -22,10 +22,22 @@ public class pant_ahorcado extends AppCompatActivity {
 
     String[] palabrasn3 = {"pera","mesa","casa","reloj","carta","silla","cama","lapiz","raton","movil","sofa","cartel","letra","boton","papel","marco"};
 
+    String[] palabraFin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pant_ahorcado);
+        Bundle bundle = getIntent().getExtras();
+        final String dificultad = bundle.getString("dificultad");
+        if(dificultad.equals("facil")){
+            palabraFin= palabrasn1;
+        }
+        else if(dificultad.equals("media")){
+            palabraFin=palabrasn2;
+        }
+        else{
+            palabraFin=palabrasn3;
+        }
         //final TextView palabraT = (TextView) findViewById(R.id.palabra);
         //final ImageView imgAhorcado = (ImageView) findViewById(R.id.img_ahocado);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
@@ -38,7 +50,7 @@ public class pant_ahorcado extends AppCompatActivity {
 
     public void eligePalabra() {
         Random r = new Random();
-        palabra = palabrasn1[r.nextInt(palabrasn1.length)];
+        palabra = palabraFin[r.nextInt(palabraFin.length)];
     }
 
     public void creaPalabra(String s) {
