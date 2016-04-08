@@ -36,7 +36,7 @@ public class pant_ppal extends AppCompatActivity {
         //onClick para boton ahorcado
         btn_ahorcado.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
-                Intent i = new Intent(pant_ppal.this, pant_ahorcado.class);
+                Intent i = new Intent(pant_ppal.this,pant_nivelAhorcado.class);
                 startActivity(i);
             }
         });
