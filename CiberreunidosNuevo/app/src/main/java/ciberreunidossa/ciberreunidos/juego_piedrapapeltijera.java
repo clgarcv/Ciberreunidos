@@ -192,6 +192,7 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
             public void run() {
                 Intent i = new Intent(juego_piedrapapeltijera.this, pierdegana.class);
                 i.putExtra("resultado", "victoria");
+                i.putExtra("juego", "ppt");
                 i.putExtra("vj", Integer.toString(vj));
                 i.putExtra("vm", Integer.toString(vm));
                 startActivity(i);
@@ -207,6 +208,7 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
             public void run() {
                 Intent i = new Intent(juego_piedrapapeltijera.this, pierdegana.class);
                 i.putExtra("resultado", "derrota");
+                i.putExtra("juego", "ppt");
                 i.putExtra("vj", Integer.toString(vj));
                 i.putExtra("vm", Integer.toString(vm));
                 startActivity(i);

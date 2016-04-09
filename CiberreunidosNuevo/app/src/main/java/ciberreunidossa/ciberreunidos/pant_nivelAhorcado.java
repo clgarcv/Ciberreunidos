@@ -3,6 +3,7 @@ package ciberreunidossa.ciberreunidos;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -39,5 +40,14 @@ public class pant_nivelAhorcado extends AppCompatActivity {
                 startActivity(i);
             }
         });
+    }
+
+    //Cambio del comportamiento del boton atras para que nos lleve a la pantalla principal
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            this.startActivity(new Intent(pant_nivelAhorcado.this, pant_ppal.class));
+        }
+        return true;
     }
 }

@@ -69,8 +69,8 @@ android:weightSum="3">
         android:textSize="30dip"
         android:textAlignment="center"
         android:typeface="monospace"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="1dp"
+        android:layout_marginLeft="13dp"
+        android:layout_marginRight="2dp"
         android:background="@drawable/boton" />
 
 </LinearLayout>

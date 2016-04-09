@@ -14,8 +14,39 @@ public class pierdegana extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pierdegana);
-        Button jugar = (Button) findViewById(R.id.jugar);
+
+        Bundle bundle = getIntent().getExtras();
+        final String juego = bundle.getString("juego");
+
+
+
         Button menu = (Button) findViewById(R.id.menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i= new Intent(pierdegana.this,pant_ppal.class);
+                startActivity(i);
+            }
+        });
+
+
+        switch (juego){
+            case "ppt": ppt();
+                break;
+            case "ahorcado": ahorcado();
+                break;
+
+
+
+        }
+
+
+
+    }
+
+    public void ppt(){
+        Button jugar = (Button) findViewById(R.id.jugar);
+
         Bundle bundle = getIntent().getExtras();
         final String resultado = bundle.getString("resultado");
         final String vj = bundle.getString("vj");
@@ -34,20 +65,37 @@ public class pierdegana extends AppCompatActivity {
             }
         });
 
-        menu.setOnClickListener(new View.OnClickListener() {
+
+    }
+
+    public void ahorcado(){
+        Button jugar = (Button) findViewById(R.id.jugar);
+        Button menu = (Button) findViewById(R.id.menu);
+        Bundle bundle = getIntent().getExtras();
+        final String resultado = bundle.getString("resultado");
+        TextView texto = (TextView) findViewById(R.id.resultado);
+        if (resultado.equals("victoria")) {
+            texto.setText("ENHORABUENA!! \n  ha ganado la partida");
+            texto.setTextSize(40);
+        } else {
+            texto.setText("OHHH!! \n ha perdido la partida");
+            texto.setTextSize(40);
+        }
+        jugar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i= new Intent(pierdegana.this,pant_ppal.class);
+                Intent i = new Intent(pierdegana.this, pant_nivelAhorcado.class);
                 startActivity(i);
             }
         });
+
     }
 
-    //Cambio del comportamiento del boton atras para que nos lleve a la pagina de seleccionar ronda
+    //Cambio del comportamiento del boton atras para que nos lleve a la pantalla principal
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            this.startActivity(new Intent(pierdegana.this, piedrapapeltijera.class));
+            this.startActivity(new Intent(pierdegana.this, pant_ppal.class));
         }
         return true;
     }
