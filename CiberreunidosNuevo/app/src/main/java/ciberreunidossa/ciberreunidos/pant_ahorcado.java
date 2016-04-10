@@ -21,14 +21,13 @@ public class pant_ahorcado extends AppCompatActivity {
     String palabra = "";
     int fallos = 0;
 
-    String[] palabrasn1 = {"pera", "mesa", "casa", "reloj", "carta", "silla", "cama", "lapiz", "raton", "movil", "sofa", "cartel", "letra", "boton", "papel", "marco"};
+    String[] palabrasn1 = {"pera", "mesa", "casa", "reloj", "carta", "silla", "cama", "duda", "abeto", "cono", "sofa", "cartel", "letra", "saco", "papel", "marco"};
 
-    String[] palabrasn2 = {"paraguas", "iceberg", "onomatopeya", "invernadero", "ordenador", "impresora", "altavoz", "teclado", "almacen", "cacahuete", "zanahoria", "calefaccion", "pizarra", "perchero", "persiana", "tuberia", "zapatilla", "pestaña", "lentilla"};
+    String[] palabrasn2 = {"paraguas", "iceberg", "sombrilla", "ordenador", "impresora", "altavoz", "teclado", "comercial", "hachazo", "zanahoria", "galera", "pizarra", "perchero", "persiana", "lombriz", "zapatilla", "pestaña", "lentilla"};
 
-    String[] palabrasn3 = {"ventrilocuo", "excentrico", "hostigar", "degollar", "pescuezo", "fascinante", "extension", "hachazo", "hegemonia", "impermeable", "disciplinado", "jerogrifico", "lombriz"};
+    String[] palabrasn3 = {"invernadero", "neandertal", "hostigar", "degollar", "pescuezo", "fascinante", "camioneta", "cacahuete", "onomatopeya", "impermeable", "disciplinado", "jerogrifico", "catalizador"};
 
     String[] palabraFin;
-
 
 
     @Override
@@ -45,7 +44,6 @@ public class pant_ahorcado extends AppCompatActivity {
             palabraFin = palabrasn3;
         }
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
-
         eligePalabra();
         creaPalabra(palabra);
         System.out.println(palabra);
@@ -100,16 +98,6 @@ public class pant_ahorcado extends AppCompatActivity {
 
         return resultado;
     }
-
-    public boolean finPartida() {
-        if (!resultado.contains("_") || fallos == 7) {
-            return true;
-        } else {
-            return false;
-        }
-
-    }
-
     public boolean estaLetra(String palabra, String letra) {
         return palabra.toUpperCase().contains(letra.toUpperCase());
     }
@@ -120,28 +108,25 @@ public class pant_ahorcado extends AppCompatActivity {
             this.startActivity(new Intent(pant_ahorcado.this, pant_ppal.class));
             return true;
         }
+        int img = R.drawable.ahorcado_fallo_ + fallos;
+        TextView texto = (TextView) findViewById(R.id.palabra);
+        ImageView imgAhorcado = (ImageView) findViewById(R.id.img_ahocado);
+        char l = (char) event.getUnicodeChar();
+        String letra = Character.toString(l).toUpperCase();
+        //texto.setText(Character.toString(letra));
+        System.out.println(letra);
 
+        if (estaLetra(palabra, letra)) {
+            //si la letra forma parte de la palabra la mostramos
+            resultado = ponLetra(palabra, resultado, letra);
+            texto.setText(resultado);
+        } else {
+            fallos++;
+            //si la letra no forma parte de la palabra actualizamos el ahorcado
+            imgAhorcado.setImageResource(R.drawable.ahorcado_fallo_ + fallos);
 
-            int img = R.drawable.ahorcado_fallo_ + fallos;
-
-            TextView texto = (TextView) findViewById(R.id.palabra);
-            ImageView imgAhorcado = (ImageView) findViewById(R.id.img_ahocado);
-            char l = (char) event.getUnicodeChar();
-            String letra = Character.toString(l).toUpperCase();
-            //texto.setText(Character.toString(letra));
-            System.out.println(letra);
-
-            if (estaLetra(palabra, letra)) {
-                //si la letra forma parte de la palabra la mostramos
-                resultado = ponLetra(palabra, resultado, letra);
-                texto.setText(resultado);
-            } else {
-                fallos++;
-                //si la letra no forma parte de la palabra actualizamos el ahorcado
-                imgAhorcado.setImageResource(R.drawable.ahorcado_fallo_ + fallos);
-
-            }
-            System.out.println(resultado);
+        }
+        System.out.println(resultado);
 
         return true;
 
@@ -151,30 +136,22 @@ public class pant_ahorcado extends AppCompatActivity {
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         if (fallos == 7) {
             //si ha perdido
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                public void run() {
-                    Intent i = new Intent(pant_ahorcado.this, pierdegana.class);
-                    i.putExtra("juego", "ahorcado");
-                    i.putExtra("resultado", "derrota");
-                    startActivity(i);
-                }
+            Intent i = new Intent(pant_ahorcado.this, pierdegana.class);
+            i.putExtra("juego", "ahorcado");
+            i.putExtra("resultado", "derrota");
+            i.putExtra("solucion", palabra);
+            startActivity(i);
 
-            }, 1000);
 
         } else if (!resultado.contains("_")) {
             //si ha ganado
             //Transicion en el caso de que el jugador haya ganado
-            Handler handler = new Handler();
-            handler.postDelayed(new Runnable() {
-                public void run() {
-                    Intent i = new Intent(pant_ahorcado.this, pierdegana.class);
-                    i.putExtra("juego", "ahorcado");
-                    i.putExtra("resultado", "victoria");
-                    startActivity(i);
-                }
-            }, 1000);
+            Intent i = new Intent(pant_ahorcado.this, pierdegana.class);
+            i.putExtra("juego", "ahorcado");
+            i.putExtra("resultado", "victoria");
+            startActivity(i);
         }
+
 
         return true;
     }

@@ -73,12 +73,13 @@ public class pierdegana extends AppCompatActivity {
         Button menu = (Button) findViewById(R.id.menu);
         Bundle bundle = getIntent().getExtras();
         final String resultado = bundle.getString("resultado");
+        final String solucion = bundle.getString("solucion");
         TextView texto = (TextView) findViewById(R.id.resultado);
         if (resultado.equals("victoria")) {
-            texto.setText("ENHORABUENA!! \n  ha ganado la partida");
+            texto.setText("¡ENHORABUENA!\nHas ganado ");
             texto.setTextSize(40);
         } else {
-            texto.setText("OHHH!! \n ha perdido la partida");
+            texto.setText("¡LÁSTIMA!\nLa palabra era "+solucion.toUpperCase());
             texto.setTextSize(40);
         }
         jugar.setOnClickListener(new View.OnClickListener() {
