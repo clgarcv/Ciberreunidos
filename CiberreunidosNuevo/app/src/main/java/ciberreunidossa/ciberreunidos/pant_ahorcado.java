@@ -104,9 +104,6 @@ public class pant_ahorcado extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            this.startActivity(new Intent(pant_ahorcado.this, pant_ppal.class));
-        }
 
         if (keyCode == KeyEvent.KEYCODE_VOLUME_UP ||  keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
             //no hace nada para q no cuente como fallo
@@ -131,9 +128,7 @@ public class pant_ahorcado extends AppCompatActivity {
 
             }
             System.out.println(resultado);
-
         }
-
 
         return true;
 
@@ -141,6 +136,9 @@ public class pant_ahorcado extends AppCompatActivity {
 
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            this.startActivity(new Intent(pant_ahorcado.this, pant_ppal.class));
+        }
         if (fallos == 7) {
             //si ha perdido
             Intent i = new Intent(pant_ahorcado.this, pierdegana.class);
