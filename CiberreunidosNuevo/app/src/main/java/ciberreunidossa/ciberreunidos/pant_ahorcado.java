@@ -2,6 +2,8 @@ package ciberreunidossa.ciberreunidos;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -60,6 +62,7 @@ public class pant_ahorcado extends AppCompatActivity {
             }
         });
 
+
     }
 
     public void eligePalabra() {
@@ -98,6 +101,7 @@ public class pant_ahorcado extends AppCompatActivity {
 
         return resultado;
     }
+
     public boolean estaLetra(String palabra, String letra) {
         return palabra.toUpperCase().contains(letra.toUpperCase());
     }
@@ -105,7 +109,7 @@ public class pant_ahorcado extends AppCompatActivity {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP ||  keyCode == KeyEvent.KEYCODE_VOLUME_DOWN){
+        if (keyCode == KeyEvent.KEYCODE_VOLUME_UP || keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) {
             //no hace nada para q no cuente como fallo
 
         } else {

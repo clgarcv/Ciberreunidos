@@ -33,9 +33,12 @@
         <activity
             android:name=".pant_enraya"
             android:screenOrientation="portrait" />
-        <activity android:name=".pierdegana" />
-        <activity android:name=".pant_ayuda" />
-        <activity android:name=".pant_nivelAhorcado"></activity>
+        <activity android:name=".pierdegana"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".pant_ayuda"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".pant_nivelAhorcado"
+            android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

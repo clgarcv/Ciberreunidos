@@ -1,6 +1,8 @@
 package ciberreunidossa.ciberreunidos;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,6 +11,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class pant_ppal extends AppCompatActivity {
+    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +70,11 @@ public class pant_ppal extends AppCompatActivity {
             }
         });
 
+        mediaPlayer= MediaPlayer.create(this, R.raw.musicainicio);
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mediaPlayer.setLooping(true);
+        mediaPlayer.start();
+
 
 
     }
@@ -78,6 +86,7 @@ public class pant_ppal extends AppCompatActivity {
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            mediaPlayer.stop();
         }
         return true;
     }
