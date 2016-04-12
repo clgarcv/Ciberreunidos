@@ -9,15 +9,8 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="ciberreunidossa.ciberreunidos.pant_enraya"
-    android:weightSum="1">
-    android:weightSum="4">
+    tools:context="ciberreunidossa.ciberreunidos.pant_enraya">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="right"></LinearLayout>
 
     <LinearLayout
         android:layout_width="fill_parent"
@@ -31,6 +24,11 @@
             android:layout_weight="1"
             android:src="@drawable/logo_small" />
     </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="25dp"></LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,7 +55,8 @@
                 <ImageButton
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:id="@+id/imageButton11"
+                    android:id="@+id/img11"
+                    android:layout_margin="7dp"
                     android:scaleType="fitCenter"
                     android:background="#00000000"/>
             </LinearLayout>
@@ -72,7 +71,8 @@
                 <ImageButton
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:id="@+id/imageButton21"
+                    android:id="@+id/img21"
+                    android:layout_margin="7dp"
                     android:scaleType="fitCenter"
                     android:background="#00000000"/>
             </LinearLayout>
@@ -87,7 +87,8 @@
                 <ImageButton
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:id="@+id/imageButton31"
+                    android:id="@+id/img31"
+                    android:layout_margin="7dp"
                     android:scaleType="fitCenter"
                     android:background="#00000000"/>
 
@@ -112,7 +113,8 @@
                 <ImageButton
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:id="@+id/imageButton12"
+                    android:id="@+id/img12"
+                    android:layout_margin="7dp"
                     android:scaleType="fitCenter"
                     android:background="#00000000"/>
 
@@ -127,7 +129,8 @@
                 <ImageButton
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:id="@+id/imageButton22"
+                    android:id="@+id/img22"
+                    android:layout_margin="7dp"
                     android:scaleType="fitCenter"
                     android:background="#00000000"/>
             </LinearLayout>
@@ -141,7 +144,8 @@
                 <ImageButton
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:id="@+id/imageButton32"
+                    android:id="@+id/img32"
+                    android:layout_margin="7dp"
                     android:scaleType="fitCenter"
                     android:background="#00000000"/>
 
@@ -164,7 +168,8 @@
                 <ImageButton
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:id="@+id/imageButton13"
+                    android:id="@+id/img13"
+                    android:layout_margin="7dp"
                     android:scaleType="fitCenter"
                     android:background="#00000000"/>
             </LinearLayout>
@@ -178,7 +183,8 @@
                 <ImageButton
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:id="@+id/imageButton23"
+                    android:id="@+id/img23"
+                    android:layout_margin="7dp"
                     android:scaleType="fitCenter"
                     android:background="#00000000"/>
             </LinearLayout>
@@ -192,7 +198,8 @@
                 <ImageButton
                     android:layout_width="fill_parent"
                     android:layout_height="fill_parent"
-                    android:id="@+id/imageButton33"
+                    android:id="@+id/img33"
+                    android:layout_margin="7dp"
                     android:scaleType="fitCenter"
                     android:background="#00000000"
                     />
@@ -201,34 +208,6 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="91dp"
-        android:weightSum="2">
-
-        <ImageButton
-            android:layout_width="125dp"
-            android:layout_height="70dp"
-            android:id="@+id/btn_x"
-            android:src="@drawable/enraya_x"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:background="#00000000"
-            android:layout_gravity="bottom|center_horizontal"
-            android:layout_marginLeft="25dp" />
-
-        <ImageButton
-            android:layout_width="109dp"
-            android:layout_height="68dp"
-            android:id="@+id/btn_o"
-            android:src="@drawable/enraya_o"
-            android:adjustViewBounds="true"
-            android:scaleType="fitCenter"
-            android:background="#00000000"
-            android:layout_gravity="bottom|center"
-            android:layout_marginLeft="60dp" />
-    </LinearLayout>
 </LinearLayout>
 
 

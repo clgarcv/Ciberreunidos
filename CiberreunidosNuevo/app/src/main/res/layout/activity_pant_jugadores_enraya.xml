@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:paddingBottom="@dimen/activity_vertical_margin"
+android:paddingLeft="@dimen/activity_horizontal_margin"
+android:paddingRight="@dimen/activity_horizontal_margin"
+android:paddingTop="@dimen/activity_vertical_margin"
+tools:context="ciberreunidossa.ciberreunidos.pant_JugadoresEnraya"
+android:background="@android:color/holo_orange_light"
+android:orientation="vertical"
+android:weightSum="3">
+
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="154dp"
+    android:weightSum="1">
+    <ImageView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/logo_small"
+        android:layout_weight="1"/>
+</LinearLayout>
+
+<LinearLayout
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="119dp"
+    android:weightSum="1"
+    android:layout_weight="1.26">
+
+    <TextView
+        android:id="@+id/textNiv"
+        android:layout_width="fill_parent"
+        android:layout_height="151dp"
+        android:text="Selecciona el número de jugadores"
+        android:textColor="@android:color/black"
+        android:textSize="37dip"
+        android:textAlignment="center"
+        android:typeface="monospace"
+        />
+
+</LinearLayout>
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="219dp"
+    android:weightSum="3">
+
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="1 Jugador"
+        android:id="@+id/bt_1Jugador"
+        android:textSize="40dip"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/boton"/>
+
+    <Button
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="2 Jugadores"
+        android:id="@+id/bt_2Jugadores"
+        android:textSize="40dip"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="3dp"
+        android:layout_marginRight="3dp"
+        android:background="@drawable/boton"/>
+
+</LinearLayout>
+
+</LinearLayout>

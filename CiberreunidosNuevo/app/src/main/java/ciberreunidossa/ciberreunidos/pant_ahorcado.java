@@ -25,7 +25,7 @@ public class pant_ahorcado extends AppCompatActivity {
 
     String[] palabrasn1 = {"pera", "mesa", "casa", "reloj", "carta", "silla", "cama", "duda", "abeto", "cono", "sofa", "cartel", "letra", "saco", "papel", "marco"};
 
-    String[] palabrasn2 = {"paraguas", "iceberg", "sombrilla", "ordenador", "impresora", "altavoz", "teclado", "comercial", "hachazo", "zanahoria", "galera", "pizarra", "perchero", "persiana", "lombriz", "zapatilla", "pestaña", "lentilla"};
+    String[] palabrasn2 = {"paraguas", "iceberg", "sombrilla", "ordenador", "impresora", "altavoz", "teclado", "comercial", "hachazo", "zanahoria", "galera", "pizarra", "perchero", "persiana", "lombriz", "zapatilla", "vestido", "lentilla"};
 
     String[] palabrasn3 = {"invernadero", "neandertal", "hostigar", "degollar", "pescuezo", "fascinante", "camioneta", "cacahuete", "onomatopeya", "impermeable", "disciplinado", "jerogrifico", "catalizador"};
 

@@ -69,14 +69,11 @@ public class pant_ppal extends AppCompatActivity {
                 startActivity(i);
             }
         });
-
+        
         mediaPlayer= MediaPlayer.create(this, R.raw.musicainicio);
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         mediaPlayer.setLooping(true);
         mediaPlayer.start();
-
-
-
     }
     //Boton atras para salir de la aplicacion
     @Override
