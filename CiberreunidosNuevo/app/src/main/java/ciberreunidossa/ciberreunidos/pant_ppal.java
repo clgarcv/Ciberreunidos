@@ -67,8 +67,6 @@ public class pant_ppal extends AppCompatActivity {
             }
         });
 
-
-
     }
     //Boton atras para salir de la aplicacion
     @Override
