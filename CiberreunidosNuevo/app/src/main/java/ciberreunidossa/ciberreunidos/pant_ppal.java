@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class pant_ppal extends AppCompatActivity {
-    MediaPlayer mediaPlayer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,7 +23,6 @@ public class pant_ppal extends AppCompatActivity {
         ImageButton btn_parchis = (ImageButton) findViewById(R.id.btn_parchis);
         ImageButton btn_ajustes = (ImageButton) findViewById(R.id.btn_ajustes);
         ImageButton btn_ayuda = (ImageButton) findViewById(R.id.btn_ayuda);
-
 
         //definimos las funciones onClick para los botones
 
@@ -69,11 +67,7 @@ public class pant_ppal extends AppCompatActivity {
                 startActivity(i);
             }
         });
-        
-        mediaPlayer= MediaPlayer.create(this, R.raw.musicainicio);
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mediaPlayer.setLooping(true);
-        mediaPlayer.start();
+
     }
     //Boton atras para salir de la aplicacion
     @Override
@@ -83,11 +77,8 @@ public class pant_ppal extends AppCompatActivity {
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            mediaPlayer.stop();
-        }
-        if (keyCode == KeyEvent.KEYCODE_HOME) {
-            mediaPlayer.stop();
         }
         return true;
     }
+
 }
