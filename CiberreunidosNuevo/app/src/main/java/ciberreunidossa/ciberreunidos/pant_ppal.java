@@ -48,7 +48,7 @@ public class pant_ppal extends AppCompatActivity {
         btn_enraya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(pant_ppal.this, pant_enraya.class);
+                Intent i = new Intent(pant_ppal.this, pant_JugadoresEnraya.class);
                 startActivity(i);
             }
         });
@@ -83,6 +83,9 @@ public class pant_ppal extends AppCompatActivity {
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+            mediaPlayer.stop();
+        }
+        if (keyCode == KeyEvent.KEYCODE_HOME) {
             mediaPlayer.stop();
         }
         return true;
