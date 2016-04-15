@@ -26,16 +26,12 @@
     </LinearLayout>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="25dp"></LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
         android:weightSum="3"
         android:background="@drawable/tablero"
-        >
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
 
         <LinearLayout
             android:orientation="vertical"
@@ -74,7 +70,8 @@
                     android:id="@+id/img21"
                     android:layout_margin="7dp"
                     android:scaleType="fitCenter"
-                    android:background="#00000000"/>
+                    android:background="#00000000"
+                    />
             </LinearLayout>
 
             <LinearLayout

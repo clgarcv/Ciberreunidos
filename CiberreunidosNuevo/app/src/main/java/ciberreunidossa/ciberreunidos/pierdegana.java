@@ -14,11 +14,8 @@ public class pierdegana extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pierdegana);
-
         Bundle bundle = getIntent().getExtras();
         final String juego = bundle.getString("juego");
-
-
 
         Button menu = (Button) findViewById(R.id.menu);
         menu.setOnClickListener(new View.OnClickListener() {
@@ -35,13 +32,34 @@ public class pierdegana extends AppCompatActivity {
                 break;
             case "ahorcado": ahorcado();
                 break;
-
-
+            case "3enraya":
+                enraya(bundle);
+                break;
 
         }
 
-
-
+    }
+    public void enraya(Bundle b){
+        Button jugar = (Button) findViewById(R.id.jugar);
+        final int nJug = b.getInt("jugadores");
+        if(nJug==2){
+            final String ganador = b.getString("ganador");
+            TextView texto = (TextView) findViewById(R.id.resultado);
+            if(ganador==null){
+                texto.setText("¡LÁSTIMA!\nHa habido un empate entre los jugadores");
+                texto.setTextSize(40);
+            }else{
+                texto.setText("¡ENHORABUENA!\nEl ganador es el "+ganador);
+                texto.setTextSize(40);
+            }
+            jugar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent i = new Intent(pierdegana.this, pant_JugadoresEnraya.class);
+                    startActivity(i);
+                }
+            });
+        }
     }
 
     public void ppt(){

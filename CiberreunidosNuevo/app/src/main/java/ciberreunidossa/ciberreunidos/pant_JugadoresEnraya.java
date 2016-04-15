@@ -20,7 +20,7 @@ public class pant_JugadoresEnraya extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(pant_JugadoresEnraya.this, pant_enraya.class);
-                i.putExtra("njugadores", "1");
+                i.putExtra("njugadores", 1);
                 startActivity(i);
             }
         });
@@ -28,7 +28,7 @@ public class pant_JugadoresEnraya extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(pant_JugadoresEnraya.this, pant_enraya.class);
-                i.putExtra("njugadores", "2");
+                i.putExtra("njugadores", 2);
                 startActivity(i);
             }
         });
