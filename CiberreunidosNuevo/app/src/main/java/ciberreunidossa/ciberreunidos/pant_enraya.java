@@ -71,7 +71,7 @@ public class pant_enraya extends AppCompatActivity {
                             Intent i = new Intent(pant_enraya.this, pierdegana.class);
                             i.putExtra("juego", "3enraya");
                             i.putExtra("jugadores", nJug);
-                            i.putExtra("ganador",ganador);
+                            i.putExtra("ganador", ganador);
                             startActivity(i);
                         }
                     }
@@ -174,40 +174,57 @@ public class pant_enraya extends AppCompatActivity {
         //ponemos los distintos casos donde puede darse una linea
         //hay 8 casos
         //filas
-
-        if (( t[0][0]!=-1 && t[0][0] == t[0][1] && t[0][0] == t[0][2] ) || (t[1][0]!=-1 && t[1][0] == t[1][1] && t[1][0] == t[1][2]) || (t[2][0]!=-1 && t[2][0] == t[2][1] && t[2][0] == t[2][2])) {
-            if(t[0][0]==1 || t[1][0]==1 || t[2][0]==1){
-                ganador="Jugador 1";
+        if ((t[0][0] != -1 && t[0][0] == t[0][1] && t[0][0] == t[0][2]) || (t[0][0] != -1 && t[0][0] == t[1][0] && t[0][0] == t[2][0]) || (t[0][0] != -1 && t[0][0] == t[1][1] && t[0][0] == t[2][2])) {
+            if (t[0][0] == 1) {
+                ganador = "Jugador 1";
                 return true;
-            }else{
-                ganador="Jugador 2";
+            } else {
+                ganador = "Jugador 2";
+                return true;
+            }
+        } else if (t[1][0] != -1 && t[1][0] == t[1][1] && t[1][0] == t[1][2]) {
+            if (t[1][0] == 1) {
+                ganador = "Jugador 1";
+                return true;
+            } else {
+                ganador = "Jugador 2";
                 return true;
             }
 
-        } else if ((t[0][0]!=-1 && t[0][0] == t[1][0] && t[0][0] == t[2][0]) || (t[0][1]!=-1 && t[0][1] == t[1][1] && t[0][1] == t[2][1]) || (t[0][2]!=-1 && t[0][2] == t[1][2] && t[0][2] == t[2][2])) {
-            if(t[0][0]==1 || t[0][1]==1 || t[0][2]==1){
-                ganador="Jugador 1";
+        } else if (t[2][0] != -1 && t[2][0] == t[2][1] && t[2][0] == t[2][2] || (t[2][0] != -1 && t[2][0] == t[1][1] && t[2][0] == t[0][2])) {
+            if (t[2][0] == 1) {
+                ganador = "Jugador 1";
                 return true;
-            }else{
-                ganador="Jugador 2";
+            } else {
+                ganador = "Jugador 2";
                 return true;
             }
-        } else if ((t[0][0]!=-1 && t[0][0] == t[1][1] && t[0][0] == t[2][2]) || (t[2][0]!=-1 && t[2][0] == t[1][1] && t[2][0] == t[0][2])) {
-            if(t[0][0]==1 || t[2][0]==1){
-                ganador="Jugador 1";
+
+        } else if (t[0][1] != -1 && t[0][1] == t[1][1] && t[0][1] == t[2][1]) {
+            if (t[0][1] == 1) {
+                ganador = "Jugador 1";
                 return true;
-            }else{
-                ganador="Jugador 2";
+            } else {
+                ganador = "Jugador 2";
+                return true;
+            }
+        } else if (t[0][2] != -1 && t[0][2] == t[1][2] && t[0][2] == t[2][2]) {
+            if (t[0][2] == 1) {
+                ganador = "Jugador 1";
+                return true;
+            } else {
+                ganador = "Jugador 2";
                 return true;
             }
         } else {
             return false;
         }
+
     }
 
 
     private boolean finPartida() {
-        return (contador == 9 || hayLinea(tablero));
+        return (hayLinea(tablero) || contador == 9);
     }
 
    /* private static boolean turno(int[][] t, int f, int c, int ficha) {
