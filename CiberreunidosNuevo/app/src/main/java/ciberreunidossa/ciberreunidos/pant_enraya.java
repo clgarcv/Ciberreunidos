@@ -55,6 +55,27 @@ public class pant_enraya extends AppCompatActivity {
         if (nJug == 1) {
             //juega contra la maquina
             //el primero en pulsar sera el jugador uno que juega con X
+            /*for (ImageButton img : botones) {
+                img.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        actualizarTabla(v.getId());
+                        añadirImagen(v.getId());
+                        if (!finPartida()) {
+                            juegoCpu(tablero);
+                            contador++;
+
+                        } else {
+                            Intent i = new Intent(pant_enraya.this, pierdegana.class);
+                            i.putExtra("juego", "3enraya");
+                            i.putExtra("jugadores", nJug);
+                            i.putExtra("ganador",ganador);
+                            startActivity(i);
+                        }
+                    }
+                });
+
+            }*/
 
         } else if (nJug == 2) {
             //dos jugadores
@@ -241,4 +262,210 @@ public class pant_enraya extends AppCompatActivity {
 
 
     }*/
+    private void juegoCpu(int[][] t){
+        //si alguno esta libre
+        if(t[0][0]!=1 || t[0][1]!=-1 || t[0][2]!=-1 ||
+                t[1][0]!=-1 || t[1][1]!=-1 || t[1][2]!=-1 ||
+                t[2][0]!=-1 || t[2][1]!=-1 || t[2][2]!=-1){
+            // si la 11 esta libre
+            if(t[0][0]!=-1){
+                if(t[0][0]==0){
+                    if(t[0][1]==-1 || t[1][0]==-1 || t[1][1]==-1){
+                        if(t[2][0]==1 || t[0][2]==1){
+                            t[1][1]=0;
+                            añadirImagen(R.id.img22);
+                        }
+                        else if(t[0][2]==1 || t[1][1]==1){
+                            t[1][0]=0;
+                            añadirImagen(R.id.img21);
+                        }
+                        else if(t[1][1]==1||t[2][0]==1){
+                            t[0][1]=0;
+                            añadirImagen(R.id.img12);
+                        }
+                    }
+                }
+            }
+            //si la 12 esta libre
+            else if(t[0][1]!=-1){
+                if(t[0][1]==0){
+                    if(t[2][1]==-1 || t[0][0]==-1 || t[0][2]==-1){
+                        if(t[2][1]==-1 && t[0][0]!=-1 || t[2][1]==-1 && t[0][2]!=-1){
+                            t[1][1]=0;
+                            añadirImagen(R.id.img22);
+                        }
+                        else if(t[0][0]==-1 && t[2][1]!=-1){
+                            t[0][0]=0;
+                            añadirImagen(R.id.img11);
+                        }
+                        else {
+                            t[0][2]=0;
+                            añadirImagen(R.id.img13);
+                        }
+                    }
+                }
+            }
+            //si la 13 esta libre
+            else if(t[0][2]!=-1){
+                if(t[0][2]==0){
+                    if(t[0][2]==-1 || t[1][2]==-1 || t[1][1]==-1){
+                        if(t[2][2]==1 || t[0][0]==1){
+                            t[1][1]=0;
+                            añadirImagen(R.id.img22);
+                        }
+                        else if(t[0][0]==1 || t[1][1]==1){
+                            t[1][2]=0;
+                            añadirImagen(R.id.img23);
+                        }
+                        else if(t[1][1]==1||t[2][2]==1){
+                            t[0][1]=0;
+                            añadirImagen(R.id.img12);
+                        }
+                    }
+                }
+            }
+            //si la 21 esta libre
+            else if(t[1][0]!=-1){
+                if(t[1][0]==0) {
+                    if (t[1][2] == -1 || t[0][0] == -1 || t[2][0] == -1) {
+                        if (t[1][2] == -1 && t[0][0] != -1 || t[1][2]== -1 && t[0][2] != -1) {
+                            t[1][1] = 0;
+                            añadirImagen(R.id.img22);
+                        } else if (t[0][0] == -1 && t[1][2] != -1) {
+                            t[0][0] = 0;
+                            añadirImagen(R.id.img11);
+                        } else {
+                            t[0][2] = 0;
+                            añadirImagen(R.id.img31);
+                        }
+                    }
+                }
+            }
+            //si la 22 esta libre
+            else if(t[1][1]!=-1){
+                if(t[1][1]==0){
+                    if(t[0][1]==1 ||t[2][1]==1){
+                        if(t[0][0]==0 ){
+                            t[2][2]=0;
+                            añadirImagen(R.id.img33);
+                        }
+                        else if(t[2][2]==0){
+                            t[0][0]=0;
+                            añadirImagen(R.id.img11);
+                        }
+                        else if(t[0][2]==0){
+                            t[2][0]=0;
+                            añadirImagen(R.id.img31);
+                        }
+                        else if(t[2][0]==0){
+                            t[0][2]=0;
+                            añadirImagen(R.id.img13);
+                        }
+                        else if(t[1][0]==0){
+                            t[1][2]=0;
+                            añadirImagen(R.id.img23);
+                        }
+                        else if(t[1][2]==0){
+                            t[1][0]=0;
+                            añadirImagen(R.id.img21);
+                        }
+                    }
+                    else if(t[0][0]==1||t[0][2]==1|| t[2][0]==1 || t[2][2]==1){
+                        if(t[0][1]==0){
+                            t[2][1]=0;
+                            añadirImagen(R.id.img33);
+                        }
+                        else if(t[2][1]==0){
+                            t[0][1]=0;
+                            añadirImagen(R.id.img12);
+                        }
+                        else if(t[1][0]==0){
+                            t[1][2]=0;
+                            añadirImagen(R.id.img23);
+                        }
+                        else if(t[1][2]==0){
+                            t[1][0]=0;
+                            añadirImagen(R.id.img21);
+                        }
+                    }
+                }
+            }
+            //si la 23 esta libre
+            else if(t[1][2]!=-1){
+                if(t[1][2]==0){
+                    if(t[1][0]==-1 || t[0][2]==-1|| t[2][2]==-1){
+                        if(t[1][0]==-1 && t[0][2]!=1 || t[1][0]==-1 && t[2][2]!=-1){
+                            t[1][1]=0;
+                            añadirImagen(R.id.img22);
+                        }
+                        else if(t[0][2]==-1 && t[1][0]!=-1 ){
+                            t[0][2]=0;
+                            añadirImagen(R.id.img13);
+                        }
+                        else{
+                            t[2][2]=0;
+                            añadirImagen(R.id.img33);
+                        }
+                    }
+                }
+            }
+            //si la 31 esta libre
+            else if(t[2][0]!=-1){
+                if(t[2][0]==0){
+                    if(t[1][0]==-1||t[1][1]==-1||t[2][1]==-1){
+                        if(t[0][0]==1 || t[2][2]==1){
+                            t[1][1]=0;
+                            añadirImagen(R.id.img22);
+                        }
+                        else if(t[0][2]==1 || t[2][3]==1){
+                            t[1][0]=0;
+                            añadirImagen(R.id.img21);
+                        }
+                        else if(t[1][1]==1||t[0][0]==1){
+                            t[2][1]=0;
+                            añadirImagen(R.id.img32);
+                        }
+                    }
+                }
+            }
+            //si la 32 esta libre
+            else if(t[2][1]!=-1){
+                if(t[2][1]==0){
+                    if(t[0][2]==-1 && t[2][1]!=-1|| t[0][2]==-1 && t[2][2]!=-1){
+                        t[1][1]=0;
+                        añadirImagen(R.id.img22);
+                    }
+                    else if(t[2][2]==-1 && t[0][1]!=-1){
+                        t[2][2] = 0;
+                        añadirImagen(R.id.img33);
+                    }
+                    else{
+                        t[2][1]=0;
+                        añadirImagen(R.id.img31);
+                    }
+                }
+            }
+            //si la 33 esta libre
+            else if(t[2][2]!=-1){
+                if(t[2][2]==0){
+                   if(t[2][1]==-1 || t[1][1]==-1 || t[1][2]==-1){
+                       if(t[0][2]==1|| t[2][0]==1){
+                           t[1][1]=0;
+                           añadirImagen(R.id.img22);
+                       }
+                       else if(t[0][2]==1|| t[1][1]==1){
+                           t[2][1]=0;
+                           añadirImagen(R.id.img32);
+                       }
+                       else if(t[2][0]==1||t[1][1]==1){
+                           t[1][2]=0;
+                           añadirImagen(R.id.img23);
+                       }
+                   }
+                }
+            }
+
+        }
+
+    }
 }
