@@ -1,6 +1,8 @@
 package ciberreunidossa.ciberreunidos;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -15,10 +17,15 @@ public class pant_enraya extends AppCompatActivity {
     int tablero[][] = new int[3][3];
     String ganador;
 
+    MediaPlayer clic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pant_enraya);
+
+        clic = MediaPlayer.create(this, R.raw.clic);
+        clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
         contador = 1;
         //obtenemos el numero de jugadores
@@ -83,6 +90,7 @@ public class pant_enraya extends AppCompatActivity {
                 img.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        clic.start();
                         actualizarTabla(v.getId());
                         añadirImagen(v.getId());
                         if (!finPartida()) {

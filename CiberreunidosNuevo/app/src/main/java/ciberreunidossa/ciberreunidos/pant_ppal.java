@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 public class pant_ppal extends AppCompatActivity {
+    MediaPlayer clic;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,11 +25,14 @@ public class pant_ppal extends AppCompatActivity {
         ImageButton btn_ajustes = (ImageButton) findViewById(R.id.btn_ajustes);
         ImageButton btn_ayuda = (ImageButton) findViewById(R.id.btn_ayuda);
 
-        //definimos las funciones onClick para los botones
+        clic = MediaPlayer.create(this, R.raw.clic);
+        clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
+        //definimos las funciones onClick para los botones
         //onClick para boton piedra papel tijera
         btn_ppt.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
+                clic.start();
                 Intent i = new Intent(pant_ppal.this, piedrapapeltijera.class);
                 startActivity(i);
             }
@@ -37,6 +41,7 @@ public class pant_ppal extends AppCompatActivity {
         //onClick para boton ahorcado
         btn_ahorcado.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
+                clic.start();
                 Intent i = new Intent(pant_ppal.this,pant_nivelAhorcado.class);
                 startActivity(i);
             }
@@ -46,6 +51,7 @@ public class pant_ppal extends AppCompatActivity {
         btn_enraya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                clic.start();
                 Intent i = new Intent(pant_ppal.this, pant_JugadoresEnraya.class);
                 startActivity(i);
             }
@@ -54,6 +60,7 @@ public class pant_ppal extends AppCompatActivity {
         //onClick para boton ajustes
         btn_ajustes.setOnClickListener(new View.OnClickListener() {
             @Override public void onClick(View view) {
+                clic.start();
                 Intent i = new Intent(pant_ppal.this, pant_ajustes.class);
                 startActivity(i);
             }
@@ -63,6 +70,7 @@ public class pant_ppal extends AppCompatActivity {
         btn_ayuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                clic.start();
                 Intent i = new Intent(pant_ppal.this, pant_ayuda.class);
                 startActivity(i);
             }
@@ -80,5 +88,7 @@ public class pant_ppal extends AppCompatActivity {
         }
         return true;
     }
+
+    
 
 }

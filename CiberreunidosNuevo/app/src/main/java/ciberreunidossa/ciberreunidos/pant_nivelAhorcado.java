@@ -1,6 +1,8 @@
 package ciberreunidossa.ciberreunidos;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -9,6 +11,8 @@ import android.widget.Button;
 
 public class pant_nivelAhorcado extends AppCompatActivity {
 
+    MediaPlayer clic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,9 +20,14 @@ public class pant_nivelAhorcado extends AppCompatActivity {
         Button facil= (Button) findViewById(R.id.bt_facil);
         Button media= (Button) findViewById(R.id.bt_media);
         Button dificil= (Button) findViewById(R.id.bt_dificil);
+
+        clic = MediaPlayer.create(this, R.raw.clic);
+        clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
         facil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                clic.start();
                 Intent i = new Intent(pant_nivelAhorcado.this, pant_ahorcado.class);
                 i.putExtra("dificultad", "facil");
                 startActivity(i);
@@ -27,6 +36,7 @@ public class pant_nivelAhorcado extends AppCompatActivity {
         media.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                clic.start();
                 Intent i = new Intent(pant_nivelAhorcado.this, pant_ahorcado.class);
                 i.putExtra("dificultad", "media");
                 startActivity(i);
@@ -35,6 +45,7 @@ public class pant_nivelAhorcado extends AppCompatActivity {
         dificil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                clic.start();
                 Intent i = new Intent(pant_nivelAhorcado.this, pant_ahorcado.class);
                 i.putExtra("dificultad", "dificil");
                 startActivity(i);

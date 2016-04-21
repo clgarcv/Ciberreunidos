@@ -2,6 +2,9 @@ package ciberreunidossa.ciberreunidos;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -11,10 +14,15 @@ import android.widget.TextView;
 
 public class piedrapapeltijera extends AppCompatActivity {
 
+    MediaPlayer clic;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_piedrapapeltijerainicio);
+
+        clic = MediaPlayer.create(this, R.raw.clic);
+        clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
         Button bt_3= (Button) findViewById(R.id.tres);
         Button bt_5= (Button) findViewById(R.id.cinco);
         Button bt_7= (Button) findViewById(R.id.siete);
@@ -22,6 +30,7 @@ public class piedrapapeltijera extends AppCompatActivity {
             bt_3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
+                    clic.start();
                     Intent i = new Intent(piedrapapeltijera.this, juego_piedrapapeltijera.class);
                     i.putExtra("ronda", "3");
                     startActivity(i);
@@ -32,14 +41,18 @@ public class piedrapapeltijera extends AppCompatActivity {
             bt_5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    clic.start();
                     Intent i = new Intent(piedrapapeltijera.this, juego_piedrapapeltijera.class);
                     i.putExtra("ronda", "5");
                     startActivity(i);
                 }
             });
+
+
             bt_7.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    clic.start();
                     Intent i = new Intent(piedrapapeltijera.this, juego_piedrapapeltijera.class);
                     i.putExtra("ronda", "7");
                     startActivity(i);

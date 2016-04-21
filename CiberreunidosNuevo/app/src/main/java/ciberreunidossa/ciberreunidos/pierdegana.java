@@ -1,6 +1,8 @@
 package ciberreunidossa.ciberreunidos;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -10,10 +12,16 @@ import android.widget.TextView;
 
 public class pierdegana extends AppCompatActivity {
 
+    MediaPlayer clic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pierdegana);
+
+        clic = MediaPlayer.create(this, R.raw.clic);
+        clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
         Bundle bundle = getIntent().getExtras();
         final String juego = bundle.getString("juego");
 
@@ -21,6 +29,7 @@ public class pierdegana extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clic.start();
                 Intent i= new Intent(pierdegana.this,pant_ppal.class);
                 startActivity(i);
             }
@@ -55,6 +64,7 @@ public class pierdegana extends AppCompatActivity {
             jugar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    clic.start();
                     Intent i = new Intent(pierdegana.this, pant_JugadoresEnraya.class);
                     startActivity(i);
                 }
@@ -78,6 +88,7 @@ public class pierdegana extends AppCompatActivity {
         jugar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clic.start();
                 Intent i = new Intent(pierdegana.this, piedrapapeltijera.class);
                 startActivity(i);
             }
@@ -103,6 +114,7 @@ public class pierdegana extends AppCompatActivity {
         jugar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clic.start();
                 Intent i = new Intent(pierdegana.this, pant_nivelAhorcado.class);
                 startActivity(i);
             }

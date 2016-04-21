@@ -1,6 +1,8 @@
 package ciberreunidossa.ciberreunidos;
 
 import android.content.Intent;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,6 +24,8 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
 
     String maquina;
 
+    MediaPlayer clic;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,10 +35,15 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
         ImageButton papel = (ImageButton) findViewById(R.id.papel);
         final TextView m1 = (TextView) findViewById(R.id.punt_jug1);
         final TextView m2 = (TextView) findViewById(R.id.punt_jug2);
+
+        clic = MediaPlayer.create(this, R.raw.clic);
+        clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
         //boton piedra
         piedra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clic.start();
                 ImageButton im1 = (ImageButton) findViewById(R.id.imageButton_1);
                 im1.setBackgroundResource(R.drawable.piedra_btn);
                 juego("piedra");
@@ -44,6 +53,7 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
         tijera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clic.start();
                 ImageButton im1 = (ImageButton) findViewById(R.id.imageButton_1);
                 im1.setBackgroundResource(R.drawable.tijera_btn);
                 juego("tijera");
@@ -54,6 +64,7 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
         papel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                clic.start();
                 ImageButton im1 = (ImageButton) findViewById(R.id.imageButton_1);
                 im1.setBackgroundResource(R.drawable.papel_btn);
                 juego("papel");
