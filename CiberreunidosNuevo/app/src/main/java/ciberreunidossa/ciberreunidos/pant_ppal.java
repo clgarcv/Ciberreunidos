@@ -75,6 +75,14 @@ public class pant_ppal extends AppCompatActivity {
                 startActivity(i);
             }
         });
+        //onClick para boton parchis
+        btn_parchis.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(pant_ppal.this, pant_jugadoresParchis.class);
+                startActivity(i);
+            }
+        });
 
     }
     //Boton atras para salir de la aplicacion
