@@ -4,17 +4,21 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageButton;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class pant_enraya extends AppCompatActivity {
 
     static int contador;
     int tablero[][] = new int[3][3];
+    int tabAux[][]= new int[3][3];
+    private int[] opciones = {0, 1, 2};
     String ganador;
 
     MediaPlayer clic;
@@ -59,19 +63,20 @@ public class pant_enraya extends AppCompatActivity {
 
 
         inicializaTablero(tablero);
+        inicializaTablero(tabAux);
         if (nJug == 1) {
             //juega contra la maquina
             //el primero en pulsar sera el jugador uno que juega con X
-            /*for (ImageButton img : botones) {
+            for (ImageButton img : botones) {
                 img.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        actualizarTabla(v.getId());
-                        añadirImagen(v.getId());
                         if (!finPartida()) {
-                            juegoCpu(tablero);
+                            actualizarTabla(v.getId());
+                            actualizarTabAux(v.getId());
+                            añadirImagen(v.getId());
                             contador++;
-
+                            jugador2();
                         } else {
                             Intent i = new Intent(pant_enraya.this, pierdegana.class);
                             i.putExtra("juego", "3enraya");
@@ -82,7 +87,7 @@ public class pant_enraya extends AppCompatActivity {
                     }
                 });
 
-            }*/
+            }
 
         } else if (nJug == 2) {
             //dos jugadores
@@ -109,7 +114,6 @@ public class pant_enraya extends AppCompatActivity {
             }
 
         }
-
 
     }
 
@@ -146,7 +150,39 @@ public class pant_enraya extends AppCompatActivity {
         }
 
     }
+    public void actualizarTabAux(int id) {
+        switch (id) {
 
+            case R.id.img11:
+                tabAux[0][0] = (contador % 2 == 0) ? 0 : 1;
+                break;
+            case R.id.img12:
+                tabAux[0][1] = (contador % 2 == 0) ? 0 : 1;
+                break;
+            case R.id.img13:
+                tabAux[0][2] = (contador % 2 == 0) ? 0 : 1;
+                break;
+            case R.id.img21:
+                tabAux[1][0] = (contador % 2 == 0) ? 0 : 1;
+                break;
+            case R.id.img22:
+                tabAux[1][1] = (contador % 2 == 0) ? 0 : 1;
+                break;
+            case R.id.img23:
+                tabAux[1][2] = (contador % 2 == 0) ? 0 : 1;
+                break;
+            case R.id.img31:
+                tabAux[2][0] = (contador % 2 == 0) ? 0 : 1;
+                break;
+            case R.id.img32:
+                tabAux[2][1] = (contador % 2 == 0) ? 0 : 1;
+                break;
+            case R.id.img33:
+                tabAux[2][2] = (contador % 2 == 0) ? 0 : 1;
+                break;
+        }
+
+    }
     public void añadirImagen(int id) {
         ImageButton b = (ImageButton) findViewById(id);
         if (contador % 2 == 0) {
@@ -162,7 +198,6 @@ public class pant_enraya extends AppCompatActivity {
 
 
     }
-
     private boolean tableroInicial() {
         int i = 0;
         while (i <= 2) {
@@ -178,8 +213,6 @@ public class pant_enraya extends AppCompatActivity {
         }
         return true;
     }
-
-
     //funciones auxiliares
     // inicializamos con -1.  0 representara la O y 1 la X
     private static void inicializaTablero(int[][] t) {
@@ -190,7 +223,6 @@ public class pant_enraya extends AppCompatActivity {
         }
 
     }
-
     private static void ponerFicha(int c, int f, int ficha, int[][] tablero) {
 
         if (tablero[f][c] == -1) {
@@ -198,7 +230,6 @@ public class pant_enraya extends AppCompatActivity {
             tablero[f][c] = ficha;
         }
     }
-
     private boolean hayLinea(int[][] t) {
         //ponemos los distintos casos donde puede darse una linea
         //hay 8 casos
@@ -248,13 +279,53 @@ public class pant_enraya extends AppCompatActivity {
         }
 
     }
-
-
     private boolean finPartida() {
         return (hayLinea(tablero) || contador == 9);
     }
+    private void jugador2(){
+         int c= rand();
+         int f= rand();
+        if(libre(tablero,c,f)){
+            ponerFicha(c, f, 0, tabAux);
+            ponerFicha(c, f, 0, tablero);
+            imgJugar2(c, f);
+            contador++;
+        }
+        else {jugador2();}
+    }
+    public int rand() {
+        Random r = new Random();
+        return opciones[r.nextInt(3)];
+    }
+    private boolean libre(int[][]t,int c,int f){
+        boolean libre;
+        if(t[c][f]==-1){
+            libre=true;
+        }
+        else{libre=false;}
+        return libre;
+    }
+    private void imgJugar2(int c,int f){
+        int id;
 
-    /* private static boolean turno(int[][] t, int f, int c, int ficha) {
+        if (c == 0 && f==0) {id= R.id.img11;}
+        else if(c == 0 && f==1){id= R.id.img12;}
+        else if(c == 0 && f==2){id= R.id.img13;}
+        else if(c == 1 && f==0){id= R.id.img21;}
+        else if(c == 1 && f==1){id= R.id.img22;}
+        else if(c == 1 && f==2){id= R.id.img23;}
+        else if(c == 2 && f==0){id= R.id.img31;}
+        else if(c == 2 && f==1){id= R.id.img32;}
+        else{id= R.id.img33;}
+        ImageButton b = (ImageButton) findViewById(id);
+        b.setImageResource(R.drawable.enraya_o);
+        }
+
+
+
+
+
+        /* private static boolean turno(int[][] t, int f, int c, int ficha) {
 
          boolean fin = false;
 
@@ -268,187 +339,4 @@ public class pant_enraya extends AppCompatActivity {
 
 
      }*/
-    private void juegoCpu(int[][] t) {
-        //si alguno esta libre
-        if (t[0][0] != 1 || t[0][1] != -1 || t[0][2] != -1 ||
-                t[1][0] != -1 || t[1][1] != -1 || t[1][2] != -1 ||
-                t[2][0] != -1 || t[2][1] != -1 || t[2][2] != -1) {
-            // si la 11 esta libre
-            if (t[0][0] != -1) {
-                if (t[0][0] == 0) {
-                    if (t[0][1] == -1 || t[1][0] == -1 || t[1][1] == -1) {
-                        if (t[2][0] == 1 || t[0][2] == 1) {
-                            t[1][1] = 0;
-                            añadirImagen(R.id.img22);
-                        } else if (t[0][2] == 1 || t[1][1] == 1) {
-                            t[1][0] = 0;
-                            añadirImagen(R.id.img21);
-                        } else if (t[1][1] == 1 || t[2][0] == 1) {
-                            t[0][1] = 0;
-                            añadirImagen(R.id.img12);
-                        }
-                    }
-                }
-            }
-            //si la 12 esta libre
-            else if (t[0][1] != -1) {
-                if (t[0][1] == 0) {
-                    if (t[2][1] == -1 || t[0][0] == -1 || t[0][2] == -1) {
-                        if (t[2][1] == -1 && t[0][0] != -1 || t[2][1] == -1 && t[0][2] != -1) {
-                            t[1][1] = 0;
-                            añadirImagen(R.id.img22);
-                        } else if (t[0][0] == -1 && t[2][1] != -1) {
-                            t[0][0] = 0;
-                            añadirImagen(R.id.img11);
-                        } else {
-                            t[0][2] = 0;
-                            añadirImagen(R.id.img13);
-                        }
-                    }
-                }
-            }
-            //si la 13 esta libre
-            else if (t[0][2] != -1) {
-                if (t[0][2] == 0) {
-                    if (t[0][2] == -1 || t[1][2] == -1 || t[1][1] == -1) {
-                        if (t[2][2] == 1 || t[0][0] == 1) {
-                            t[1][1] = 0;
-                            añadirImagen(R.id.img22);
-                        } else if (t[0][0] == 1 || t[1][1] == 1) {
-                            t[1][2] = 0;
-                            añadirImagen(R.id.img23);
-                        } else if (t[1][1] == 1 || t[2][2] == 1) {
-                            t[0][1] = 0;
-                            añadirImagen(R.id.img12);
-                        }
-                    }
-                }
-            }
-            //si la 21 esta libre
-            else if (t[1][0] != -1) {
-                if (t[1][0] == 0) {
-                    if (t[1][2] == -1 || t[0][0] == -1 || t[2][0] == -1) {
-                        if (t[1][2] == -1 && t[0][0] != -1 || t[1][2] == -1 && t[0][2] != -1) {
-                            t[1][1] = 0;
-                            añadirImagen(R.id.img22);
-                        } else if (t[0][0] == -1 && t[1][2] != -1) {
-                            t[0][0] = 0;
-                            añadirImagen(R.id.img11);
-                        } else {
-                            t[0][2] = 0;
-                            añadirImagen(R.id.img31);
-                        }
-                    }
-                }
-            }
-            //si la 22 esta libre
-            else if (t[1][1] != -1) {
-                if (t[1][1] == 0) {
-                    if (t[0][1] == 1 || t[2][1] == 1) {
-                        if (t[0][0] == 0) {
-                            t[2][2] = 0;
-                            añadirImagen(R.id.img33);
-                        } else if (t[2][2] == 0) {
-                            t[0][0] = 0;
-                            añadirImagen(R.id.img11);
-                        } else if (t[0][2] == 0) {
-                            t[2][0] = 0;
-                            añadirImagen(R.id.img31);
-                        } else if (t[2][0] == 0) {
-                            t[0][2] = 0;
-                            añadirImagen(R.id.img13);
-                        } else if (t[1][0] == 0) {
-                            t[1][2] = 0;
-                            añadirImagen(R.id.img23);
-                        } else if (t[1][2] == 0) {
-                            t[1][0] = 0;
-                            añadirImagen(R.id.img21);
-                        }
-                    } else if (t[0][0] == 1 || t[0][2] == 1 || t[2][0] == 1 || t[2][2] == 1) {
-                        if (t[0][1] == 0) {
-                            t[2][1] = 0;
-                            añadirImagen(R.id.img33);
-                        } else if (t[2][1] == 0) {
-                            t[0][1] = 0;
-                            añadirImagen(R.id.img12);
-                        } else if (t[1][0] == 0) {
-                            t[1][2] = 0;
-                            añadirImagen(R.id.img23);
-                        } else if (t[1][2] == 0) {
-                            t[1][0] = 0;
-                            añadirImagen(R.id.img21);
-                        }
-                    }
-                }
-            }
-            //si la 23 esta libre
-            else if (t[1][2] != -1) {
-                if (t[1][2] == 0) {
-                    if (t[1][0] == -1 || t[0][2] == -1 || t[2][2] == -1) {
-                        if (t[1][0] == -1 && t[0][2] != 1 || t[1][0] == -1 && t[2][2] != -1) {
-                            t[1][1] = 0;
-                            añadirImagen(R.id.img22);
-                        } else if (t[0][2] == -1 && t[1][0] != -1) {
-                            t[0][2] = 0;
-                            añadirImagen(R.id.img13);
-                        } else {
-                            t[2][2] = 0;
-                            añadirImagen(R.id.img33);
-                        }
-                    }
-                }
-            }
-            //si la 31 esta libre
-            else if (t[2][0] != -1) {
-                if (t[2][0] == 0) {
-                    if (t[1][0] == -1 || t[1][1] == -1 || t[2][1] == -1) {
-                        if (t[0][0] == 1 || t[2][2] == 1) {
-                            t[1][1] = 0;
-                            añadirImagen(R.id.img22);
-                        } else if (t[0][2] == 1 || t[2][3] == 1) {
-                            t[1][0] = 0;
-                            añadirImagen(R.id.img21);
-                        } else if (t[1][1] == 1 || t[0][0] == 1) {
-                            t[2][1] = 0;
-                            añadirImagen(R.id.img32);
-                        }
-                    }
-                }
-            }
-            //si la 32 esta libre
-            else if (t[2][1] != -1) {
-                if (t[2][1] == 0) {
-                    if (t[0][2] == -1 && t[2][1] != -1 || t[0][2] == -1 && t[2][2] != -1) {
-                        t[1][1] = 0;
-                        añadirImagen(R.id.img22);
-                    } else if (t[2][2] == -1 && t[0][1] != -1) {
-                        t[2][2] = 0;
-                        añadirImagen(R.id.img33);
-                    } else {
-                        t[2][1] = 0;
-                        añadirImagen(R.id.img31);
-                    }
-                }
-            }
-            //si la 33 esta libre
-            else if (t[2][2] != -1) {
-                if (t[2][2] == 0) {
-                    if (t[2][1] == -1 || t[1][1] == -1 || t[1][2] == -1) {
-                        if (t[0][2] == 1 || t[2][0] == 1) {
-                            t[1][1] = 0;
-                            añadirImagen(R.id.img22);
-                        } else if (t[0][2] == 1 || t[1][1] == 1) {
-                            t[2][1] = 0;
-                            añadirImagen(R.id.img32);
-                        } else if (t[2][0] == 1 || t[1][1] == 1) {
-                            t[1][2] = 0;
-                            añadirImagen(R.id.img23);
-                        }
-                    }
-                }
-            }
-
-        }
-
-    }
 }
