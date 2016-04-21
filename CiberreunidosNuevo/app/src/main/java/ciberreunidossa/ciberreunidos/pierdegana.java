@@ -30,16 +30,18 @@ public class pierdegana extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 clic.start();
-                Intent i= new Intent(pierdegana.this,pant_ppal.class);
+                Intent i = new Intent(pierdegana.this, pant_ppal.class);
                 startActivity(i);
             }
         });
 
 
-        switch (juego){
-            case "ppt": ppt();
+        switch (juego) {
+            case "ppt":
+                ppt();
                 break;
-            case "ahorcado": ahorcado();
+            case "ahorcado":
+                ahorcado();
                 break;
             case "3enraya":
                 enraya(bundle);
@@ -48,31 +50,49 @@ public class pierdegana extends AppCompatActivity {
         }
 
     }
-    public void enraya(Bundle b){
+
+    public void enraya(Bundle b) {
         Button jugar = (Button) findViewById(R.id.jugar);
         final int nJug = b.getInt("jugadores");
-        if(nJug==2){
+        if (nJug == 2) {
             final String ganador = b.getString("ganador");
             TextView texto = (TextView) findViewById(R.id.resultado);
-            if(ganador==null){
+            if (ganador == null) {
                 texto.setText("¡LÁSTIMA!\nHa habido un empate entre los jugadores");
                 texto.setTextSize(40);
-            }else{
-                texto.setText("¡ENHORABUENA!\nEl ganador es el "+ganador);
+            } else {
+                texto.setText("¡ENHORABUENA!\nEl ganador es el " + ganador);
                 texto.setTextSize(40);
             }
-            jugar.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    clic.start();
-                    Intent i = new Intent(pierdegana.this, pant_JugadoresEnraya.class);
-                    startActivity(i);
-                }
-            });
+
+        } else {
+            final String ganador = b.getString("ganador");
+            TextView texto = (TextView) findViewById(R.id.resultado);
+            if (ganador == null) {
+                texto.setText("¡VAYA!\nHa habido un empate");
+                texto.setTextSize(40);
+            } else if (ganador.equals("Jugador 2")) {
+                texto.setText("¡LÁSTIMA!\nHas perdid.");
+                texto.setTextSize(40);
+
+            } else {
+                texto.setText("¡ENHORABUENA!\nEres el vencedor");
+                texto.setTextSize(40);
+
+            }
+
         }
+        jugar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clic.start();
+                Intent i = new Intent(pierdegana.this, pant_JugadoresEnraya.class);
+                startActivity(i);
+            }
+        });
     }
 
-    public void ppt(){
+    public void ppt() {
         Button jugar = (Button) findViewById(R.id.jugar);
 
         Bundle bundle = getIntent().getExtras();
@@ -97,7 +117,7 @@ public class pierdegana extends AppCompatActivity {
 
     }
 
-    public void ahorcado(){
+    public void ahorcado() {
         Button jugar = (Button) findViewById(R.id.jugar);
         Button menu = (Button) findViewById(R.id.menu);
         Bundle bundle = getIntent().getExtras();
@@ -108,7 +128,7 @@ public class pierdegana extends AppCompatActivity {
             texto.setText("¡ENHORABUENA!\nHas ganado ");
             texto.setTextSize(40);
         } else {
-            texto.setText("¡LÁSTIMA!\nLa palabra era "+solucion.toUpperCase());
+            texto.setText("¡LÁSTIMA!\nLa palabra era " + solucion.toUpperCase());
             texto.setTextSize(40);
         }
         jugar.setOnClickListener(new View.OnClickListener() {

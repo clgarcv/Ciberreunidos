@@ -17,7 +17,8 @@ public class pant_enraya extends AppCompatActivity {
 
     static int contador;
     int tablero[][] = new int[3][3];
-    int tabAux[][]= new int[3][3];
+    final List<ImageButton> botones = new ArrayList<ImageButton>();
+
     private int[] opciones = {0, 1, 2};
     String ganador;
 
@@ -39,18 +40,25 @@ public class pant_enraya extends AppCompatActivity {
 
         //primera fila del tablero
         final ImageButton c1_1 = (ImageButton) findViewById(R.id.img11);
+
         final ImageButton c1_2 = (ImageButton) findViewById(R.id.img12);
+
         final ImageButton c1_3 = (ImageButton) findViewById(R.id.img13);
+
         //segunda fila del tablero
         final ImageButton c2_1 = (ImageButton) findViewById(R.id.img21);
+
         final ImageButton c2_2 = (ImageButton) findViewById(R.id.img22);
+
         final ImageButton c2_3 = (ImageButton) findViewById(R.id.img23);
+
         //tercera fila del tablero
         final ImageButton c3_1 = (ImageButton) findViewById(R.id.img31);
+
         final ImageButton c3_2 = (ImageButton) findViewById(R.id.img32);
+
         final ImageButton c3_3 = (ImageButton) findViewById(R.id.img33);
 
-        final List<ImageButton> botones = new ArrayList<ImageButton>();
         botones.add(c1_1);
         botones.add(c1_2);
         botones.add(c1_3);
@@ -63,7 +71,7 @@ public class pant_enraya extends AppCompatActivity {
 
 
         inicializaTablero(tablero);
-        inicializaTablero(tabAux);
+//        inicializaTablero(tabAux);
         if (nJug == 1) {
             //juega contra la maquina
             //el primero en pulsar sera el jugador uno que juega con X
@@ -71,19 +79,52 @@ public class pant_enraya extends AppCompatActivity {
                 img.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        clic.start();
+                        actualizarTabla(v.getId());
+                        añadirImagen(v.getId());
                         if (!finPartida()) {
-                            actualizarTabla(v.getId());
-                            actualizarTabAux(v.getId());
-                            añadirImagen(v.getId());
                             contador++;
-                            jugador2();
+                            juegamaquina();
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    if (finPartida()) {
+                                        Handler handler = new Handler();
+                                        handler.postDelayed(new Runnable() {
+                                            public void run() {
+                                                Intent i = new Intent(pant_enraya.this, pierdegana.class);
+                                                i.putExtra("juego", "3enraya");
+                                                i.putExtra("jugadores", nJug);
+                                                i.putExtra("ganador", ganador);
+                                                startActivity(i);
+                                            }
+                                        }, 500);
+                                    } else {
+                                        for (ImageButton i : botones) {
+                                            if (i.getDrawable() == null)
+                                                i.setEnabled(true);
+                                        }
+                                        contador++;
+                                    }
+                                }
+                            }, 500);
                         } else {
-                            Intent i = new Intent(pant_enraya.this, pierdegana.class);
-                            i.putExtra("juego", "3enraya");
-                            i.putExtra("jugadores", nJug);
-                            i.putExtra("ganador",ganador);
-                            startActivity(i);
+                            for (ImageButton i : botones) {
+                                i.setEnabled(false);
+                            }
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    Intent i = new Intent(pant_enraya.this, pierdegana.class);
+                                    i.putExtra("juego", "3enraya");
+                                    i.putExtra("jugadores", nJug);
+                                    i.putExtra("ganador", ganador);
+                                    startActivity(i);
+                                }
+                            }, 500);
+
                         }
+
                     }
                 });
 
@@ -102,11 +143,16 @@ public class pant_enraya extends AppCompatActivity {
                             contador++;
 
                         } else {
-                            Intent i = new Intent(pant_enraya.this, pierdegana.class);
-                            i.putExtra("juego", "3enraya");
-                            i.putExtra("jugadores", nJug);
-                            i.putExtra("ganador", ganador);
-                            startActivity(i);
+                            Handler handler = new Handler();
+                            handler.postDelayed(new Runnable() {
+                                public void run() {
+                                    Intent i = new Intent(pant_enraya.this, pierdegana.class);
+                                    i.putExtra("juego", "3enraya");
+                                    i.putExtra("jugadores", nJug);
+                                    i.putExtra("ganador", ganador);
+                                    startActivity(i);
+                                }
+                            }, 500);
                         }
                     }
                 });
@@ -116,6 +162,110 @@ public class pant_enraya extends AppCompatActivity {
         }
 
     }
+
+    public void juegamaquina() {
+        for (ImageButton i : botones) {
+            i.setEnabled(false);
+        }
+        Random r = new Random();
+        int fila = r.nextInt(3);
+        int col = r.nextInt(3);
+        boolean aux = false;
+        while (!aux) {
+            if (tablero[fila][col] == -1) {
+                tablero[fila][col] = 0;
+                if (fila == 0 && col == 0) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            añadirImagen(R.id.img11);
+
+                        }
+                    }, 500);
+
+                } else if (fila == 0 && col == 1) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            añadirImagen(R.id.img12);
+
+                        }
+                    }, 500);
+
+                } else if (fila == 0 && col == 2) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            añadirImagen(R.id.img13);
+
+                        }
+                    }, 500);
+
+                } else if (fila == 1 && col == 0) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            añadirImagen(R.id.img21);
+
+                        }
+                    }, 500);
+
+                } else if (fila == 1 && col == 1) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            añadirImagen(R.id.img22);
+
+                        }
+                    }, 500);
+
+                } else if (fila == 1 && col == 2) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            añadirImagen(R.id.img23);
+
+                        }
+                    }, 500);
+
+                } else if (fila == 2 && col == 0) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            añadirImagen(R.id.img31);
+
+                        }
+                    }, 500);
+
+                } else if (fila == 2 && col == 1) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            añadirImagen(R.id.img32);
+
+                        }
+                    }, 500);
+
+                } else if (fila == 2 && col == 2) {
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            añadirImagen(R.id.img33);
+
+                        }
+                    }, 500);
+
+                }
+                aux = true;
+
+            }
+            fila = r.nextInt(3);
+            col = r.nextInt(3);
+        }
+
+
+    }
+
 
     public void actualizarTabla(int id) {
         switch (id) {
@@ -150,39 +300,7 @@ public class pant_enraya extends AppCompatActivity {
         }
 
     }
-    public void actualizarTabAux(int id) {
-        switch (id) {
 
-            case R.id.img11:
-                tabAux[0][0] = (contador % 2 == 0) ? 0 : 1;
-                break;
-            case R.id.img12:
-                tabAux[0][1] = (contador % 2 == 0) ? 0 : 1;
-                break;
-            case R.id.img13:
-                tabAux[0][2] = (contador % 2 == 0) ? 0 : 1;
-                break;
-            case R.id.img21:
-                tabAux[1][0] = (contador % 2 == 0) ? 0 : 1;
-                break;
-            case R.id.img22:
-                tabAux[1][1] = (contador % 2 == 0) ? 0 : 1;
-                break;
-            case R.id.img23:
-                tabAux[1][2] = (contador % 2 == 0) ? 0 : 1;
-                break;
-            case R.id.img31:
-                tabAux[2][0] = (contador % 2 == 0) ? 0 : 1;
-                break;
-            case R.id.img32:
-                tabAux[2][1] = (contador % 2 == 0) ? 0 : 1;
-                break;
-            case R.id.img33:
-                tabAux[2][2] = (contador % 2 == 0) ? 0 : 1;
-                break;
-        }
-
-    }
     public void añadirImagen(int id) {
         ImageButton b = (ImageButton) findViewById(id);
         if (contador % 2 == 0) {
@@ -198,6 +316,7 @@ public class pant_enraya extends AppCompatActivity {
 
 
     }
+
     private boolean tableroInicial() {
         int i = 0;
         while (i <= 2) {
@@ -213,6 +332,7 @@ public class pant_enraya extends AppCompatActivity {
         }
         return true;
     }
+
     //funciones auxiliares
     // inicializamos con -1.  0 representara la O y 1 la X
     private static void inicializaTablero(int[][] t) {
@@ -223,6 +343,7 @@ public class pant_enraya extends AppCompatActivity {
         }
 
     }
+
     private static void ponerFicha(int c, int f, int ficha, int[][] tablero) {
 
         if (tablero[f][c] == -1) {
@@ -230,6 +351,7 @@ public class pant_enraya extends AppCompatActivity {
             tablero[f][c] = ficha;
         }
     }
+
     private boolean hayLinea(int[][] t) {
         //ponemos los distintos casos donde puede darse una linea
         //hay 8 casos
@@ -279,64 +401,14 @@ public class pant_enraya extends AppCompatActivity {
         }
 
     }
+
     private boolean finPartida() {
         return (hayLinea(tablero) || contador == 9);
     }
-    private void jugador2(){
-         int c= rand();
-         int f= rand();
-        if(libre(tablero,c,f)){
-            ponerFicha(c, f, 0, tabAux);
-            ponerFicha(c, f, 0, tablero);
-            imgJugar2(c, f);
-            contador++;
-        }
-        else {jugador2();}
-    }
-    public int rand() {
-        Random r = new Random();
-        return opciones[r.nextInt(3)];
-    }
-    private boolean libre(int[][]t,int c,int f){
-        boolean libre;
-        if(t[c][f]==-1){
-            libre=true;
-        }
-        else{libre=false;}
-        return libre;
-    }
-    private void imgJugar2(int c,int f){
-        int id;
 
-        if (c == 0 && f==0) {id= R.id.img11;}
-        else if(c == 0 && f==1){id= R.id.img12;}
-        else if(c == 0 && f==2){id= R.id.img13;}
-        else if(c == 1 && f==0){id= R.id.img21;}
-        else if(c == 1 && f==1){id= R.id.img22;}
-        else if(c == 1 && f==2){id= R.id.img23;}
-        else if(c == 2 && f==0){id= R.id.img31;}
-        else if(c == 2 && f==1){id= R.id.img32;}
-        else{id= R.id.img33;}
-        ImageButton b = (ImageButton) findViewById(id);
-        b.setImageResource(R.drawable.enraya_o);
-        }
-
-
-
-
-
-        /* private static boolean turno(int[][] t, int f, int c, int ficha) {
-
-         boolean fin = false;
-
-         fin = finPartida();
-         if (!fin) {
-             ponerFicha(c, f, ficha, t);
-         }
-         fin = finPartida();
-
-         return fin;
-
-
-     }*/
 }
+
+
+
+
+
