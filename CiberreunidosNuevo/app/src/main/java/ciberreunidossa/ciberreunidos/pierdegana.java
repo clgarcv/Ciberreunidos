@@ -72,7 +72,7 @@ public class pierdegana extends AppCompatActivity {
                 texto.setText("¡VAYA!\nHa habido un empate");
                 texto.setTextSize(40);
             } else if (ganador.equals("Jugador 2")) {
-                texto.setText("¡LÁSTIMA!\nHas perdid.");
+                texto.setText("¡LÁSTIMA!\nHas perdido");
                 texto.setTextSize(40);
 
             } else {
