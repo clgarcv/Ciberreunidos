@@ -43,7 +43,7 @@
             android:name=".pant_nivelAhorcado"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".pant_JugadoresEnraya"
+            android:name=".pant_JugadoresPartida"
             android:screenOrientation="portrait" />
         <activity android:name=".pant_conecta4"
             android:screenOrientation="portrait" />

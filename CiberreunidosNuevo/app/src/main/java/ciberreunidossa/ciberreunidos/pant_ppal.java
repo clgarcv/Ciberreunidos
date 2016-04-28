@@ -3,14 +3,11 @@ package ciberreunidossa.ciberreunidos;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
-
-import java.io.File;
 
 public class pant_ppal extends AppCompatActivity {
     MediaPlayer clic;
@@ -56,7 +53,19 @@ public class pant_ppal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clic.start();
-                Intent i = new Intent(pant_ppal.this, pant_JugadoresEnraya.class);
+                Intent i = new Intent(pant_ppal.this, pant_JugadoresPartida.class);
+                i.putExtra("juego", "enraya");
+                startActivity(i);
+            }
+        });
+
+        //onClick para boton conecta 4
+        btn_conecta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                clic.start();
+                Intent i = new Intent(pant_ppal.this,pant_JugadoresPartida.class);
+                i.putExtra("juego", "conecta");
                 startActivity(i);
             }
         });
@@ -77,13 +86,6 @@ public class pant_ppal extends AppCompatActivity {
                 clic.start();
                 Intent i = new Intent(pant_ppal.this, pant_ayuda.class);
                 startActivity(i);
-            }
-        });
-        //onClick para boton parchis
-        btn_conecta.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
             }
         });
 

@@ -86,7 +86,7 @@ public class pierdegana extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 clic.start();
-                Intent i = new Intent(pierdegana.this, pant_JugadoresEnraya.class);
+                Intent i = new Intent(pierdegana.this, pant_JugadoresPartida.class);
                 startActivity(i);
             }
         });
