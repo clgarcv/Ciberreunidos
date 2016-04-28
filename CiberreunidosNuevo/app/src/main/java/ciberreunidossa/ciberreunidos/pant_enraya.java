@@ -71,7 +71,7 @@ public class pant_enraya extends AppCompatActivity {
 
 
         inicializaTablero(tablero);
-//        inicializaTablero(tabAux);
+//      inicializaTablero(tabAux);
         if (nJug == 1) {
             //juega contra la maquina
             //el primero en pulsar sera el jugador uno que juega con X
@@ -84,6 +84,8 @@ public class pant_enraya extends AppCompatActivity {
                         añadirImagen(v.getId());
                         if (!finPartida()) {
                             contador++;
+                            //comprobar si hay alguna posible linea
+
                             juegamaquina();
                             Handler handler = new Handler();
                             handler.postDelayed(new Runnable() {
@@ -94,7 +96,6 @@ public class pant_enraya extends AppCompatActivity {
                                             public void run() {
                                                 Intent i = new Intent(pant_enraya.this, pierdegana.class);
                                                 i.putExtra("juego", "3enraya");
-                                                i.putExtra("jugadores", nJug);
                                                 i.putExtra("ganador", ganador);
                                                 startActivity(i);
                                             }
@@ -117,7 +118,6 @@ public class pant_enraya extends AppCompatActivity {
                                 public void run() {
                                     Intent i = new Intent(pant_enraya.this, pierdegana.class);
                                     i.putExtra("juego", "3enraya");
-                                    i.putExtra("jugadores", nJug);
                                     i.putExtra("ganador", ganador);
                                     startActivity(i);
                                 }
@@ -404,6 +404,46 @@ public class pant_enraya extends AppCompatActivity {
 
     private boolean finPartida() {
         return (hayLinea(tablero) || contador == 9);
+    }
+
+    private boolean posibleLinea(int[][] t) {
+        //ponemos los distintos casos donde puede darse una linea
+        //hay 8 casos
+        //filas
+        if ((t[0][0] != -1 && t[0][0] == t[0][1] && t[0][0] == t[0][2]) || (t[0][0] != -1 && t[0][0] == t[1][0] && t[0][0] == t[2][0]) || (t[0][0] != -1 && t[0][0] == t[1][1] && t[0][0] == t[2][2])) {
+            if (t[0][0] == 1) {
+                return true;
+            } else {
+                return true;
+            }
+        } else if (t[1][0] != -1 && t[1][0] == t[1][1] && t[1][0] == t[1][2]) {
+            if (t[1][0] == 1) {
+                return true;
+            } else {
+                return true;
+            }
+        } else if (t[2][0] != -1 && t[2][0] == t[2][1] && t[2][0] == t[2][2] || (t[2][0] != -1 && t[2][0] == t[1][1] && t[2][0] == t[0][2])) {
+            if (t[2][0] == 1) {
+                return true;
+            } else {
+                return true;
+            }
+        } else if (t[0][1] != -1 && t[0][1] == t[1][1] && t[0][1] == t[2][1]) {
+            if (t[0][1] == 1) {
+                return true;
+            } else {
+                return true;
+            }
+        } else if (t[0][2] != -1 && t[0][2] == t[1][2] && t[0][2] == t[2][2]) {
+            if (t[0][2] == 1) {
+                return true;
+            } else {
+                return true;
+            }
+        } else {
+            return false;
+        }
+
     }
 
 }

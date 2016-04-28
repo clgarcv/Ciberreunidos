@@ -46,7 +46,8 @@
             android:name=".pant_JugadoresEnraya"
             android:screenOrientation="portrait" />
         <activity android:name=".pant_jugadoresParchis" />
-        <activity android:name=".pant_parchis"></activity>
+        <activity android:name=".pant_parchis" />
+        <activity android:name=".pant_conecta4"></activity>
     </application>
 
 </manifest>

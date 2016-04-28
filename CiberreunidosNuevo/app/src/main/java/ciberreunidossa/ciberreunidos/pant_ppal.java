@@ -10,6 +10,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.io.File;
+
 public class pant_ppal extends AppCompatActivity {
     MediaPlayer clic;
 
@@ -17,6 +19,8 @@ public class pant_ppal extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pant_ppal);
+
+        //Audio musica = new Audio(getWindow().getContext(), new File(R.raw.musicainicio));
 
         ImageButton btn_ppt = (ImageButton) findViewById(R.id.btn_ppt);
         ImageButton btn_ahorcado = (ImageButton) findViewById(R.id.btn_ahorcado);
@@ -97,6 +101,6 @@ public class pant_ppal extends AppCompatActivity {
         return true;
     }
 
-    
+
 
 }
