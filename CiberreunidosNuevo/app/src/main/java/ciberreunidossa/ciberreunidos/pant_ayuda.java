@@ -24,7 +24,7 @@ public class pant_ayuda extends AppCompatActivity {
         ImageButton btn_ay_ppt = (ImageButton) findViewById(R.id.btn_ayu_ppt);
         ImageButton btn_ay_ahorcado = (ImageButton) findViewById(R.id.btn_ayu_ahorcado);
         ImageButton btn_ay_enraya = (ImageButton) findViewById(R.id.btn_ayu_enraya);
-        ImageButton btn_ay_parchis = (ImageButton) findViewById(R.id.btn_ayu_parchis);
+        ImageButton btn_ay_conecta = (ImageButton) findViewById(R.id.btn_ayu_conect4);
 
         final TextView txt_titulo = (TextView) findViewById(R.id.txtTitulo);
         final TextView txt_ayuda = (TextView) findViewById(R.id.txtInfo);
@@ -62,12 +62,14 @@ public class pant_ayuda extends AppCompatActivity {
         });
 
         //onClick para boton ayuda parchis
-        btn_ay_parchis.setOnClickListener(new View.OnClickListener() {
+
+        btn_ay_conecta.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
                 clic.start();
-                txt_titulo.setText("Parchís");
-                txt_ayuda.setText("Para sacar ficha de casa será necesario obtener un 5 en el dado. Una vez tenemos fichas fuera de casa con cada tirada de dado podremos mover la ficha que deseemos tantas posiciones como numero hayamos obtenido en el dado. Este proceso se repetira hasta conseguir llevar a casa a todas las fichas.\n");
+                txt_titulo.setText("Conecta 4");
+                txt_ayuda.setText("El objetivo de Conecta 4 es alinear cuatro fichas sobre un tablero formado por seis filas y seis columnas. Por turnos, los jugadores deben introducir una ficha en la columna que prefieran y ésta caerá a la posición más baja. Gana la partida el primero que consiga alinear cuatro fichas consecutivas de un mismo color en horizontal, vertical o diagona.\n");
             }
         });
 

@@ -81,8 +81,8 @@
         <ImageButton
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:src="@drawable/parchis_bt"
-            android:id="@+id/btn_parchis"
+            android:src="@drawable/conect4"
+            android:id="@+id/btn_conecta"
             android:layout_weight="1"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
