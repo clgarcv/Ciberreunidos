@@ -87,7 +87,7 @@
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/btn_ayu_parchis"
+            android:id="@+id/btn_ayu_conecta4"
             android:src="@drawable/parchis_bt"
             android:layout_weight="1"
             android:adjustViewBounds="true"
