@@ -21,7 +21,7 @@ public class pant_ppal extends AppCompatActivity {
         ImageButton btn_ppt = (ImageButton) findViewById(R.id.btn_ppt);
         ImageButton btn_ahorcado = (ImageButton) findViewById(R.id.btn_ahorcado);
         ImageButton btn_enraya = (ImageButton) findViewById(R.id.btn_enraya);
-        ImageButton btn_parchis = (ImageButton) findViewById(R.id.btn_parchis);
+        ImageButton btn_conecta = (ImageButton) findViewById(R.id.btn_conecta);
         ImageButton btn_ajustes = (ImageButton) findViewById(R.id.btn_ajustes);
         ImageButton btn_ayuda = (ImageButton) findViewById(R.id.btn_ayuda);
 
@@ -76,11 +76,10 @@ public class pant_ppal extends AppCompatActivity {
             }
         });
         //onClick para boton parchis
-        btn_parchis.setOnClickListener(new View.OnClickListener() {
+        btn_conecta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(pant_ppal.this, pant_jugadoresParchis.class);
-                startActivity(i);
+
             }
         });
 

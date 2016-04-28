@@ -24,7 +24,7 @@ public class pant_ayuda extends AppCompatActivity {
         ImageButton btn_ay_ppt = (ImageButton) findViewById(R.id.btn_ayu_ppt);
         ImageButton btn_ay_ahorcado = (ImageButton) findViewById(R.id.btn_ayu_ahorcado);
         ImageButton btn_ay_enraya = (ImageButton) findViewById(R.id.btn_ayu_enraya);
-        ImageButton btn_ay_parchis = (ImageButton) findViewById(R.id.btn_ayu_parchis);
+        ImageButton btn_ay_conecta = (ImageButton) findViewById(R.id.btn_ayu_conect4);
 
         final TextView txt_titulo = (TextView) findViewById(R.id.txtTitulo);
         final TextView txt_ayuda = (TextView) findViewById(R.id.txtInfo);
@@ -62,7 +62,7 @@ public class pant_ayuda extends AppCompatActivity {
         });
 
         //onClick para boton ayuda parchis
-        btn_ay_parchis.setOnClickListener(new View.OnClickListener() {
+        btn_ay_conecta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 clic.start();
