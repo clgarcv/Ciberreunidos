@@ -118,20 +118,23 @@ public class pant_ahorcado extends AppCompatActivity {
             ImageView imgAhorcado = (ImageView) findViewById(R.id.img_ahocado);
             char l = (char) event.getUnicodeChar();
             String letra = Character.toString(l).toUpperCase();
-            //texto.setText(Character.toString(letra));
-            System.out.println(letra);
 
-            if (estaLetra(palabra, letra)) {
-                //si la letra forma parte de la palabra la mostramos
-                resultado = ponLetra(palabra, resultado, letra);
-                texto.setText(resultado);
-            } else {
-                fallos++;
-                //si la letra no forma parte de la palabra actualizamos el ahorcado
-                imgAhorcado.setImageResource(R.drawable.ahorcado_fallo_ + fallos);
+            if (letra.matches("[A-Z]?")) {
+                //texto.setText(Character.toString(letra));
+                System.out.println(letra);
 
+                if (estaLetra(palabra, letra)) {
+                    //si la letra forma parte de la palabra la mostramos
+                    resultado = ponLetra(palabra, resultado, letra);
+                    texto.setText(resultado);
+                } else {
+                    fallos++;
+                    //si la letra no forma parte de la palabra actualizamos el ahorcado
+                    imgAhorcado.setImageResource(R.drawable.ahorcado_fallo_ + fallos);
+
+                }
+                System.out.println(resultado);
             }
-            System.out.println(resultado);
         }
 
         return true;
