@@ -13,24 +13,24 @@ public class Conecta4 {
     private boolean juego_activo = true;
     public Conecta4() {
         tablero = new int[NFILAS][NCOLUMNAS];
-
         for (int i = 0; i < NFILAS; i++)
             for (int j = 0; j < NCOLUMNAS; j++)
                 tablero[i][j] = VACIO;
     }
+
     //comprobar si esta vacia la casilla
     public boolean estaVacio(int f, int c) {
 
         if (tablero[f][c] == JUGADOR) {
             return false;
         }
-        else if(tablero[f][c]==MAQUINA){
+        else if(tablero[f][c]== MAQUINA){
             return false;
         }
         else
             return true;
-
     }
+
     //comprobar si en esa posicion hay una ficha del jugador
     public boolean estaJugador(int f, int c) {
 
@@ -40,6 +40,7 @@ public class Conecta4 {
             return false;
 
     }
+
     //comprobar que el tablero esta lleno de fichas, es decir que en la matriz no haya ceros
     public boolean tableroLleno() {
         for (int i = 0; i < NFILAS; i++)
@@ -49,6 +50,7 @@ public class Conecta4 {
 
         return true;
     }
+
     //comprobar si se puede colocar una ficha en una posicion
     public boolean sePuedeColocarFicha(int f, int c) {
 
@@ -58,16 +60,17 @@ public class Conecta4 {
             return false;
 
     }
-    //inteligencia de la máquina
+
+    //colocacion de una ficha por parte de la maquina
     public void juegaMaquina() {
-        int i;
-        int fila = -1, columna;
+        int fila = -1;
+        int columna;
         Random r = new Random();
 
         do {
             columna = r.nextInt(NCOLUMNAS);
 
-            for (i = 0; i < NFILAS; i++)
+            for (int i = 0; i < NFILAS; i++)
                 if (tablero[i][columna] == VACIO) {
                     fila = i;
                     break;
@@ -76,6 +79,7 @@ public class Conecta4 {
 
         tablero[fila][columna] = MAQUINA;
     }
+
     //comprobar si en esa posicion esta una ficha de la maquina
     public boolean estaMaquina(int f, int c) {
 
@@ -84,17 +88,20 @@ public class Conecta4 {
         } else
             return false;
     }
+
     //te devuelve la ficha que hay en el tablero en esa posicion
     public int getTablero(int f, int c) {
 
         return tablero[f][c];
 
     }
+
     //poner una ficha para el Jugador (valor de jugador = 1)
     public void setJugador(int f, int c) {
 
         tablero[f][c] = JUGADOR;
     }
+
     //comprobar si el juego a finalizado, si el tablero esta lleno o si el juego ya no esta activo
     public boolean finalJuego() {
         if (tableroLleno()|| !juego_activo)
@@ -102,6 +109,7 @@ public class Conecta4 {
 
         return false;
     }
+
     //comprobar si hay 4 fichas para que gane alguien
     boolean comprobarCuatro(int turno) {
         if (comprobarFilas(turno) || comprobarColumnas(turno) || comprobarDiagonales(turno)) {
@@ -110,6 +118,7 @@ public class Conecta4 {
         }
         return false;
     }
+
     //comprueba que haya 4 fichas iguales en una fila
     boolean comprobarFilas(int turno) {
         String cadena = turno == JUGADOR ? JUGADORSTR : MAQUINASTR  ;
@@ -124,6 +133,7 @@ public class Conecta4 {
 
         return false;
     }
+
     //comprueba que haya 4 fichas iguales en una columna
     boolean comprobarColumnas(int turno) {
 
@@ -139,6 +149,7 @@ public class Conecta4 {
 
         return false;
     }
+
     //comprobar que haya 4 fichas iguales en las diagonales
     boolean comprobarDiagonales(int turno) {
         for (int i=0;i<3;i++)
@@ -151,5 +162,6 @@ public class Conecta4 {
                     return true;
         return false;
     }
+
 }
 
