@@ -54,11 +54,66 @@ public class pant_conecta4 extends AppCompatActivity {
         ImageView con64=(ImageView) findViewById(R.id.con64); ImageView con65=(ImageView) findViewById(R.id.con65); ImageView con66=(ImageView) findViewById(R.id.con66);
         botones.add(con61);botones.add(con62);botones.add(con63);botones.add(con64);botones.add(con65);botones.add(con66);
 
-        //con11.setImageResource(R.drawable.bola_amarilla);
-        //con11.setImageResource(R.drawable.bola_roja);
-    if(nJug==1){
+    if(nJug==1) {
+        for (ImageView img : botones) {
+            img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ponFicha(v.getId());
+                    if (!con.finalJuego()) {
+                        contador++;
+                        juegaMaquina();
+                        if(con.comprobarCuatro(1)){
+                            ganador="jugador 1";
+                        }
+                        Handler handler = new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(con.finalJuego()){
+                                    Handler handler= new Handler();
+                                    handler.postDelayed(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Intent i = new Intent(pant_conecta4.this, pierdegana.class);
+                                            i.putExtra("juego", "conecta4");
+                                            i.putExtra("ganador", ganador);
+                                            startActivity(i);
+                                        }
+                                    },500);
+                                }
+                                else{
+                                    for (ImageView i: botones){
+                                        if(i.getDrawable()==null){
+                                            i.setEnabled(true);
+                                        }
+                                    }
+                                    contador++;
+                                }
+                            }
+                        },500);
+                    }
+                    else{
+                        for(ImageView i: botones){
+                            i.setEnabled(false);
+                        }
+                        Handler handler= new Handler();
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                Intent i = new Intent(pant_conecta4.this, pierdegana.class);
+                                i.putExtra("juego", "conecta4");
+                                i.putExtra("ganador", ganador);
+                                startActivity(i);
+                            }
+                        },500);
+                    }
+                }
+            });
 
+        }
     }
+    // si son 2 jugadores
     else{
         for (ImageView img: botones){
             img.setOnClickListener(new View.OnClickListener() {
@@ -69,10 +124,10 @@ public class pant_conecta4 extends AppCompatActivity {
                         contador++;
                     }
                     else{
-                        if(con.comprobarColumnas(Conecta4.JUGADOR)){
+                        if(con.comprobarCuatro(1)){
                             ganador="jugador 1";
                         }
-                        else if(con.comprobarColumnas(Conecta4.MAQUINA)){
+                        else if(con.comprobarCuatro(2)){
                             ganador="jugador 2";
                         }
                         Handler handler = new Handler();
@@ -106,11 +161,15 @@ public class pant_conecta4 extends AppCompatActivity {
         }
     }
     private void aniadirenTabla(int contador, int f, int c){
-        if (contador % 2 == 0){
-           con.setMaquina(f,c);
+        if (contador % 2 == 0 ){
+            if(con.estaVacio(f,c)){
+                con.setMaquina(f,c);
+            }
         }
         else{
-            con.setJugador(f,c);
+            if(con.estaVacio(f,c)){
+                con.setJugador(f,c);
+            }
         }
     }
     public void juegaMaquina() {
@@ -118,17 +177,19 @@ public class pant_conecta4 extends AppCompatActivity {
         int columna;
         Random r = new Random();
 
-        do {
             columna = r.nextInt(Conecta4.NCOLUMNAS);
+            fila= r.nextInt(Conecta4.NFILAS);
+                if (con.estaVacio(fila,columna)) {
+                    final int id= dameId(fila,columna);
+                    Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            aniadirImagen(2,id);
+                        }
+                    }, 500);
 
-            for (int i = 0; i < Conecta4.NFILAS; i++)
-                if (con.estaVacio(i,columna)) {
-                    fila = i;
-                    int id= dameId(fila,columna);
-                    aniadirImagen(2,id);
-                    break;
                 }
-        } while (fila < 0);
+
         con.setMaquina(fila,columna);
     }
     private void ponFicha(int id) {
@@ -317,7 +378,6 @@ public class pant_conecta4 extends AppCompatActivity {
             }
         }
     }
-
     private int dameId(int f,int c){
         int id= -1;
         if(f==0 &&c==5){

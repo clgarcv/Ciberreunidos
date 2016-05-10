@@ -109,7 +109,7 @@ public class Conecta4 {
 
     //comprobar si el juego a finalizado, si el tablero esta lleno o si el juego ya no esta activo
     public boolean finalJuego() {
-        if (tableroLleno()|| comprobarColumnas(Conecta4.JUGADOR) || comprobarColumnas(Conecta4.MAQUINA))
+        if (tableroLleno()|| comprobarCuatro(1) || comprobarCuatro(2))
             return true;
 
         return false;
