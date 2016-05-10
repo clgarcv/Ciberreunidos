@@ -145,10 +145,7 @@ public class pant_conecta4 extends AppCompatActivity {
             });
         }
     }
-
-
     }
-
 
     //auxiliares
     private void aniadirImagen(int turno,int id){
@@ -173,24 +170,68 @@ public class pant_conecta4 extends AppCompatActivity {
         }
     }
     public void juegaMaquina() {
-        int fila = -1;
-        int columna;
         Random r = new Random();
-
-            columna = r.nextInt(Conecta4.NCOLUMNAS);
-            fila= r.nextInt(Conecta4.NFILAS);
-                if (con.estaVacio(fila,columna)) {
-                    final int id= dameId(fila,columna);
-                    Handler handler = new Handler();
-                    handler.postDelayed(new Runnable() {
-                        public void run() {
-                            aniadirImagen(2,id);
-                        }
-                    }, 500);
-
+        int fila= r.nextInt(Conecta4.NFILAS);
+        if(con.estaVacio(fila,5)){
+            final int id= dameId(fila,5);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    aniadirImagen(2,id);
                 }
-
-        con.setMaquina(fila,columna);
+            }, 500);
+            con.setMaquina(fila,5);
+        }
+        else if(con.estaVacio(fila,4)){
+            final int id= dameId(fila,4);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    aniadirImagen(2,id);
+                }
+            }, 500);
+            con.setMaquina(fila,4);
+        }
+        else if(con.estaVacio(fila,3)){
+            final int id= dameId(fila,3);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    aniadirImagen(2,id);
+                }
+            }, 500);
+            con.setMaquina(fila,3);
+        }
+        else if(con.estaVacio(fila,2)){
+            final int id= dameId(fila,2);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    aniadirImagen(2,id);
+                }
+            }, 500);
+            con.setMaquina(fila,2);
+        }
+        else if(con.estaVacio(fila,1)){
+            final int id= dameId(fila,1);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    aniadirImagen(2,id);
+                }
+            }, 500);
+            con.setMaquina(fila,1);
+        }
+        else if(con.estaVacio(fila,0)){
+            final int id= dameId(fila,0);
+            Handler handler = new Handler();
+            handler.postDelayed(new Runnable() {
+                public void run() {
+                    aniadirImagen(2,id);
+                }
+            }, 500);
+            con.setMaquina(fila,0);
+        }
     }
     private void ponFicha(int id) {
         //columna 1

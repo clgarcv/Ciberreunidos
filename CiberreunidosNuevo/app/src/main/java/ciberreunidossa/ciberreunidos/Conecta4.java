@@ -30,16 +30,6 @@ public class Conecta4 {
             return true;
     }
 
-    //comprobar si en esa posicion hay una ficha del jugador
-    public boolean estaJugador(int f, int c) {
-
-        if (tablero[f][c] == JUGADOR) {
-            return true;
-        } else
-            return false;
-
-    }
-
     //comprobar que el tablero esta lleno de fichas, es decir que en la matriz no haya ceros
     public boolean tableroLleno() {
         for (int i = 0; i < NFILAS; i++)
@@ -48,51 +38,6 @@ public class Conecta4 {
                     return false;
 
         return true;
-    }
-
-    //comprobar si se puede colocar una ficha en una posicion
-    public boolean sePuedeColocarFicha(int f, int c) {
-
-        if (tablero[f][c] == VACIO) {
-            return true;
-        } else
-            return false;
-
-    }
-
-    //colocacion de una ficha por parte de la maquina
-    public void juegaMaquina() {
-        int fila = -1;
-        int columna;
-        Random r = new Random();
-
-        do {
-            columna = r.nextInt(NCOLUMNAS);
-
-            for (int i = 0; i < NFILAS; i++)
-                if (tablero[i][columna] == VACIO) {
-                    fila = i;
-                    break;
-                }
-        } while (fila < 0);
-
-        tablero[fila][columna] = MAQUINA;
-    }
-
-    //comprobar si en esa posicion esta una ficha de la maquina
-    public boolean estaMaquina(int f, int c) {
-
-        if (tablero[f][c] == MAQUINA) {
-            return true;
-        } else
-            return false;
-    }
-
-    //te devuelve la ficha que hay en el tablero en esa posicion
-    public int getTablero(int f, int c) {
-
-        return tablero[f][c];
-
     }
 
     //poner una ficha para el Jugador (valor de jugador = 1)
