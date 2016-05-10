@@ -46,6 +46,9 @@ public class pierdegana extends AppCompatActivity {
             case "3enraya":
                 enraya(bundle);
                 break;
+            case "conecta4":
+                conecta4(bundle);
+                break;
 
         }
 
@@ -140,6 +143,47 @@ public class pierdegana extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void conecta4(Bundle b) {
+        Button jugar = (Button) findViewById(R.id.jugar);
+        final int nJug = b.getInt("jugadores");
+        if (nJug == 2) {
+            final String ganador = b.getString("ganador");
+            TextView texto = (TextView) findViewById(R.id.resultado);
+            if (ganador == null) {
+                texto.setText("¡LÁSTIMA!\nHa habido un empate entre los jugadores");
+                texto.setTextSize(40);
+            } else {
+                texto.setText("¡ENHORABUENA!\nEl ganador es el " + ganador);
+                texto.setTextSize(40);
+            }
+
+        } else {
+            final String ganador = b.getString("ganador");
+            TextView texto = (TextView) findViewById(R.id.resultado);
+            if (ganador == null) {
+                texto.setText("¡VAYA!\nHa habido un empate");
+                texto.setTextSize(40);
+            } else if (ganador.equals("Jugador 2")) {
+                texto.setText("¡LÁSTIMA!\nHas perdido");
+                texto.setTextSize(40);
+
+            } else {
+                texto.setText("¡ENHORABUENA!\nEres el vencedor");
+                texto.setTextSize(40);
+
+            }
+
+        }
+        jugar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clic.start();
+                Intent i = new Intent(pierdegana.this, pant_JugadoresPartida.class);
+                startActivity(i);
+            }
+        });
     }
 
     //Cambio del comportamiento del boton atras para que nos lleve a la pantalla principal

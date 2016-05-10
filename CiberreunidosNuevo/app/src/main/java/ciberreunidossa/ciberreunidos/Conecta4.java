@@ -10,7 +10,6 @@ public class Conecta4 {
     static final int JUGADOR = 1;
     private final String JUGADORSTR = "1111";
     private int tablero[][];
-    private boolean juego_activo = true;
     public Conecta4() {
         tablero = new int[NFILAS][NCOLUMNAS];
         for (int i = 0; i < NFILAS; i++)
@@ -102,9 +101,15 @@ public class Conecta4 {
         tablero[f][c] = JUGADOR;
     }
 
+    //poner una ficha para la Maquina
+    public void setMaquina(int f, int c){
+
+        tablero[f][c] = MAQUINA;
+    }
+
     //comprobar si el juego a finalizado, si el tablero esta lleno o si el juego ya no esta activo
     public boolean finalJuego() {
-        if (tableroLleno()|| !juego_activo)
+        if (tableroLleno()|| comprobarColumnas(Conecta4.JUGADOR) || comprobarColumnas(Conecta4.MAQUINA))
             return true;
 
         return false;
@@ -113,7 +118,7 @@ public class Conecta4 {
     //comprobar si hay 4 fichas para que gane alguien
     boolean comprobarCuatro(int turno) {
         if (comprobarFilas(turno) || comprobarColumnas(turno) || comprobarDiagonales(turno)) {
-            juego_activo = false;
+
             return true;
         }
         return false;
