@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.Random;
 
-public class juego_piedrapapeltijera extends AppCompatActivity {
+public class juego_piedrapapeltijera extends Padre {
     //Ronda actual
     int r = 1;
     //Victorias jugador

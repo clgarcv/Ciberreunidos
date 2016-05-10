@@ -1,5 +1,6 @@
 package ciberreunidossa.ciberreunidos;
 
+import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -9,8 +10,8 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class pant_ppal extends AppCompatActivity {
-    MediaPlayer clic;
+public class pant_ppal extends Padre {
+    MediaPlayer clic, melodia;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,10 +30,15 @@ public class pant_ppal extends AppCompatActivity {
         clic = MediaPlayer.create(this, R.raw.clic);
         clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
+        //ser.onCreate();
+
+        //melodia.start();
+
         //definimos las funciones onClick para los botones
         //onClick para boton piedra papel tijera
         btn_ppt.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
                 clic.start();
                 Intent i = new Intent(pant_ppal.this, piedrapapeltijera.class);
                 startActivity(i);
@@ -41,9 +47,10 @@ public class pant_ppal extends AppCompatActivity {
 
         //onClick para boton ahorcado
         btn_ahorcado.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
                 clic.start();
-                Intent i = new Intent(pant_ppal.this,pant_nivelAhorcado.class);
+                Intent i = new Intent(pant_ppal.this, pant_nivelAhorcado.class);
                 startActivity(i);
             }
         });
@@ -64,7 +71,7 @@ public class pant_ppal extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 clic.start();
-                Intent i = new Intent(pant_ppal.this,pant_JugadoresPartida.class);
+                Intent i = new Intent(pant_ppal.this, pant_JugadoresPartida.class);
                 i.putExtra("juego", "conecta");
                 startActivity(i);
             }
@@ -72,7 +79,8 @@ public class pant_ppal extends AppCompatActivity {
 
         //onClick para boton ajustes
         btn_ajustes.setOnClickListener(new View.OnClickListener() {
-            @Override public void onClick(View view) {
+            @Override
+            public void onClick(View view) {
                 clic.start();
                 Intent i = new Intent(pant_ppal.this, pant_ajustes.class);
                 startActivity(i);
@@ -86,22 +94,44 @@ public class pant_ppal extends AppCompatActivity {
                 clic.start();
                 Intent i = new Intent(pant_ppal.this, pant_ayuda.class);
                 startActivity(i);
+
             }
         });
 
     }
+
     //Boton atras para salir de la aplicacion
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
+        Intent service = new Intent(this, ServicioAudio.class);
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
+
         }
         return true;
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        /*Intent service = new Intent(this, ServicioAudio.class);
+        stopService(service);*/
+        //melodia.stop();
+    }
+
+   /* @Override
+    public void onResume() {
+        super.onResume();
+        Intent service = new Intent(this, ServicioAudio.class);
+        startService(service);
+        melodia = MediaPlayer.create(this, R.raw.musicainicio);
+        melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        melodia.setLooping(true);
+        melodia.start();
+    }*/
 
 
 }

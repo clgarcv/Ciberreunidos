@@ -3,7 +3,7 @@ package ciberreunidossa.ciberreunidos;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class pant_ajustes extends AppCompatActivity {
+public class pant_ajustes extends Padre {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

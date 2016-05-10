@@ -47,5 +47,6 @@
             android:screenOrientation="portrait" />
         <activity android:name=".pant_conecta4"
             android:screenOrientation="portrait" />
+        <service android:name=".ServicioAudio"></service>
     </application>
 </manifest>
