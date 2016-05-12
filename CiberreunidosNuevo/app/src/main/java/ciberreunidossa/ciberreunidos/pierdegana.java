@@ -46,8 +46,8 @@ public class pierdegana extends AppCompatActivity {
             case "3enraya":
                 enraya(bundle);
                 break;
-            case "conecta4":
-                conecta4(bundle);
+            case "conecta":
+                conecta(bundle);
                 break;
 
         }
@@ -145,7 +145,7 @@ public class pierdegana extends AppCompatActivity {
 
     }
 
-    public void conecta4(Bundle b) {
+    public void conecta(Bundle b) {
         Button jugar = (Button) findViewById(R.id.jugar);
         final int nJug = b.getInt("jugadores");
         if (nJug == 2) {
@@ -181,6 +181,7 @@ public class pierdegana extends AppCompatActivity {
             public void onClick(View v) {
                 clic.start();
                 Intent i = new Intent(pierdegana.this, pant_JugadoresPartida.class);
+                i.putExtra("juego", "conecta");
                 startActivity(i);
             }
         });

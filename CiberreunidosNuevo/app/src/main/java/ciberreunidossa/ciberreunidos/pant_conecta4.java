@@ -63,9 +63,7 @@ public class pant_conecta4 extends AppCompatActivity {
                     if (!con.finalJuego()) {
                         contador++;
                         juegaMaquina();
-                        if(con.comprobarCuatro(1)){
-                            ganador="jugador 1";
-                        }
+
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             @Override
@@ -76,7 +74,9 @@ public class pant_conecta4 extends AppCompatActivity {
                                         @Override
                                         public void run() {
                                             Intent i = new Intent(pant_conecta4.this, pierdegana.class);
-                                            i.putExtra("juego", "conecta4");
+                                            i.putExtra("juego", "conecta");
+                                            if(con.comprobarCuatro(1))ganador="Jugador 1";
+                                            else if(con.comprobarCuatro(2))ganador="Jugador 2";
                                             i.putExtra("ganador", ganador);
                                             startActivity(i);
                                         }
@@ -102,7 +102,9 @@ public class pant_conecta4 extends AppCompatActivity {
                             @Override
                             public void run() {
                                 Intent i = new Intent(pant_conecta4.this, pierdegana.class);
-                                i.putExtra("juego", "conecta4");
+                                i.putExtra("juego", "conecta");
+                                if(con.comprobarCuatro(1))ganador="Jugador 1";
+                                else if(con.comprobarCuatro(2))ganador="Jugador 2";
                                 i.putExtra("ganador", ganador);
                                 startActivity(i);
                             }
@@ -125,16 +127,16 @@ public class pant_conecta4 extends AppCompatActivity {
                     }
                     else{
                         if(con.comprobarCuatro(1)){
-                            ganador="jugador 1";
+                            ganador="Jugador 1";
                         }
                         else if(con.comprobarCuatro(2)){
-                            ganador="jugador 2";
+                            ganador="Jugador 2";
                         }
                         Handler handler = new Handler();
                         handler.postDelayed(new Runnable() {
                             public void run() {
                                 Intent i = new Intent(pant_conecta4.this, pierdegana.class);
-                                i.putExtra("juego", "conecta4");
+                                i.putExtra("juego", "conecta");
                                 i.putExtra("jugadores", nJug);
                                 i.putExtra("ganador", ganador);
                                 startActivity(i);
