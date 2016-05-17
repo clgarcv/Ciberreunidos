@@ -1,17 +1,13 @@
 package ciberreunidossa.ciberreunidos;
 
-import android.content.Context;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
-
-import java.io.Serializable;
 
 public class pant_ppal extends AppCompatActivity {
     MediaPlayer clic, melodia;

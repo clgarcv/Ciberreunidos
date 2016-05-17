@@ -1,6 +1,6 @@
 package ciberreunidossa.ciberreunidos;
 
-import java.util.Random;
+
 public class Conecta4 {
     static final int NFILAS = 6;
     static final int NCOLUMNAS = 6;

@@ -4,9 +4,6 @@ import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.IBinder;
-import android.support.v7.app.AppCompatActivity;
-
-import java.io.Serializable;
 
 /**
  * Created by Daniel on 05/05/2016.

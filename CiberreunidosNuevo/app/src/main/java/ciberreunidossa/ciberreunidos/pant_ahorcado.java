@@ -2,10 +2,7 @@ package ciberreunidossa.ciberreunidos;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -169,6 +166,7 @@ public class pant_ahorcado extends AppCompatActivity {
             i.putExtra("juego", "ahorcado");
             i.putExtra("resultado", "derrota");
             i.putExtra("solucion", palabra);
+
             startActivity(i);
 
 

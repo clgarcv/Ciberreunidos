@@ -13,6 +13,7 @@ import android.widget.TextView;
 public class pierdegana extends AppCompatActivity {
 
     MediaPlayer clic;
+    MiMusica musica;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,10 @@ public class pierdegana extends AppCompatActivity {
             } else {
                 texto.setText("¡ENHORABUENA!\nEl ganador es el " + ganador);
                 texto.setTextSize(40);
+                musica.melodia = MediaPlayer.create(this, R.raw.win);
+                musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                musica.melodia.start();
+
             }
 
         } else {
@@ -77,10 +82,16 @@ public class pierdegana extends AppCompatActivity {
             } else if (ganador.equals("Jugador 2")) {
                 texto.setText("¡LÁSTIMA!\nHas perdido");
                 texto.setTextSize(40);
+                musica.melodia = MediaPlayer.create(this, R.raw.lose);
+                musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                musica.melodia.start();
 
             } else {
                 texto.setText("¡ENHORABUENA!\nEres el vencedor");
                 texto.setTextSize(40);
+                musica.melodia = MediaPlayer.create(this, R.raw.win);
+                musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                musica.melodia.start();
 
             }
 
@@ -105,8 +116,14 @@ public class pierdegana extends AppCompatActivity {
         TextView texto = (TextView) findViewById(R.id.resultado);
         if (resultado.equals("victoria")) {
             texto.setText("VICTORIA\n" + vj + "-" + vm);
+            musica.melodia = MediaPlayer.create(this, R.raw.win);
+            musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            musica.melodia.start();
         } else {
             texto.setText("DERROTA\n" + vj + "-" + vm);
+            musica.melodia = MediaPlayer.create(this, R.raw.lose);
+            musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            musica.melodia.start();
         }
         jugar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -130,9 +147,15 @@ public class pierdegana extends AppCompatActivity {
         if (resultado.equals("victoria")) {
             texto.setText("¡ENHORABUENA!\nHas ganado ");
             texto.setTextSize(40);
+            musica.melodia = MediaPlayer.create(this, R.raw.win);
+            musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            musica.melodia.start();
         } else {
             texto.setText("¡LÁSTIMA!\nLa palabra era " + solucion.toUpperCase());
             texto.setTextSize(40);
+            musica.melodia = MediaPlayer.create(this, R.raw.lose);
+            musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            musica.melodia.start();
         }
         jugar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -157,6 +180,9 @@ public class pierdegana extends AppCompatActivity {
             } else {
                 texto.setText("¡ENHORABUENA!\nEl ganador es el " + ganador);
                 texto.setTextSize(40);
+                musica.melodia = MediaPlayer.create(this, R.raw.win);
+                musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                musica.melodia.start();
             }
 
         } else {
@@ -168,10 +194,16 @@ public class pierdegana extends AppCompatActivity {
             } else if (ganador.equals("Jugador 2")) {
                 texto.setText("¡LÁSTIMA!\nHas perdido");
                 texto.setTextSize(40);
+                musica.melodia = MediaPlayer.create(this, R.raw.lose);
+                musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                musica.melodia.start();
 
             } else {
                 texto.setText("¡ENHORABUENA!\nEres el vencedor");
                 texto.setTextSize(40);
+                musica.melodia = MediaPlayer.create(this, R.raw.win);
+                musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                musica.melodia.start();
 
             }
 
