@@ -31,11 +31,15 @@ public class pant_ahorcado extends AppCompatActivity {
 
     String[] palabraFin;
 
+    MiMusica musica;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pant_ahorcado);
+
+        musica = (MiMusica)getIntent().getExtras().getSerializable("melodia");
+
         Bundle bundle = getIntent().getExtras();
         final String dificultad = bundle.getString("dificultad");
         if (dificultad.equals("facil")) {
@@ -63,6 +67,19 @@ public class pant_ahorcado extends AppCompatActivity {
         });
 
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        musica.melodia.pause();
+        //melodia.stop();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        musica.melodia.start();
     }
 
     public void eligePalabra() {

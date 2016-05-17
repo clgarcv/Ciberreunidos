@@ -26,7 +26,7 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
 
     MediaPlayer clic;
 
-    MediaPlayer sonido;
+    MiMusica musica;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,11 +41,13 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
         clic = MediaPlayer.create(this, R.raw.clic);
         clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
-        sonido = MediaPlayer.create(this, R.raw.ppt);
-        sonido.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        musica = (MiMusica)getIntent().getExtras().getSerializable("melodia");
+
+        //sonido = MediaPlayer.create(this, R.raw.ppt);
+        //sonido.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
 
-        //boton piedra
+        //oton piedra
         piedra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,15 +83,14 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        sonido.stop();
+        musica.melodia.pause();
         //melodia.stop();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        sonido.start();
-        ;
+        musica.melodia.start();
        /* melodia = MediaPlayer.create(this, R.raw.musicainicio);
         melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
         melodia.setLooping(true);

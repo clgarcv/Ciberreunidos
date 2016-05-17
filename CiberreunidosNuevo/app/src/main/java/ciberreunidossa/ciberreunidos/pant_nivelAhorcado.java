@@ -12,6 +12,7 @@ import android.widget.Button;
 public class pant_nivelAhorcado extends AppCompatActivity {
 
     MediaPlayer clic;
+    MiMusica musica;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +24,10 @@ public class pant_nivelAhorcado extends AppCompatActivity {
 
         clic = MediaPlayer.create(this, R.raw.clic);
         clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        musica.melodia = MediaPlayer.create(this, R.raw.ahorcado);
+        musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        musica.melodia.start();
 
         facil.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,5 +65,20 @@ public class pant_nivelAhorcado extends AppCompatActivity {
             this.startActivity(new Intent(pant_nivelAhorcado.this, pant_ppal.class));
         }
         return true;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        musica.melodia.pause();
+        //Intent service = new Intent(this, ServicioAudio.class);
+        //stopService(service);
+        //melodia.stop();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        musica.melodia.start();
     }
 }

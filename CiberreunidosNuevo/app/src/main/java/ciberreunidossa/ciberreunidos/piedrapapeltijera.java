@@ -15,6 +15,8 @@ import android.widget.TextView;
 public class piedrapapeltijera extends AppCompatActivity {
 
     MediaPlayer clic;
+    MiMusica musica;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,6 +24,10 @@ public class piedrapapeltijera extends AppCompatActivity {
 
         clic = MediaPlayer.create(this, R.raw.clic);
         clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        musica.melodia = MediaPlayer.create(this, R.raw.ppt);
+        musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        musica.melodia.start();
 
         Button bt_3= (Button) findViewById(R.id.tres);
         Button bt_5= (Button) findViewById(R.id.cinco);
@@ -33,6 +39,7 @@ public class piedrapapeltijera extends AppCompatActivity {
                     clic.start();
                     Intent i = new Intent(piedrapapeltijera.this, juego_piedrapapeltijera.class);
                     i.putExtra("ronda", "3");
+                    i.putExtra("melodia", musica);
                     startActivity(i);
                 }
             });
@@ -44,6 +51,7 @@ public class piedrapapeltijera extends AppCompatActivity {
                     clic.start();
                     Intent i = new Intent(piedrapapeltijera.this, juego_piedrapapeltijera.class);
                     i.putExtra("ronda", "5");
+                    i.putExtra("melodia", musica);
                     startActivity(i);
                 }
             });
@@ -55,6 +63,7 @@ public class piedrapapeltijera extends AppCompatActivity {
                     clic.start();
                     Intent i = new Intent(piedrapapeltijera.this, juego_piedrapapeltijera.class);
                     i.putExtra("ronda", "7");
+                    i.putExtra("melodia", musica);
                     startActivity(i);
                 }
             });
@@ -72,16 +81,18 @@ public class piedrapapeltijera extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        Intent service = new Intent(this, ServicioAudio.class);
-        stopService(service);
+        musica.melodia.pause();
+        //Intent service = new Intent(this, ServicioAudio.class);
+        //stopService(service);
         //melodia.stop();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Intent service = new Intent(this, ServicioAudio.class);
-        startService(service);
+        musica.melodia.start();
+       // Intent service = new Intent(this, ServicioAudio.class);
+        //startService(service);
        /* melodia = MediaPlayer.create(this, R.raw.musicainicio);
         melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
         melodia.setLooping(true);

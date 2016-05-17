@@ -71,7 +71,7 @@ public class Conecta4 {
 
     //comprueba que haya 4 fichas iguales en una fila
     boolean comprobarFilas(int turno) {
-        String cadena = turno == JUGADOR ? JUGADORSTR : MAQUINASTR  ;
+        String cadena = turno == JUGADOR ? JUGADORSTR : MAQUINASTR;
 
         for (int i = 0; i < NFILAS; i++) {
             String str = "";

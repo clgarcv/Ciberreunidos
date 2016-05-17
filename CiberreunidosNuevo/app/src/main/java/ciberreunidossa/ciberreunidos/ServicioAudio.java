@@ -6,10 +6,12 @@ import android.media.MediaPlayer;
 import android.os.IBinder;
 import android.support.v7.app.AppCompatActivity;
 
+import java.io.Serializable;
+
 /**
  * Created by Daniel on 05/05/2016.
  */
-public class ServicioAudio extends Service {
+public class ServicioAudio extends Service{
     MediaPlayer mp;
     @Override
     public IBinder onBind(Intent intent) {

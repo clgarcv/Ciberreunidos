@@ -11,8 +11,11 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.io.Serializable;
+
 public class pant_ppal extends AppCompatActivity {
     MediaPlayer clic, melodia;
+    Intent service;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +87,8 @@ public class pant_ppal extends AppCompatActivity {
             public void onClick(View view) {
                 clic.start();
                 Intent i = new Intent(pant_ppal.this, pant_ajustes.class);
+                // i.putExtra("melodia", service);
+                // i.putExtra("efectos", (Serializable) clic);
                 startActivity(i);
             }
         });
@@ -126,7 +131,7 @@ public class pant_ppal extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        Intent service = new Intent(this, ServicioAudio.class);
+        service = new Intent(this, ServicioAudio.class);
         startService(service);
        /* melodia = MediaPlayer.create(this, R.raw.musicainicio);
         melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);

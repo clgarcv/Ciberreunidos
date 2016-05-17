@@ -23,6 +23,7 @@ public class pant_enraya extends AppCompatActivity {
     String ganador;
 
     MediaPlayer clic;
+    MiMusica musica;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,8 @@ public class pant_enraya extends AppCompatActivity {
 
         clic = MediaPlayer.create(this, R.raw.clic);
         clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        musica = (MiMusica)getIntent().getExtras().getSerializable("melodia");
 
         contador = 1;
         //obtenemos el numero de jugadores
@@ -161,6 +164,18 @@ public class pant_enraya extends AppCompatActivity {
 
         }
 
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        musica.melodia.pause();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        musica.melodia.start();
     }
 
     public void juegamaquina() {

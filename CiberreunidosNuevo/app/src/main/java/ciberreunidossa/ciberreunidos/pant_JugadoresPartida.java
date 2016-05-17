@@ -12,6 +12,7 @@ import android.widget.Button;
 public class pant_JugadoresPartida extends AppCompatActivity {
 
     MediaPlayer clic;
+    MiMusica musica;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,12 +29,17 @@ public class pant_JugadoresPartida extends AppCompatActivity {
         final String juego = bundle.getString("juego");
 
         if (juego.compareTo("enraya") == 0) {
+            musica.melodia = MediaPlayer.create(this, R.raw.enraya);
+            musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            musica.melodia.start();
+
             j1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     clic.start();
                     Intent i = new Intent(pant_JugadoresPartida.this, pant_enraya.class);
                     i.putExtra("njugadores", 1);
+                    i.putExtra("melodia", musica);
                     startActivity(i);
                 }
             });
@@ -43,17 +49,22 @@ public class pant_JugadoresPartida extends AppCompatActivity {
                     clic.start();
                     Intent i = new Intent(pant_JugadoresPartida.this, pant_enraya.class);
                     i.putExtra("njugadores", 2);
+                    i.putExtra("melodia", musica);
                     startActivity(i);
                 }
             });
 
         } else if(juego.compareTo("conecta") == 0) {
+            musica.melodia = MediaPlayer.create(this, R.raw.conecta);
+            musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+            musica.melodia.start();
             j1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     clic.start();
                     Intent i = new Intent(pant_JugadoresPartida.this, pant_conecta4.class);
                     i.putExtra("njugadores", 1);
+                    i.putExtra("melodia", musica);
                     startActivity(i);
                 }
             });
@@ -63,6 +74,7 @@ public class pant_JugadoresPartida extends AppCompatActivity {
                     clic.start();
                     Intent i = new Intent(pant_JugadoresPartida.this, pant_conecta4.class);
                     i.putExtra("njugadores", 2);
+                    i.putExtra("melodia", musica);
                     startActivity(i);
                 }
             });
@@ -81,16 +93,18 @@ public class pant_JugadoresPartida extends AppCompatActivity {
     @Override
     public void onPause() {
         super.onPause();
-        Intent service = new Intent(this, ServicioAudio.class);
-        stopService(service);
+        musica.melodia.pause();
+        //Intent service = new Intent(this, ServicioAudio.class);
+        //stopService(service);
         //melodia.stop();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-        Intent service = new Intent(this, ServicioAudio.class);
-        startService(service);
+        musica.melodia.start();
+        //Intent service = new Intent(this, ServicioAudio.class);
+        //startService(service);
        /* melodia = MediaPlayer.create(this, R.raw.musicainicio);
         melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
         melodia.setLooping(true);
