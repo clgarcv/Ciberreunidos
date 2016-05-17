@@ -25,11 +25,14 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="fill_parent"
-        android:layout_marginBottom="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="15dp"
         android:background="@drawable/tablero_conecta4"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
         android:weightSum="6">
 
         <LinearLayout
