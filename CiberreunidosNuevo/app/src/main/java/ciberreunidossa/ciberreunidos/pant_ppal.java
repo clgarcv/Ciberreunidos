@@ -6,11 +6,12 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 
-public class pant_ppal extends Padre {
+public class pant_ppal extends AppCompatActivity {
     MediaPlayer clic, melodia;
 
     @Override
@@ -103,7 +104,7 @@ public class pant_ppal extends Padre {
     //Boton atras para salir de la aplicacion
     @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
-        Intent service = new Intent(this, ServicioAudio.class);
+        super.onKeyUp(keyCode, event);
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             Intent intent = new Intent(Intent.ACTION_MAIN);
             intent.addCategory(Intent.CATEGORY_HOME);
@@ -115,23 +116,23 @@ public class pant_ppal extends Padre {
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-        /*Intent service = new Intent(this, ServicioAudio.class);
-        stopService(service);*/
+    public void onPause() {
+        super.onPause();
+        Intent service = new Intent(this, ServicioAudio.class);
+        stopService(service);
         //melodia.stop();
     }
 
-   /* @Override
+    @Override
     public void onResume() {
         super.onResume();
         Intent service = new Intent(this, ServicioAudio.class);
         startService(service);
-        melodia = MediaPlayer.create(this, R.raw.musicainicio);
+       /* melodia = MediaPlayer.create(this, R.raw.musicainicio);
         melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
         melodia.setLooping(true);
-        melodia.start();
-    }*/
+        melodia.start();*/
+    }
 
 
 }

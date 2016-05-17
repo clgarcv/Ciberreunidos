@@ -69,5 +69,25 @@ public class piedrapapeltijera extends AppCompatActivity {
         return true;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        Intent service = new Intent(this, ServicioAudio.class);
+        stopService(service);
+        //melodia.stop();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        Intent service = new Intent(this, ServicioAudio.class);
+        startService(service);
+       /* melodia = MediaPlayer.create(this, R.raw.musicainicio);
+        melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        melodia.setLooping(true);
+        melodia.start();*/
+    }
+
+
 
 }

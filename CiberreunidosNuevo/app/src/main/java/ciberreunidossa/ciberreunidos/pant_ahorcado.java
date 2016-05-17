@@ -17,7 +17,7 @@ import android.widget.TextView;
 import java.util.Random;
 
 
-public class pant_ahorcado extends Padre {
+public class pant_ahorcado extends AppCompatActivity {
 
     String resultado = "";
     String palabra = "";

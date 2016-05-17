@@ -12,7 +12,7 @@ import android.widget.TextView;
 
 import java.util.Random;
 
-public class juego_piedrapapeltijera extends Padre {
+public class juego_piedrapapeltijera extends AppCompatActivity {
     //Ronda actual
     int r = 1;
     //Victorias jugador
@@ -26,6 +26,8 @@ public class juego_piedrapapeltijera extends Padre {
 
     MediaPlayer clic;
 
+    MediaPlayer sonido;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,6 +40,10 @@ public class juego_piedrapapeltijera extends Padre {
 
         clic = MediaPlayer.create(this, R.raw.clic);
         clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        sonido = MediaPlayer.create(this, R.raw.ppt);
+        sonido.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
 
         //boton piedra
         piedra.setOnClickListener(new View.OnClickListener() {
@@ -70,6 +76,24 @@ public class juego_piedrapapeltijera extends Padre {
                 juego("papel");
             }
         });
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        sonido.stop();
+        //melodia.stop();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        sonido.start();
+        ;
+       /* melodia = MediaPlayer.create(this, R.raw.musicainicio);
+        melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        melodia.setLooping(true);
+        melodia.start();*/
     }
 
     //Metodo que genera aleatoriamente la opcion de la maquina.
