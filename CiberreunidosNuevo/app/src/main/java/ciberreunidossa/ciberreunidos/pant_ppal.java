@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class pant_ppal extends AppCompatActivity {
     MediaPlayer clic, melodia;
@@ -26,7 +27,7 @@ public class pant_ppal extends AppCompatActivity {
         ImageButton btn_conecta = (ImageButton) findViewById(R.id.btn_conecta);
         ImageButton btn_ajustes = (ImageButton) findViewById(R.id.btn_ajustes);
         ImageButton btn_ayuda = (ImageButton) findViewById(R.id.btn_ayuda);
-
+        ImageButton btn_candado= (ImageButton) findViewById(R.id.btn_candado);
         clic = MediaPlayer.create(this, R.raw.clic);
         clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
@@ -97,6 +98,15 @@ public class pant_ppal extends AppCompatActivity {
                 Intent i = new Intent(pant_ppal.this, pant_ayuda.class);
                 startActivity(i);
 
+            }
+        });
+        btn_candado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast toast1 =
+                        Toast.makeText(getApplicationContext(),
+                                "No disponible", Toast.LENGTH_SHORT);
+                toast1.show();
             }
         });
 

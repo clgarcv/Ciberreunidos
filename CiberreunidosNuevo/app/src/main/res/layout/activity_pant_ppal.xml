@@ -126,6 +126,7 @@
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/candado"
+                android:id="@+id/btn_candado"
                 android:layout_weight="1"
                 android:adjustViewBounds="true"
                 android:scaleType="fitCenter"
