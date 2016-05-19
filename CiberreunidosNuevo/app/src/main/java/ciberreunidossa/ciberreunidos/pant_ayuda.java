@@ -69,7 +69,7 @@ public class pant_ayuda extends AppCompatActivity {
             }
         });
 
-        //onClick para boton ayuda parchis
+        //onClick para boton ayuda conecta4
 
         btn_ay_conecta.setOnClickListener(new View.OnClickListener() {
 
