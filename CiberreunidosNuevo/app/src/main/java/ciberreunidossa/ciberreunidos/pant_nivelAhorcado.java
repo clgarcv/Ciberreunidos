@@ -80,15 +80,14 @@ public class pant_nivelAhorcado extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         musica.melodia.pause();
-        //Intent service = new Intent(this, ServicioAudio.class);
-        //stopService(service);
-        //melodia.stop();
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
         if (sharedPrefs.getBoolean("musica", true)) {
+            musica.melodia.setLooping(true);
             musica.melodia.start();
         }
     }

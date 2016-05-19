@@ -87,23 +87,17 @@ public class piedrapapeltijera extends AppCompatActivity {
     public void onPause() {
         super.onPause();
         musica.melodia.pause();
-        //Intent service = new Intent(this, ServicioAudio.class);
-        //stopService(service);
-        //melodia.stop();
+
     }
 
     @Override
     public void onResume() {
         super.onResume();
         if (sharedPrefs.getBoolean("musica", true)) {
+            musica.melodia.setLooping(true);
             musica.melodia.start();
         }
-       // Intent service = new Intent(this, ServicioAudio.class);
-        //startService(service);
-       /* melodia = MediaPlayer.create(this, R.raw.musicainicio);
-        melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        melodia.setLooping(true);
-        melodia.start();*/
+
     }
 
 

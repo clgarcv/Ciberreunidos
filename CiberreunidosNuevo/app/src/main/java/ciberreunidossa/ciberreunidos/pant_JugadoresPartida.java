@@ -33,6 +33,7 @@ public class pant_JugadoresPartida extends AppCompatActivity {
             musica.melodia = MediaPlayer.create(this, R.raw.enraya);
             musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
             if (sharedPrefs.getBoolean("musica", true)) {
+                musica.melodia.setLooping(true);
                 musica.melodia.start();
             }
 
@@ -66,6 +67,7 @@ public class pant_JugadoresPartida extends AppCompatActivity {
             musica.melodia = MediaPlayer.create(this, R.raw.conecta);
             musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
             if (sharedPrefs.getBoolean("musica", true)) {
+                musica.melodia.setLooping(true);
                 musica.melodia.start();
             }
             j1.setOnClickListener(new View.OnClickListener() {
@@ -117,6 +119,7 @@ public class pant_JugadoresPartida extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         if (sharedPrefs.getBoolean("musica", true)) {
+            musica.melodia.setLooping(true);
             musica.melodia.start();
         }
         //Intent service = new Intent(this, ServicioAudio.class);

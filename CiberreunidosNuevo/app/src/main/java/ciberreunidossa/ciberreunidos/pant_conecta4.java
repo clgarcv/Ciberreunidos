@@ -1,6 +1,7 @@
 package ciberreunidossa.ciberreunidos;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
@@ -22,6 +23,7 @@ public class pant_conecta4 extends AppCompatActivity {
     MediaPlayer clic;
 
     MiMusica musica;
+    SharedPreferences sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +32,7 @@ public class pant_conecta4 extends AppCompatActivity {
 
         clic = MediaPlayer.create(this, R.raw.clic);
         clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        sharedPrefs = getSharedPreferences("opciones", MODE_PRIVATE);
 
         musica = (MiMusica)getIntent().getExtras().getSerializable("melodia");
 
@@ -126,6 +129,9 @@ public class pant_conecta4 extends AppCompatActivity {
                 img.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (sharedPrefs.getBoolean("efectos", true)) {
+                            clic.start();
+                        }
                         ponFicha(v.getId());
                         if (!con.finalJuego()) {
                             contador++;
@@ -187,6 +193,9 @@ public class pant_conecta4 extends AppCompatActivity {
                 img.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        if (sharedPrefs.getBoolean("efectos", true)) {
+                            clic.start();
+                        }
                         ponFicha(v.getId());
                         if (!con.finalJuego()) {
                             contador++;
@@ -222,7 +231,10 @@ public class pant_conecta4 extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        musica.melodia.start();
+        if (sharedPrefs.getBoolean("musica", true)) {
+            musica.melodia.setLooping(true);
+            musica.melodia.start();
+        }
     }
 
     //auxiliares

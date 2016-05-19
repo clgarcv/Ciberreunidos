@@ -183,6 +183,7 @@ public class pant_enraya extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         if (sharedPrefs.getBoolean("musica", true)) {
+            musica.melodia.setLooping(true);
             musica.melodia.start();
         }
     }

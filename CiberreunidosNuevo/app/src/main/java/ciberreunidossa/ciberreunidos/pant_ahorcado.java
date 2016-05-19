@@ -80,6 +80,7 @@ public class pant_ahorcado extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         if (sharedPrefs.getBoolean("musica", true)) {
+            musica.melodia.setLooping(true);
             musica.melodia.start();
         }
     }
@@ -189,35 +190,6 @@ public class pant_ahorcado extends AppCompatActivity {
     }
 
 }
-
-
-/* if (fallos == 7) {
-                //si ha perdido
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        Intent i = new Intent(pant_ahorcado.this, pierdegana.class);
-                        i.putExtra("juego", "ahorcado");
-                        i.putExtra("resultado", "derrota");
-                        startActivity(i);
-                    }
-
-                }, 1000);
-
-            } else if (!resultado.contains("_")) {
-                //si ha ganado
-                //Transicion en el caso de que el jugador haya ganado
-                Handler handler = new Handler();
-                handler.postDelayed(new Runnable() {
-                    public void run() {
-                        Intent i = new Intent(pant_ahorcado.this, pierdegana.class);
-                        i.putExtra("juego", "ahorcado");
-                        i.putExtra("resultado", "victoria");
-                        startActivity(i);
-                    }
-                }, 1000);
-            }
-            */
 
 
 
