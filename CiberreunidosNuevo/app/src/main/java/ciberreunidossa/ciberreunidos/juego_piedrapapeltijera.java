@@ -1,6 +1,7 @@
 package ciberreunidossa.ciberreunidos;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Handler;
@@ -28,6 +29,8 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
 
     MiMusica musica;
 
+    SharedPreferences sharedPrefs;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +43,7 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
 
         clic = MediaPlayer.create(this, R.raw.clic);
         clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        sharedPrefs = getSharedPreferences("opciones", MODE_PRIVATE);
 
         musica = (MiMusica)getIntent().getExtras().getSerializable("melodia");
 
@@ -51,7 +55,9 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
         piedra.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
                 ImageButton im1 = (ImageButton) findViewById(R.id.imageButton_1);
                 im1.setBackgroundResource(R.drawable.piedra_btn);
                 juego("piedra");
@@ -61,7 +67,9 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
         tijera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
                 ImageButton im1 = (ImageButton) findViewById(R.id.imageButton_1);
                 im1.setBackgroundResource(R.drawable.tijera_btn);
                 juego("tijera");
@@ -72,7 +80,9 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
         papel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
                 ImageButton im1 = (ImageButton) findViewById(R.id.imageButton_1);
                 im1.setBackgroundResource(R.drawable.papel_btn);
                 juego("papel");
@@ -90,7 +100,9 @@ public class juego_piedrapapeltijera extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        musica.melodia.start();
+        if (sharedPrefs.getBoolean("musica", true)) {
+            musica.melodia.start();
+        }
        /* melodia = MediaPlayer.create(this, R.raw.musicainicio);
         melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
         melodia.setLooping(true);

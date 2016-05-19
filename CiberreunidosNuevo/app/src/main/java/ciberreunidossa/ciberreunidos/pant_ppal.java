@@ -1,6 +1,7 @@
 package ciberreunidossa.ciberreunidos;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -13,12 +14,14 @@ import android.widget.Toast;
 public class pant_ppal extends AppCompatActivity {
     MediaPlayer clic, melodia;
     Intent service;
+    SharedPreferences sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pant_ppal);
 
+        sharedPrefs = getSharedPreferences("opciones", MODE_PRIVATE);
         //Audio musica = new Audio(getWindow().getContext(), new File(R.raw.musicainicio));
 
         ImageButton btn_ppt = (ImageButton) findViewById(R.id.btn_ppt);
@@ -27,7 +30,7 @@ public class pant_ppal extends AppCompatActivity {
         ImageButton btn_conecta = (ImageButton) findViewById(R.id.btn_conecta);
         ImageButton btn_ajustes = (ImageButton) findViewById(R.id.btn_ajustes);
         ImageButton btn_ayuda = (ImageButton) findViewById(R.id.btn_ayuda);
-        ImageButton btn_candado= (ImageButton) findViewById(R.id.btn_candado);
+        ImageButton btn_candado = (ImageButton) findViewById(R.id.btn_candado);
         clic = MediaPlayer.create(this, R.raw.clic);
         clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
@@ -40,7 +43,10 @@ public class pant_ppal extends AppCompatActivity {
         btn_ppt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
+
                 Intent i = new Intent(pant_ppal.this, piedrapapeltijera.class);
                 startActivity(i);
             }
@@ -50,7 +56,10 @@ public class pant_ppal extends AppCompatActivity {
         btn_ahorcado.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
+
                 Intent i = new Intent(pant_ppal.this, pant_nivelAhorcado.class);
                 startActivity(i);
             }
@@ -60,7 +69,10 @@ public class pant_ppal extends AppCompatActivity {
         btn_enraya.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
+
                 Intent i = new Intent(pant_ppal.this, pant_JugadoresPartida.class);
                 i.putExtra("juego", "enraya");
                 startActivity(i);
@@ -71,7 +83,10 @@ public class pant_ppal extends AppCompatActivity {
         btn_conecta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
+
                 Intent i = new Intent(pant_ppal.this, pant_JugadoresPartida.class);
                 i.putExtra("juego", "conecta");
                 startActivity(i);
@@ -82,7 +97,10 @@ public class pant_ppal extends AppCompatActivity {
         btn_ajustes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
+
                 Intent i = new Intent(pant_ppal.this, pant_ajustes.class);
                 // i.putExtra("melodia", service);
                 // i.putExtra("efectos", (Serializable) clic);
@@ -94,7 +112,10 @@ public class pant_ppal extends AppCompatActivity {
         btn_ayuda.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
+
                 Intent i = new Intent(pant_ppal.this, pant_ayuda.class);
                 startActivity(i);
 
@@ -138,7 +159,11 @@ public class pant_ppal extends AppCompatActivity {
     public void onResume() {
         super.onResume();
         service = new Intent(this, ServicioAudio.class);
-        startService(service);
+
+        if (sharedPrefs.getBoolean("musica", true)) {
+            startService(service);
+        }
+
        /* melodia = MediaPlayer.create(this, R.raw.musicainicio);
         melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
         melodia.setLooping(true);

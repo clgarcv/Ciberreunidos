@@ -1,6 +1,7 @@
 package ciberreunidossa.ciberreunidos;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,7 @@ public class pant_nivelAhorcado extends AppCompatActivity {
 
     MediaPlayer clic;
     MiMusica musica;
+    SharedPreferences sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,15 +26,18 @@ public class pant_nivelAhorcado extends AppCompatActivity {
 
         clic = MediaPlayer.create(this, R.raw.clic);
         clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        sharedPrefs = getSharedPreferences("opciones", MODE_PRIVATE);
 
         musica.melodia = MediaPlayer.create(this, R.raw.ahorcado);
         musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        musica.melodia.start();
+        //musica.melodia.start();
 
         facil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
                 Intent i = new Intent(pant_nivelAhorcado.this, pant_ahorcado.class);
                 i.putExtra("dificultad", "facil");
                 startActivity(i);
@@ -41,7 +46,9 @@ public class pant_nivelAhorcado extends AppCompatActivity {
         media.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
                 Intent i = new Intent(pant_nivelAhorcado.this, pant_ahorcado.class);
                 i.putExtra("dificultad", "media");
                 startActivity(i);
@@ -50,7 +57,9 @@ public class pant_nivelAhorcado extends AppCompatActivity {
         dificil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
                 Intent i = new Intent(pant_nivelAhorcado.this, pant_ahorcado.class);
                 i.putExtra("dificultad", "dificil");
                 startActivity(i);
@@ -79,6 +88,8 @@ public class pant_nivelAhorcado extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        musica.melodia.start();
+        if (sharedPrefs.getBoolean("musica", true)) {
+            musica.melodia.start();
+        }
     }
 }

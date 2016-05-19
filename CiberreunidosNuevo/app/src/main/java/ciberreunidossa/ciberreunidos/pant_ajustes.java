@@ -1,9 +1,11 @@
 package ciberreunidossa.ciberreunidos;
 
 
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ToggleButton;
 
 public class pant_ajustes extends AppCompatActivity {
@@ -19,9 +21,47 @@ public class pant_ajustes extends AppCompatActivity {
         //musica = (MiMusica) getIntent().getExtras().getSerializable("melodia");
         //efectos = (MediaPlayer) getIntent().getExtras().getSerializable("efectos");
 
-        ToggleButton btn_musica = (ToggleButton) findViewById(R.id.btn_musica);
+        final ToggleButton btn_musica = (ToggleButton) findViewById(R.id.btn_musica);
+        SharedPreferences sharedPrefs = getSharedPreferences("opciones", MODE_PRIVATE);
+        btn_musica.setChecked(sharedPrefs.getBoolean("musica", true));
 
-        ToggleButton btn_efectos = (ToggleButton) findViewById(R.id.btn_efectos);
+        final ToggleButton btn_efectos = (ToggleButton) findViewById(R.id.btn_efectos);
+        btn_efectos.setChecked(sharedPrefs.getBoolean("efectos", true));
+        btn_musica.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (btn_musica.isChecked())
+                {
+                    SharedPreferences.Editor editor = getSharedPreferences("opciones", MODE_PRIVATE).edit();
+                    editor.putBoolean("musica", true);
+                    editor.commit();
+                }
+                else
+                {
+                    SharedPreferences.Editor editor = getSharedPreferences("opciones", MODE_PRIVATE).edit();
+                    editor.putBoolean("musica", false);
+                    editor.commit();
+                }
+            }
+        });
+        btn_efectos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (btn_efectos.isChecked())
+                {
+                    SharedPreferences.Editor editor = getSharedPreferences("opciones", MODE_PRIVATE).edit();
+                    editor.putBoolean("efectos", true);
+                    editor.commit();
+                }
+                else
+                {
+                    SharedPreferences.Editor editor = getSharedPreferences("opciones", MODE_PRIVATE).edit();
+                    editor.putBoolean("efectos", false);
+                    editor.commit();
+                }
+            }
+        });
+
 
 /*
         if (btn_musica.getText().toString().compareTo("ON") == 0) {

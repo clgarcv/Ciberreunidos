@@ -2,6 +2,7 @@ package ciberreunidossa.ciberreunidos;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.IBinder;
 
@@ -17,6 +18,7 @@ public class ServicioAudio extends Service{
     }
     public void onCreate()
     {
+
         mp = MediaPlayer.create(this, R.raw.musicainicio);
         mp.setLooping(true);
     }

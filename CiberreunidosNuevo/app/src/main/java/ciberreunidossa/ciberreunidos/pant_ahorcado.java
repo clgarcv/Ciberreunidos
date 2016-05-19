@@ -2,6 +2,7 @@ package ciberreunidossa.ciberreunidos;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -29,6 +30,7 @@ public class pant_ahorcado extends AppCompatActivity {
     String[] palabraFin;
 
     MiMusica musica;
+    SharedPreferences sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,7 @@ public class pant_ahorcado extends AppCompatActivity {
         setContentView(R.layout.activity_pant_ahorcado);
 
         musica = (MiMusica)getIntent().getExtras().getSerializable("melodia");
+        sharedPrefs = getSharedPreferences("opciones", MODE_PRIVATE);
 
         Bundle bundle = getIntent().getExtras();
         final String dificultad = bundle.getString("dificultad");
@@ -76,7 +79,9 @@ public class pant_ahorcado extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        musica.melodia.start();
+        if (sharedPrefs.getBoolean("musica", true)) {
+            musica.melodia.start();
+        }
     }
 
     public void eligePalabra() {

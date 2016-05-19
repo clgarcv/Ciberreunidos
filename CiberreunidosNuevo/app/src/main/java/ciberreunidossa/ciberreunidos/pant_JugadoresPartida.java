@@ -1,6 +1,7 @@
 package ciberreunidossa.ciberreunidos;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -13,7 +14,7 @@ public class pant_JugadoresPartida extends AppCompatActivity {
 
     MediaPlayer clic;
     MiMusica musica;
-
+    SharedPreferences sharedPrefs;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,19 +25,24 @@ public class pant_JugadoresPartida extends AppCompatActivity {
         clic = MediaPlayer.create(this, R.raw.clic);
         clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
-
+        sharedPrefs = getSharedPreferences("opciones", MODE_PRIVATE);
         Bundle bundle = getIntent().getExtras();
         final String juego = bundle.getString("juego");
 
         if (juego.compareTo("enraya") == 0) {
             musica.melodia = MediaPlayer.create(this, R.raw.enraya);
             musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            musica.melodia.start();
+            if (sharedPrefs.getBoolean("musica", true)) {
+                musica.melodia.start();
+            }
+
 
             j1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    clic.start();
+                    if (sharedPrefs.getBoolean("efectos", true)) {
+                        clic.start();
+                    }
                     Intent i = new Intent(pant_JugadoresPartida.this, pant_enraya.class);
                     i.putExtra("njugadores", 1);
                     i.putExtra("melodia", musica);
@@ -46,7 +52,9 @@ public class pant_JugadoresPartida extends AppCompatActivity {
             j2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    clic.start();
+                    if (sharedPrefs.getBoolean("efectos", true)) {
+                        clic.start();
+                    }
                     Intent i = new Intent(pant_JugadoresPartida.this, pant_enraya.class);
                     i.putExtra("njugadores", 2);
                     i.putExtra("melodia", musica);
@@ -57,11 +65,15 @@ public class pant_JugadoresPartida extends AppCompatActivity {
         } else if(juego.compareTo("conecta") == 0) {
             musica.melodia = MediaPlayer.create(this, R.raw.conecta);
             musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            musica.melodia.start();
+            if (sharedPrefs.getBoolean("musica", true)) {
+                musica.melodia.start();
+            }
             j1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    clic.start();
+                    if (sharedPrefs.getBoolean("efectos", true)) {
+                        clic.start();
+                    }
                     Intent i = new Intent(pant_JugadoresPartida.this, pant_conecta4.class);
                     i.putExtra("njugadores", 1);
                     i.putExtra("melodia", musica);
@@ -71,7 +83,9 @@ public class pant_JugadoresPartida extends AppCompatActivity {
             j2.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    clic.start();
+                    if (sharedPrefs.getBoolean("efectos", true)) {
+                        clic.start();
+                    }
                     Intent i = new Intent(pant_JugadoresPartida.this, pant_conecta4.class);
                     i.putExtra("njugadores", 2);
                     i.putExtra("melodia", musica);
@@ -102,7 +116,9 @@ public class pant_JugadoresPartida extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        musica.melodia.start();
+        if (sharedPrefs.getBoolean("musica", true)) {
+            musica.melodia.start();
+        }
         //Intent service = new Intent(this, ServicioAudio.class);
         //startService(service);
        /* melodia = MediaPlayer.create(this, R.raw.musicainicio);

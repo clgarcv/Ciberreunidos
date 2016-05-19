@@ -1,6 +1,7 @@
 package ciberreunidossa.ciberreunidos;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -13,6 +14,7 @@ public class piedrapapeltijera extends AppCompatActivity {
 
     MediaPlayer clic;
     MiMusica musica;
+    SharedPreferences sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +23,10 @@ public class piedrapapeltijera extends AppCompatActivity {
 
         clic = MediaPlayer.create(this, R.raw.clic);
         clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        sharedPrefs = getSharedPreferences("opciones", MODE_PRIVATE);
 
         musica.melodia = MediaPlayer.create(this, R.raw.ppt);
         musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        musica.melodia.start();
 
         Button bt_3= (Button) findViewById(R.id.tres);
         Button bt_5= (Button) findViewById(R.id.cinco);
@@ -33,7 +35,9 @@ public class piedrapapeltijera extends AppCompatActivity {
             bt_3.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    clic.start();
+                    if (sharedPrefs.getBoolean("efectos", true)) {
+                        clic.start();
+                    }
                     Intent i = new Intent(piedrapapeltijera.this, juego_piedrapapeltijera.class);
                     i.putExtra("ronda", "3");
                     i.putExtra("melodia", musica);
@@ -45,7 +49,9 @@ public class piedrapapeltijera extends AppCompatActivity {
             bt_5.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    clic.start();
+                    if (sharedPrefs.getBoolean("efectos", true)) {
+                        clic.start();
+                    }
                     Intent i = new Intent(piedrapapeltijera.this, juego_piedrapapeltijera.class);
                     i.putExtra("ronda", "5");
                     i.putExtra("melodia", musica);
@@ -57,7 +63,9 @@ public class piedrapapeltijera extends AppCompatActivity {
             bt_7.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    clic.start();
+                    if (sharedPrefs.getBoolean("efectos", true)) {
+                        clic.start();
+                    }
                     Intent i = new Intent(piedrapapeltijera.this, juego_piedrapapeltijera.class);
                     i.putExtra("ronda", "7");
                     i.putExtra("melodia", musica);
@@ -87,7 +95,9 @@ public class piedrapapeltijera extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        musica.melodia.start();
+        if (sharedPrefs.getBoolean("musica", true)) {
+            musica.melodia.start();
+        }
        // Intent service = new Intent(this, ServicioAudio.class);
         //startService(service);
        /* melodia = MediaPlayer.create(this, R.raw.musicainicio);

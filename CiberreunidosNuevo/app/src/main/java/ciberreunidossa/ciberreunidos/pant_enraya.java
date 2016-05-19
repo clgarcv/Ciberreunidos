@@ -1,6 +1,7 @@
 package ciberreunidossa.ciberreunidos;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ public class pant_enraya extends AppCompatActivity {
 
     MediaPlayer clic;
     MiMusica musica;
+    SharedPreferences sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +36,7 @@ public class pant_enraya extends AppCompatActivity {
         clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
 
         musica = (MiMusica)getIntent().getExtras().getSerializable("melodia");
+        sharedPrefs = getSharedPreferences("opciones", MODE_PRIVATE);
 
         contador = 1;
         //obtenemos el numero de jugadores
@@ -82,7 +85,9 @@ public class pant_enraya extends AppCompatActivity {
                 img.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        clic.start();
+                        if (sharedPrefs.getBoolean("efectos", true)) {
+                            clic.start();
+                        }
                         actualizarTabla(v.getId());
                         añadirImagen(v.getId());
                         if (!finPartida()) {
@@ -139,7 +144,9 @@ public class pant_enraya extends AppCompatActivity {
                 img.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        clic.start();
+                        if (sharedPrefs.getBoolean("efectos", true)) {
+                            clic.start();
+                        }
                         actualizarTabla(v.getId());
                         añadirImagen(v.getId());
                         if (!finPartida()) {
@@ -175,7 +182,9 @@ public class pant_enraya extends AppCompatActivity {
     @Override
     public void onResume() {
         super.onResume();
-        musica.melodia.start();
+        if (sharedPrefs.getBoolean("musica", true)) {
+            musica.melodia.start();
+        }
     }
 
     public void juegamaquina() {

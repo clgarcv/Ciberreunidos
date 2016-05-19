@@ -1,6 +1,7 @@
 package ciberreunidossa.ciberreunidos;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v7.app.AppCompatActivity;
@@ -14,6 +15,7 @@ public class pierdegana extends AppCompatActivity {
 
     MediaPlayer clic;
     MiMusica musica;
+    SharedPreferences sharedPrefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,6 +24,7 @@ public class pierdegana extends AppCompatActivity {
 
         clic = MediaPlayer.create(this, R.raw.clic);
         clic.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        sharedPrefs = getSharedPreferences("opciones", MODE_PRIVATE);
 
         Bundle bundle = getIntent().getExtras();
         final String juego = bundle.getString("juego");
@@ -30,7 +33,9 @@ public class pierdegana extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
                 Intent i = new Intent(pierdegana.this, pant_ppal.class);
                 startActivity(i);
             }
@@ -69,7 +74,9 @@ public class pierdegana extends AppCompatActivity {
                 texto.setTextSize(40);
                 musica.melodia = MediaPlayer.create(this, R.raw.win);
                 musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                musica.melodia.start();
+                if (sharedPrefs.getBoolean("musica", true)) {
+                    musica.melodia.start();
+                }
 
             }
 
@@ -91,7 +98,9 @@ public class pierdegana extends AppCompatActivity {
                 texto.setTextSize(40);
                 musica.melodia = MediaPlayer.create(this, R.raw.win);
                 musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                musica.melodia.start();
+                if (sharedPrefs.getBoolean("musica", true)) {
+                    musica.melodia.start();
+                }
 
             }
 
@@ -99,8 +108,11 @@ public class pierdegana extends AppCompatActivity {
         jugar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
                 Intent i = new Intent(pierdegana.this, pant_JugadoresPartida.class);
+                i.putExtra("juego", "enraya");
                 startActivity(i);
             }
         });
@@ -118,12 +130,16 @@ public class pierdegana extends AppCompatActivity {
             texto.setText("VICTORIA\n" + vj + "-" + vm);
             musica.melodia = MediaPlayer.create(this, R.raw.win);
             musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            musica.melodia.start();
+            if (sharedPrefs.getBoolean("musica", true)) {
+                musica.melodia.start();
+            }
         } else {
             texto.setText("DERROTA\n" + vj + "-" + vm);
             musica.melodia = MediaPlayer.create(this, R.raw.lose);
             musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            musica.melodia.start();
+            if (sharedPrefs.getBoolean("musica", true)) {
+                musica.melodia.start();
+            }
         }
         jugar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,18 +165,24 @@ public class pierdegana extends AppCompatActivity {
             texto.setTextSize(40);
             musica.melodia = MediaPlayer.create(this, R.raw.win);
             musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            musica.melodia.start();
+            if (sharedPrefs.getBoolean("musica", true)) {
+                musica.melodia.start();
+            }
         } else {
             texto.setText("¡LÁSTIMA!\nLa palabra era " + solucion.toUpperCase());
             texto.setTextSize(40);
             musica.melodia = MediaPlayer.create(this, R.raw.lose);
             musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
-            musica.melodia.start();
+            if (sharedPrefs.getBoolean("musica", true)) {
+                musica.melodia.start();
+            }
         }
         jugar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
                 Intent i = new Intent(pierdegana.this, pant_nivelAhorcado.class);
                 startActivity(i);
             }
@@ -182,7 +204,9 @@ public class pierdegana extends AppCompatActivity {
                 texto.setTextSize(40);
                 musica.melodia = MediaPlayer.create(this, R.raw.win);
                 musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                musica.melodia.start();
+                if (sharedPrefs.getBoolean("musica", true)) {
+                    musica.melodia.start();
+                }
             }
 
         } else {
@@ -196,14 +220,18 @@ public class pierdegana extends AppCompatActivity {
                 texto.setTextSize(40);
                 musica.melodia = MediaPlayer.create(this, R.raw.lose);
                 musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                musica.melodia.start();
+                if (sharedPrefs.getBoolean("musica", true)) {
+                    musica.melodia.start();
+                }
 
             } else {
                 texto.setText("¡ENHORABUENA!\nEres el vencedor");
                 texto.setTextSize(40);
                 musica.melodia = MediaPlayer.create(this, R.raw.win);
                 musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
-                musica.melodia.start();
+                if (sharedPrefs.getBoolean("musica", true)) {
+                    musica.melodia.start();
+                }
 
             }
 
@@ -211,7 +239,9 @@ public class pierdegana extends AppCompatActivity {
         jugar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clic.start();
+                if (sharedPrefs.getBoolean("efectos", true)) {
+                    clic.start();
+                }
                 Intent i = new Intent(pierdegana.this, pant_JugadoresPartida.class);
                 i.putExtra("juego", "conecta");
                 startActivity(i);
