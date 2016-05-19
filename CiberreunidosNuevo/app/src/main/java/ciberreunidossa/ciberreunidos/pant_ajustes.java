@@ -92,7 +92,7 @@ public class pant_ajustes extends AppCompatActivity {
         super.onPause();
 
         stopService(service);
-        //melodia.stop();
+
     }
 
     @Override

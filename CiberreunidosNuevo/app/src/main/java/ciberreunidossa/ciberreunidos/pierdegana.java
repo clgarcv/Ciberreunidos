@@ -67,8 +67,13 @@ public class pierdegana extends AppCompatActivity {
             final String ganador = b.getString("ganador");
             TextView texto = (TextView) findViewById(R.id.resultado);
             if (ganador == null) {
-                texto.setText("¡LÁSTIMA!\nHa habido un empate entre los jugadores");
+                texto.setText("¡LÁSTIMA!\nHa habido un empate");
                 texto.setTextSize(40);
+                musica.melodia = MediaPlayer.create(this, R.raw.lose);
+                musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                if (sharedPrefs.getBoolean("musica", true)) {
+                    musica.melodia.start();
+                }
             } else {
                 texto.setText("¡ENHORABUENA!\nEl ganador es el " + ganador);
                 texto.setTextSize(40);
@@ -86,6 +91,11 @@ public class pierdegana extends AppCompatActivity {
             if (ganador == null) {
                 texto.setText("¡VAYA!\nHa habido un empate");
                 texto.setTextSize(40);
+                musica.melodia = MediaPlayer.create(this, R.raw.lose);
+                musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                if (sharedPrefs.getBoolean("musica", true)) {
+                    musica.melodia.start();
+                }
             } else if (ganador.equals("Jugador 2")) {
                 texto.setText("¡LÁSTIMA!\nHas perdido");
                 texto.setTextSize(40);
@@ -197,8 +207,13 @@ public class pierdegana extends AppCompatActivity {
             final String ganador = b.getString("ganador");
             TextView texto = (TextView) findViewById(R.id.resultado);
             if (ganador == null) {
-                texto.setText("¡LÁSTIMA!\nHa habido un empate entre los jugadores");
+                texto.setText("¡LÁSTIMA!\nHa habido un empate");
                 texto.setTextSize(40);
+                musica.melodia = MediaPlayer.create(this, R.raw.lose);
+                musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                if (sharedPrefs.getBoolean("musica", true)) {
+                    musica.melodia.start();
+                }
             } else {
                 texto.setText("¡ENHORABUENA!\nEl ganador es el " + ganador);
                 texto.setTextSize(40);
@@ -215,6 +230,11 @@ public class pierdegana extends AppCompatActivity {
             if (ganador == null) {
                 texto.setText("¡VAYA!\nHa habido un empate");
                 texto.setTextSize(40);
+                musica.melodia = MediaPlayer.create(this, R.raw.lose);
+                musica.melodia.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                if (sharedPrefs.getBoolean("musica", true)) {
+                    musica.melodia.start();
+                }
             } else if (ganador.equals("Jugador 2")) {
                 texto.setText("¡LÁSTIMA!\nHas perdido");
                 texto.setTextSize(40);
